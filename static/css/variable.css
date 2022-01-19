@@ -1,0 +1,124 @@
+
+*{
+   user-select: none;
+}
+
+.Ambiguity{
+	box-shadow: 2px 2px 9px #888888
+}
+
+/* textarea{
+	position:absolute;
+	width:290px;
+	height:23px;
+	margin: -12px 5px 5px 4px;
+	border:none;
+	overflow-y:hidden;
+	resize:none;
+}
+ */
+
+/* .list-div tr:hover td{
+	background-color: #f6f8fb;
+} */
+
+.test{
+	position:absolute;
+	margin: 9px 5px 5px 880px;
+}
+
+
+#del2 {
+	cursor:pointer;
+	position: fixed;
+	margin-top:42px;
+	margin-left:893px;
+	width: 100px;
+	height: 100px;
+	z-index:1;
+	display:none;
+}
+
+
+#del,#del_h {
+	cursor:pointer;
+	position: fixed;
+	z-index:1;
+	display:none;
+	line-height:0px;
+	margin-left:280px;
+}
+
+
+textarea{
+	line-height:23px;
+}
+
+
+
+
+.layui-input-block {
+	margin-left:0px;
+	min-height: 36px;
+}
+
+.layui-form-item {
+	/* margin-bottom: -15px; */
+	clear: both;
+	*zoom: 1;
+}
+
+
+.layui-form-item .layui-inline {
+	margin-bottom: 5px;
+	margin-right: 0px;
+}
+
+.layui-tab-content {
+	padding: 0px;
+}
+
+.layui-elem-field legend {
+	margin-left: 20px;
+	padding: 0px 10px;
+	font-size: 12px;
+	font-weight: 300;
+}
+
+.layui-elem-field {
+	margin-bottom: 10px;
+	padding: 5px;
+	border-width: 1px;
+	border-style: solid;
+}
+
+.tab_but{
+	width:80px;
+	height:30px;
+	border: 1px solid #c9c9c9;
+	border-radius:5px;
+	display:inline-block;
+	line-height: 30px;
+	margin:4px;
+}
+
+.tab_but_div{
+	width:60px;
+	display:inline-block;
+}
+
+.tab_but_a{
+	margin-left:4px;
+	line-height: 30px;
+}
+
+.variable{
+	position: fixed;
+	top: 0;
+	right: 0px;
+	z-index: 10001;
+	width:480px;
+	height:680px;
+	background-color: #ffffff;
+	padding:20px;
+}

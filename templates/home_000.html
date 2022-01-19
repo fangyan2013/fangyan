@@ -1,0 +1,219 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>ui_000</title>
+  <link rel="stylesheet" href="../static/layui-v2.6.8/layui-v2.6.8/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" type="text/css" href="../static/icon/font/iconfont.css">
+  <style>
+
+	
+    body{
+      padding:20px 20px 20px 20px;
+	  height:810px;
+	}
+	
+	.ifame_api{
+		overflow-x:hidden;
+		width:1540px;
+		height:740px;
+		position:absolute;
+		opacity：0;
+		
+	}
+	
+	
+	.Ambiguity{
+		box-shadow: 2px 2px 9px #888888
+	}
+	
+	.content{
+		margin-top:10px;
+		width:100%;
+	}
+	
+	.layui-bg-blue {
+		background-color: #ffffff!important;
+	}
+	
+	.Lower_level{
+	    width:100%;
+		height:100%;
+	    padding:10px;
+		position:relative;
+		overflow:hidden;
+	}
+	
+	.layui-nav .layui-nav-item a {
+		color: #7d7d7d;
+		font-size:15px;
+		font-weight: bold;
+	}
+	
+	
+	.layui-nav .layui-nav-item a:hover {
+		color: #0a6ae6e3;
+	}
+	
+	.popping-box-wrap {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		display:none;
+		background: rgba(0,0,0,0.5);
+		z-index: 10001;
+	}
+	
+	#loading{
+		position:fixed;
+		z-index:400;
+		width:100%;
+		height:100%;
+		top:0;
+		left:0;
+		text-align:center;
+		font-size:0.9rem;
+		color:#595758;
+		background-color:#ffffff;
+	}
+	
+  </style>
+</head>
+<body>
+
+<div id="loading">
+	<i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-icon-loading" style="font-size: 70px; color: #0a6ae6e3;margin-top:350px;" data-id='{{id.id}}'></i>  
+</div>
+
+
+<div class="Ambiguity" style="width:1540px">
+		<!-- <div class="Ambiguity Navigation_Bar"> -->
+	<ul class="layui-nav layui-bg-blue Ambiguity">
+	
+	  <li class="layui-nav-item">
+		<a href="javascript:;">设置</a>
+		<dl class="layui-nav-child">
+		  <dd><a href="javascript:void(0);" id="l_file">本地文件</a></dd>
+		  <!-- <dd><a href="javascript:void(0);" id="file_server">文件服务器</a></dd> -->
+		  <dd><a href="javascript:void(0);" id="jenkins">调用配置</a></dd>
+          
+		</dl>
+
+	  </li>
+	
+	
+	
+	  <li class="layui-nav-item">
+          <a href="javascript:void(0);" id="workflow">工作流</a>
+      </li>
+      
+      <li class="layui-nav-item">
+          <a href="javascript:void(0);" id="log">报告管理</a>
+      </li>
+
+<!-- 	  <li class="layui-nav-item"><a href="">预案</a></li>
+	  <li class="layui-nav-item"><a href="">帮助</a></li> -->
+
+	</ul>
+		
+	<div class="Ambiguity content">
+		<iframe id="ui_workflow" class="Ambiguity ifame_api" frameborder="no" border="0"   src='/ui_000/'></iframe>
+	</div>
+</div>
+
+	<div class="popping-box-wrap">
+		<iframe  class="Ambiguity ifame_api" frameborder="no" border="0"   src='/Local_file/'></iframe>
+	</div>
+	
+	<div class="popping-box-wrap">
+		<iframe  class="Ambiguity ifame_api" frameborder="no" border="0"   src='/file_server/'></iframe>
+	</div>
+	
+	<div class="popping-box-wrap">
+		<iframe  class="Ambiguity ifame_api" frameborder="no" border="0"   src='/jenkins/'></iframe>
+	</div>
+
+</body>
+
+
+
+
+
+
+<script src="../static/layui-v2.6.8/layui-v2.6.8/layui/layui.js" charset="utf-8"></script>
+<script src="../static/jquery/jquery-3.3.1.min.js" charset="utf-8"></script>
+<script src="../static/jquery/jquery-3.3.1.js" charset="utf-8"></script>
+<script src="../static/jquery-ui-1.12.1.custom/jquery-ui-1.12.1.custom/jquery-ui.min.js" charset="utf-8"></script>
+<script src="https://cdn.bootcss.com/jsPlumb/1.7.6/jquery.jsPlumb.min.js"></script>
+<script src="../static/icon/font/iconfont.js"></script>
+<script src="../static/js/web_db.js"></script>
+
+<script>
+
+
+
+layui.use('layer', function(){ //独立版的layer无需执行这一句
+    var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+  
+    $("#l_file").click(function(){
+		$(".popping-box-wrap").show("slow")
+		$(".popping-box-wrap").children("iframe").attr("src","/Local_file/"); 
+    })
+	
+
+	
+	
+    $("#file_server").click(function(){
+		$(".popping-box-wrap").show("slow")
+		$(".popping-box-wrap").children("iframe").attr("src","/file_server/"); 
+		
+		
+    })
+	
+	
+	$("#jenkins").click(function(){
+		$(".popping-box-wrap").show("slow")
+		$(".popping-box-wrap").children("iframe").attr("src","/jenkins/"); 
+    })
+    
+    
+
+    
+    
+	$("#log").click(function(){
+		$("#ui_workflow").attr("src","/log_000/"); 
+    })
+	
+	$("#workflow").click(function(){
+		$("#ui_workflow").attr("src","/ui_000/"); 
+    })
+
+	
+  
+
+})
+
+
+
+window.onload =function()
+{
+    $("#loading").hide();
+}
+
+
+function closure(){
+	$(".popping-box-wrap").hide("slow");
+	location.reload()
+	//$("#ui_workflow")[0].contentWindow.subFunction()
+
+}
+
+
+
+
+	
+</script>
+</body>
+</html>

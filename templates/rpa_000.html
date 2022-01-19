@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>合并</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../static/layui-v2.6.8/layui-v2.6.8/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="../static/css/variable.css"  media="all">
+
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+  <style>
+
+  
+  
+	*{
+		user-select: none;
+	}
+	
+    body{
+		padding:20px;
+	}
+
+
+	  
+   .tab_but{
+        width:80px;
+        height:30px;
+        border: 1px solid #c9c9c9;
+        border-radius:5px;
+        display:inline-block;
+        line-height: 30px;
+		margin: 7px;
+    }
+
+    .tab_but_div{
+        width:60px;
+        display:inline-block;
+    }
+
+    .tab_but_a{
+        margin-left:4px;
+    }
+	
+	.ul_head{
+	    width:433px;
+		line-height:25px;
+		margin:0px;
+		height:35px;
+	}
+	
+	.ul_head > li{
+        float: left;
+		height:35px;
+		padding:0px 5px 0px 5px;
+	}
+	
+	.Workflow_name_input{
+		outline: none;
+	}
+
+	.Judgment_Pool{
+		width: 160px;
+		height: 300px;
+		border: 1px solid #e6e6e6;
+		padding: 20px 40px 20px 40px;
+		overflow-y:auto;
+		overflow-x:hidden;
+	}
+	
+	
+	.node_name{
+		width:103px;
+	}
+	
+	
+	font{
+		line-height:40px;
+	}
+	
+	/* 设置滚动条的样式 */
+	::-webkit-scrollbar {
+		width:10px;
+	}
+	/* 滚动槽 */
+	::-webkit-scrollbar-track {
+		-webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+		border-radius:8px;
+	}
+	/* 滚动条滑块 */
+	::-webkit-scrollbar-thumb {
+		border-radius:8px;
+		background:rgba(0,0,0,0.1);
+		-webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+	}
+	::-webkit-scrollbar-thumb:window-inactive {
+		background:rgba(255,0,0,0.4);
+	}
+	
+	.layui-input-block {
+		margin-left: 0px;
+		min-height: 36px;
+	}
+
+	.layui-form-label {
+		padding: 8px 0px;
+		width: 99px;
+	}
+
+	.layui-form-item .layui-input-inline {
+		width: 346px;
+		margin-right: 0px;
+	}
+	
+	.layui-tab-content {
+		padding: 10px 0px 10px 0px;
+	}
+
+	#rpa_test{
+		margin-left: 357px;
+        margin-top: 10px;
+	}
+	
+	.variable{
+		position: fixed;
+		top: 0;
+		right: 0px;
+		z-index: 10001;
+		width:458px;
+		height:680px;
+		background-color: #ffffff;
+		padding:20px;
+
+	}
+	
+	.ui_edit{
+		width:425px;
+		background-color:#ffffff;
+		padding:20px;
+		height:343px;
+	}
+	
+	/*
+	.tab_but>div>font{
+		overflow:hidden;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+	}
+	*/
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="ui_edit">
+
+
+	<ul class="ul_head">
+	   <li>
+			<i class="layui-icon layui-icon-edit" style="font-size: 24px; color: #0a6ae6e3;"></i>  
+		</li>
+	   <li>
+			<div style="float: left;" id="myP" class="Workflow_name_input" contenteditable="false" >
+				脚本录制节点名称
+			</div>
+	   
+	   </li>
+	   <li style="float: right;cursor:pointer;">
+			<i id="Save_node" class="layui-icon layui-icon-ok" style="font-size: 26px; color: #0a6ae6e3;"></i>  
+	   </li>
+	   <li style="float: right;cursor:pointer;">
+			<i id="shut_down" class="layui-icon layui-icon-close" style="font-size: 26px; color: #0a6ae6e3;"></i>  
+	   </li>
+	</ul>
+
+	  <div class="layui-tab">
+		<ul class="layui-tab-title">
+		  <li class="layui-this">录制脚本</li>
+		  <li>编辑脚本</li>
+		</ul>
+		<div class="layui-tab-content">
+		  <div class="layui-tab-item layui-show">
+			<form class="layui-form" action="">
+				<div class="layui-form-item layui-form-text">
+					<div class="layui-input-block">
+					  <textarea name="http_url" placeholder="请输入url" class="layui-textarea"></textarea>
+					</div>
+				</div>
+			
+				<div class="layui-form-item">
+					<div class="layui-inline">
+					  <!-- <label class="layui-form-label">验证手机</label> -->
+					  <div class="layui-input-inline" style="width:354px;">
+						<input name="file_name" type="text" placeholder="请输入文件名" autocomplete="off" class="layui-input">
+					  </div>
+					</div>
+					<div class="layui-inline" style="margin-right: 0px;">
+						<button type="button" class="layui-btn layui-btn-normal" id="recording">录制</button>
+			
+					</div>
+				</div>
+			
+			</form>
+		  </div>
+		  <div class="layui-tab-item">
+			 <div class="list-div" style="width:422px;height:200px;">
+				<div id="editor" style="min-height:200px;border: 1px solid #ddd;"></div>
+			 </div>
+			 <button type="button" class="layui-btn layui-btn-normal" id="rpa_test">测试</button>
+		  </div>
+
+		</div>
+	  </div>
+</div>
+
+
+<div style="display:none" id="test" >
+	<form id="addGoodsForm" class="layui-form" action="" style="padding:20px;" lay-filter="example">
+		  <div class="layui-form-item" style="margin:0px;">
+			<div class="layui-input-block">
+				<input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入出参名称" class="layui-input">
+			</div>
+		   </div>
+		  <div class="layui-form-item"  style="margin:0px;">
+			  <div class="layui-input-block">
+				  <input type="radio" name="sex" value="JsonPath" title="JsonPath" checked="">
+				  <input type="radio" name="sex" value="re" title="正则">
+			  </div>
+		  </div>
+		  <div class="layui-form-item layui-form-text" style="margin-top:10px;">
+			  <div class="layui-input-block" style="margin:0px 4px 0px -4px;">
+				  <textarea placeholder="请输入内容" class="layui-textarea"  name="desc"></textarea>
+			  </div>
+		  </div>
+	</from>
+</div>
+
+
+
+<div class="variable Ambiguity">
+
+
+
+	<div class="layui-tab">
+	  <ul class="layui-tab-title">
+		<li class="layui-this">出入参</li>
+		<li>变量</li>
+	  </ul>
+	  <div class="layui-tab-content">
+		<div class="layui-tab-item layui-show">
+
+			<div style="height:345px">
+				<fieldset class="layui-elem-field site-demo-button" style="margin:5px 0px 0px 0px;height: 345px;">
+						<div style="display:inline;" id="tab_2">
+
+						</div>
+				</fieldset>
+
+			</div>
+			<div style="height:280px">
+				<fieldset class="layui-elem-field site-demo-button" style="margin:30px 0px 0px 0px;height: 217px;">
+					<legend>添加出参</legend>
+						<div style="display:inline;" id="tab_1">
+
+						</div>
+
+						<div style="display:inline;">
+								<button id="site_add" type="button" class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon"></i></button>
+						</div>
+				</fieldset>
+
+			</div>
+
+		</div>
+		<div class="layui-tab-item">
+		
+			<div style="height:345px">
+				<fieldset class="layui-elem-field site-demo-button" style="margin:5px 0px 0px 0px;height: 345px;">
+						<div style="display:inline;" id="tab_data">
+
+
+
+
+						</div>
+				</fieldset>
+
+			</div>
+			<div style="height:280px">
+				<fieldset class="layui-elem-field site-demo-button" style="margin:30px 0px 0px 0px;height: 217px;">
+					<legend>添加出参</legend>
+						<div style="display:inline;" id="tab_1">
+							<form class="layui-form" action="">
+							  <div class="layui-form-item">
+								<!-- <label class="layui-form-label" style="padding: 0px;text-align: left;">key:</label> -->
+								<div class="layui-input-block">
+								  <input type="text" name="data_key"  lay-verify="title" autocomplete="off" placeholder="请输入变量名" class="layui-input">
+								</div>
+							  </div>
+							  <div class="layui-form-item layui-form-text" style="margin-top:-10px;">
+								<!-- <label class="layui-form-label" style="padding: 0px;text-align: left;">value:</label> -->
+								<div class="layui-input-block">
+								  <textarea name="data_value" placeholder="请输入变量值" style="margin: 0px 0px 0px 0px;min-height:115px" class="layui-textarea"></textarea>
+								</div>
+								
+							  </div>
+
+							</form>
+							<button id="add_data" style="margin-top:-10px;position: absolute;right: 27px;" type="button" class="layui-btn layui-btn-normal">提交</button>
+
+
+						</div>
+
+				</fieldset>
+
+			</div>
+
+		</div>
+
+	  </div>
+	</div>
+
+</div>
+
+
+</body>
+
+<script src="../static/ace-builds-master/ace-builds-master/src/ace.js" charset="utf-8"></script>
+<script src="../static/jquery/jquery-3.3.1.min.js" charset="utf-8"></script>
+<script src="../static/layui-v2.6.8/layui-v2.6.8/layui/layui.js" charset="utf-8"></script>
+<script src="../static/js/variable.js" charset="utf-8"></script>
+
+<script>
+
+
+var api_node = localStorage.getItem('api_node');//新增的时候初始化缓存
+var rpa_node = localStorage.getItem('rpa_node');//新增的时候初始化缓存
+var sql_node = localStorage.getItem('sql_node');//新增的时候初始化缓存
+
+var w_name={}
+if (api_node !='None'){
+	var api_node = JSON.parse(api_node)
+	for (var api_node_key in api_node){
+		w_name[api_node_key]=api_node[api_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
+	}
+}
+
+if (rpa_node !='None'){
+	var rpa_node = JSON.parse(rpa_node)
+	for (var rpa_node_key in rpa_node){
+		w_name[rpa_node_key]=rpa_node[rpa_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
+	}
+}
+
+if (sql_node !='None'){
+	var sql_node = JSON.parse(sql_node)
+	for (var sql_node_key in sql_node){
+		w_name[sql_node_key]=sql_node[sql_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
+	}
+}
+
+
+
+
+var edit_id = localStorage.getItem("edit_id")
+
+
+var l_data = localStorage.getItem("list_data")
+if (l_data!='None'){
+	var list_data=JSON.parse(l_data)
+}else{
+	var list_data={}
+}
+
+var Ginseng = localStorage.getItem("Ginseng")
+console.log('Ginseng',Ginseng)
+if (Ginseng!='None'){
+	console.log(JSON.parse(Ginseng),'11111111122222333333333',edit_id)
+	if (JSON.parse(Ginseng).hasOwnProperty(edit_id)){
+		var list_quote=JSON.parse(Ginseng)[edit_id]
+	}else{
+		var list_quote=[]
+	}
+	var dict_quote=JSON.parse(Ginseng)
+}else{
+	var list_quote=[]
+	var dict_quote={}
+}
+
+
+
+
+var editor = ace.edit("editor");
+this.editor.setTheme('ace/theme/gob');
+editor.session.setMode("ace/mode/python");
+editor.resize()
+
+
+
+var rpa_node = localStorage.getItem("rpa_node")
+if(rpa_node!='None'){
+	rpa_node=JSON.parse(rpa_node)
+	if(rpa_node.hasOwnProperty(edit_id)){
+		//回显
+		$('#myP').text(rpa_node[edit_id].Workflow_name)
+		$('textarea[name="http_url"]').val(rpa_node[edit_id].http_url)
+		$('input[name="file_name"]').val(rpa_node[edit_id].file_name)
+		editor.getSession().setValue(rpa_node[edit_id].editor_value)
+		
+		var Ginseng = localStorage.getItem("Ginseng")			
+		
+		if(Ginseng!='None'){
+			Ginseng = JSON.parse(localStorage.getItem("Ginseng"))
+			console.log(Ginseng,'拳王')
+			
+			if (Ginseng.hasOwnProperty(edit_id)){
+			
+				for (const Ginseng_i of Ginseng[edit_id]) {//回显当前节点的出参
+					html_str=''
+					html_str+='    <div  class="tab_but">'
+					html_str+='        <div class="tab_but_div">'
+					
+					if (Ginseng_i['title'].length>4){
+						html_str+='            <font class="tab_but_a" id='+ Ginseng_i['title'] +'>'+ Ginseng_i['title'].slice(0, 4)+'...' +'</font>'
+					}else{
+						html_str+='            <font class="tab_but_a" id='+ Ginseng_i['title'] +'>'+ Ginseng_i['title'] +'</font>'
+					}
+						
+					//html_str+='            <font class="tab_but_a">'+ Ginseng_i['title'] +'</font>'
+					html_str+='        </div>'
+					html_str+='        <i id="tab_del" class="layui-icon layui-icon-close" style="font-size: 3px; color: #1E9FFF;cursor:pointer;"></i>'
+					html_str+='    </div>'
+					$("#tab_1").append(html_str);
+					console.log(list_quote,'高产',Ginseng_i)
+					//list_quote.push(Ginseng_i)
+				}
+			}
+			
+			
+		}
+				
+	}
+}
+
+
+
+
+$("#shut_down").click(function(){
+	//关闭判断节点
+	$(".popping-box-wrap", parent.document).hide(500);
+});
+
+
+$( "#myP" ).click(function(e){//点击时可编辑
+	var x = document.getElementById("myP");
+	x.contentEditable = "true";
+	$("#myP").focus();
+})
+			
+$("#myP").focus(function(){//聚焦改变颜色
+	var x = document.getElementById("myP");
+	x.style.color='#000000'
+});
+			
+$( "#myP" ).blur(function(){//失去改变颜色不可编辑
+	var x = document.getElementById("myP");
+	x.contentEditable = "false";
+	x.style.color='#7d7d7d'
+});
+
+
+
+$("#recording").click(function(){
+    //点击录制
+
+	$.ajax({
+	   url:"/rpa_Recording_000/",
+	   type:"POST",                    
+	   data:{
+		   'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
+		   'file_name':$('input[name="file_name"]').val(),
+		   'file_url':$('textarea[name="http_url"]').val(),
+	   },
+	   success:function (data) {
+			console.log('成功',data,'成功人事达文西')
+			editor.getSession().setValue(data['data'])
+	   },
+	   error:function (data) {
+		    layer.close(index);
+
+		    console.log("失败",data);
+		    //console.log('失败',data)
+	   }
+	});
+	
+}); 
+
+
+
+
+
+
+
+$("#rpa_test").click(function(){
+    //点击测试
+	$.ajax({
+	   url:"/rpa_test_000/",
+	   type:"POST",                    
+	   data:{
+		   'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
+		   "file_name":$('input[name="file_name"]').val(),
+	   },
+	   success:function (data) {
+			console.log('成功',data,'成功人事达文西')
+	   },
+	   error:function (data) {
+		   console.log("失败",data);
+	   }
+	});	
+})
+
+
+
+$("#Save_node").click(function(){
+    //点击保存
+	console.log({"1243":editor.getValue()},'----------------------------------')
+
+	
+	for (var w_name_id in w_name){
+		console.log(w_name_id,'w_name_id',$('#myP').text())
+		
+		
+		var rpa_node = localStorage.getItem("rpa_node")
+		console.log(rpa_node,'json字符串-----')
+
+		if(rpa_node!='None'){
+			rpa_node=JSON.parse(rpa_node)
+			var edit_id = localStorage.getItem("edit_id")
+			if (rpa_node.hasOwnProperty(edit_id)){
+				if (rpa_node[edit_id]['Workflow_name'].replace(/^\s*|\s*$/g,"")!=$('#myP').text().replace(/^\s*|\s*$/g,"")){
+					if (w_name[w_name_id]==$('#myP').text().replace(/^\s*|\s*$/g,"")){
+						layer.msg('节点重名')
+						return
+					}
+				}
+			}else{
+				if (w_name[w_name_id]==$('#myP').text().replace(/^\s*|\s*$/g,"")){
+					layer.msg('节点重名')
+					return
+				}
+			}
+			console.log(rpa_node,'是不是走了sql节点')
+		}
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	if ($('#myP').text()===''){//url非空
+		layer.msg('节点名称不能空'); 
+		return
+	}else if($('textarea[name="http_url"]').val()===''){//工作流名称非空
+		layer.msg('url不能空'); 
+		return
+	
+	}else if($('input[name="file_name"]').val()===''){//工作流名称非空
+		layer.msg('文件名称不能空'); 
+		return
+	
+	}else if(editor.getValue()===''){//工作流名称非空
+		layer.msg('脚本不能空'); 
+		return
+	}
+	
+    if(rpa_node!='None'){
+        //新增
+		if (typeof(rpa_node)=='string'){
+			rpa_node=JSON.parse(rpa_node)
+		}
+		for (name in rpa_node){
+			if(rpa_node[name]['Workflow_name']===$('#myP').text()){
+				layer.msg('节点名称唯一');
+			}
+		}
+	}
+
+    recording_val={
+		"Workflow_name":$('#myP').text(),
+		"http_url":$('textarea[name="http_url"]').val(),
+		"file_name":$('input[name="file_name"]').val(),
+		"editor_value":editor.getValue()
+	}
+	
+    var edit_id = localStorage.getItem("edit_id")
+	var recording_obj={}
+	recording_obj[edit_id]=recording_val
+    var rpa_node = localStorage.getItem("rpa_node")
+    console.log(rpa_node,'json字符串-----')
+
+    if(rpa_node=='None'){
+        //新增
+		console.log('是不是走了rpa节点')
+        localStorage.setItem('rpa_node',JSON.stringify(recording_obj));
+    }else{
+        //多个节点时新增/编辑
+        rpa_node=JSON.parse(rpa_node)
+        rpa_node[edit_id]=recording_obj[edit_id]
+        localStorage.setItem('rpa_node',JSON.stringify(rpa_node))
+    }
+	
+    var Ginseng = localStorage.getItem("Ginseng")
+	
+    if(Ginseng=='None'){
+        //新增
+        //localStorage.setItem('Ginseng',JSON.stringify(url_data()));
+		dict_quote[edit_id]=list_quote
+		localStorage.setItem('Ginseng',JSON.stringify(dict_quote));//节点出参保存
+			
+    }else{
+        //多个节点时新增/编辑
+        Ginseng=JSON.parse(Ginseng)
+        Ginseng[edit_id]=list_quote
+        localStorage.setItem('Ginseng',JSON.stringify(Ginseng))
+    }
+	
+	localStorage.setItem('list_data',JSON.stringify(list_data));//节点出参保存
+
+	
+	$.ajax({
+	   url:"/rpa_updata_000/",
+	   type:"POST",                    
+	   data:{
+		   'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
+		   "file_name":$('input[name="file_name"]').val(),
+		   "rpa_txt":editor.getValue()
+	   },
+	   success:function (data) {
+			console.log('成功',data,'成功人事达文西')
+	   },
+	   error:function (data) {
+		   console.log("失败",data);
+	   }
+	});	
+	
+	
+	
+	
+    //currentWebview.hide(500);
+    $(".popping-box-wrap", parent.document).hide(500);
+});
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
+
+
+
+

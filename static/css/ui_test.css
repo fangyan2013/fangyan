@@ -1,0 +1,234 @@
+
+  
+  
+    .demo-carousel{
+		height: 200px; 
+		line-height: 200px; 
+		text-align: center;
+	}
+	
+	
+	.layui-col-md5 {
+		width: 25.666667%;
+	}
+
+	.d_1{
+	    width:300px;
+		height:579px;
+		border-radius: 10px;
+        background-color:#dadada;
+	}
+	
+	.d_1_1{
+	    width:300px;
+		height:40px;
+		background-color:#525252;
+		color:#ffffff;
+		border-radius: 10px 10px 0px 0px;
+		font-size:15px;
+		text-align:center;
+		line-height:40px;
+	}
+	
+	.d_1_2{
+	    height:460px;
+		display: flex;
+	}
+	
+	.d_1_2_1{
+	    width:80px;
+		height:539px;
+		border-right-style:solid;
+		border-width:1px;
+	    border-color:#b3aaaa;
+	}
+	
+	*{
+		margin:0px;
+		padding:0px;
+	}
+	
+	.flow-btns{
+		height:539px;
+	}
+	
+	
+	.d_1_2_1_1{
+	    width:60px;
+		padding:5px;
+		margin:5px;
+		size:10px;
+		text-align:center;
+		border-radius:4px;
+		cursor:pointer;
+	}
+	
+	.d_1_2_1_1:hover{
+		background-color:#a2a2a2;
+		color:#ffffff;
+	}
+	
+	.d_1_2_1_2{
+	    width:198.5px;
+		padding:5px;
+		margin:5px;
+		size:10px;
+		text-align:center;
+		border-radius:4px;
+		cursor:pointer;
+	}
+	
+	.d_1_2_1_2:hover{
+		background-color:#a2a2a2;
+		color:#ffffff;
+	}
+	
+
+
+	.dd_1{
+		height:580px;
+        background-color:#dadada;
+		padding:40px;
+	}
+	
+	
+	.dd_1_1{
+	    width:100%;
+	    height:36px;
+		border-style:solid;
+		border-width:1px;
+	    border-color:#b3aaaa;
+		margin:2px;
+		line-height:36px;
+		font-size:15px;
+		padding:0px 0px 0px 10px;
+		padding-left:10px;
+	}
+	
+	.layui-col-md7 {
+		width: 64.333333%;
+		margin-left: 100px;
+	}
+	
+	
+	.hb_1{
+	    width:150px;
+		height:100px;
+		background-color:#009688;
+		border-radius: 10px;
+	}
+	
+	.hb_1_1{
+	    width:150px;
+		height:30px;
+		background-color:#525252;
+		panding:5px;
+		border-radius: 10px 10px 0px 0px;
+	}
+
+	.hb_1_2{
+	    width:150px;
+		height:50px;
+		background-color:#009688;
+		panding:5px;
+		border-radius: 10px 10px 0px 0px;
+	}
+	
+	.xh_1{
+	    width:50px;
+	    height:50px;
+		background-color:#009688;
+		border-radius: 5px 5px 5px 5px;
+		panding:10px;
+
+	}
+
+	.xh_1_1{
+		width:100%;
+	    height:100%;
+		background:url('../static/img_server/循环.png');
+		background-size: 100% 100%;
+	}
+	
+	.xh_1_d{
+	    width:50px;
+	    height:50px;
+		background-color:#009688;
+		border-radius: 5px 5px 5px 5px;
+		panding:10px;
+
+	}
+
+	.xh_1_1_d{
+		width:100%;
+	    height:100%;
+		background:url('../static/img_server/关闭循环.png');
+		background-size: 100% 100%;
+	}	
+	
+	.fz_1{
+	    width:50px;
+	    height:50px;
+		background-color:#009688;
+		border-radius: 5px 5px 5px 5px;
+		panding:10px;
+
+	}
+
+	.fz_1_1{
+		width:100%;
+	    height:100%;
+		background:url('../static/img_server/分支.png');
+		background-size: 100% 100%;
+	}
+	
+	#diagramContainer {
+      padding: 20px;
+      width: 100%;
+      min-height: 450px;
+    }
+
+    .item {
+      position: absolute;
+	  cursor:pointer;
+    }
+	
+	.hb_1_1_t{
+		color:#ffffff;
+		font-size:15px;
+		text-align:center;
+		line-height:32px;
+	}
+	
+	
+	.a_add{
+		color:#ffffff;
+	}
+	
+	.app_but,.app_pd{
+		width:513px;
+		height:38px;
+		margin:10px 0px 10px 110px;
+	}
+
+
+	.layui-input-block {
+		margin-left: 110px;
+		min-height: 36px;
+		width: 515px;
+	}
+	
+	.layui-form-item .layui-input-inline {
+		float: left;
+		width: 155px;
+		margin-right: 10px;
+	}
+	
+	.Connection_status{
+		panding:5px;
+		width:70px;
+		height:70px;
+		background-color:#ffffff;
+		cursor: pointer;
+	}
+	

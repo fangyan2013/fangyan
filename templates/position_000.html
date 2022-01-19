@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>layui在线调试</title>
+  <link rel="stylesheet" href="../static/layui-v2.6.8/layui-v2.6.8/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="../static/jquery-ui-1.12.1.custom/jquery-ui-1.12.1.custom/jquery-ui.min.js"  media="all">
+  <link rel="stylesheet" href="../static/css/variable.css"  media="all"> 
+  <link rel="stylesheet" href="../static/css/ui_test.css">
+ <style>
+  
+	  *{
+		   user-select: none;
+	  }
+	  
+      body{
+		/*padding:20px;*/
+	  }
+
+
+
+	  
+   .tab_but{
+        width:80px;
+        height:30px;
+        border: 1px solid #c9c9c9;
+        border-radius:5px;
+        display:inline-block;
+        line-height: 30px;
+		margin: 7px;
+    }
+
+    .tab_but_div{
+        width:60px;
+        display:inline-block;
+    }
+
+    .tab_but_a{
+        margin-left:4px;
+    }
+	
+	.ul_head{
+	    width:940px;
+		line-height:25px;
+		margin:0px;
+		height:35px;
+	}
+	
+	.ul_head > li{
+        float: left;
+		height:35px;
+		padding:0px 5px 0px 5px;
+	}
+	
+	.Workflow_name_input{
+		outline: none;
+	}
+
+	.Judgment_Pool{
+		width: 160px;
+		height: 300px;
+		border: 1px solid #e6e6e6;
+		padding: 20px 40px 20px 40px;
+		overflow-y:auto;
+		overflow-x:hidden;
+	}
+	
+	
+	.node_name{
+		width:103px;
+	}
+	
+	
+	font{
+		line-height:40px;
+	}
+	
+    .test{
+		position:absolute;
+		margin: 9px 5px 5px 880px;
+    }
+	
+    .tab_but{
+        width:80px;
+        height:30px;
+        border: 1px solid #c9c9c9;
+        border-radius:5px;
+        display:inline-block;
+        line-height: 30px;
+		margin:2px;
+    }
+
+    .tab_but_div{
+        width:60px;
+        display:inline-block;
+    }
+
+    .tab_but_a{
+        margin-left:4px;
+    }
+	
+	
+	/* 设置滚动条的样式 */
+	::-webkit-scrollbar {
+		width:10px;
+	}
+	/* 滚动槽 */
+	::-webkit-scrollbar-track {
+		-webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+		border-radius:8px;
+	}
+	/* 滚动条滑块 */
+	::-webkit-scrollbar-thumb {
+		border-radius:8px;
+		background:rgba(0,0,0,0.1);
+		-webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+	}
+	::-webkit-scrollbar-thumb:window-inactive {
+		background:rgba(255,0,0,0.4);
+	}
+	
+	
+	
+	
+	
+	/*
+	.layui-input-block {
+		margin-left: 0px;
+		min-height: 36px;
+	}
+
+	.layui-form-label {
+		padding: 8px 0px;
+		width: 99px;
+	}
+
+	.layui-form-item .layui-input-inline {
+		width: 346px;
+		margin-right: 0px;
+	}
+	
+	.layui-tab-content {
+		padding: 10px 0px 10px 0px;
+	}
+	
+    .layui-elem-field legend {
+        margin-left: 20px;
+        padding: 0px 10px;
+        font-size: 12px;
+        font-weight: 300;
+    }
+	*/
+
+
+	table,
+	td {
+		border: 1px solid #333;
+	}
+
+	thead,
+	tfoot {
+		background-color: #333;
+		color: #fff;
+	}
+
+	#t {
+		overflow-y: auto;
+		height: 207px;
+		width: 912px;
+		margin-top: 5px;
+		padding: 10px;
+	}
+	
+	#sql_test{
+		margin-top: 5px;
+        margin-left: 850px;
+	}
+
+	.variable{
+		position: fixed;
+		top: 0;
+		right: 0px;
+		z-index: 10001;
+		width:458px;
+		height:680px;
+		background-color: #ffffff;
+		padding:20px;
+	}
+	
+	.sql_edit{
+		width:938px;
+		background-color:#ffffff;
+		padding:20px;
+		height:660px;
+	}
+	
+	#sortable { 
+		list-style-type: none;
+		margin: 0; padding: 0;
+		margin-bottom: 10px; 
+	}
+	
+    #sortable > li { 
+		margin: 5px; 
+		padding: 5px; 
+		width: 165px; 
+		border: 1px solid #eee;
+		cursor:pointer;
+	}
+</style>
+</head>
+<body>
+<div class="sql_edit">
+	<ul class="ul_head">
+	   <li>
+			<i class="layui-icon layui-icon-edit" style="font-size: 24px; color: #0a6ae6e3;"></i>  
+		</li>
+	   <li>
+			<div style="float: left;" id="myP" class="Workflow_name_input" contenteditable="false" >
+				元素定位节点名称
+			</div>
+	   
+	   </li>
+	   <li style="float: right;cursor:pointer;">
+			<i id="Save_node" class="layui-icon layui-icon-ok" style="font-size: 26px; color: #0a6ae6e3;"></i>  
+	   </li>
+	   <li style="float: right;cursor:pointer;">
+			<i id="shut_down" class="layui-icon layui-icon-close" style="font-size: 26px; color: #0a6ae6e3;"></i>  
+	   </li>
+	</ul>
+
+
+
+	<div style="display:flex;">
+		<div style="border: 1px solid #eee;padding:20px;width:186px;overflow-y:auto;height:585px;">
+<!-- 			<ul>
+			  <li id="draggable" class="ui-state-highlight">请拖拽我</li>
+			</ul> -->
+			 
+			<ul id="sortable">
+
+
+			</ul>
+		</div>
+
+
+
+
+
+		<div style="border: 1px solid #eee;margin-left:10px;width:700px;">
+
+			<ul class="ul_head" style="width:695px;margin-top: 10px;">
+			   <li style="margin-left: 4px;">
+					<button id="xpath_add" type="button" class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon"></i></button>
+				</li>
+		<!-- 	   <li>
+					<div style="float: left;" id="myP" class="Workflow_name_input" contenteditable="false" >
+						这里是api名称
+					</div>
+			   
+			   </li> -->
+	<!-- 		   <li style="float: right;cursor:pointer;">
+					<button id="from_Reset" type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+						<font style="line-height: 30px;">重置</font>
+					</button>
+			   </li> -->
+			   <li style="float: right;cursor:pointer;">
+					<button id="save" type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+						<font style="line-height: 30px;">保存</font>
+					</button>
+				</li>
+			</ul>
+
+			<hr>
+		
+			<form class="layui-form" action="" lay-filter="feil">
+			  <div class="layui-tab-content">
+				<div class="layui-tab-item layui-show">
+					<!-- <div id="addGoodsForm" class="layui-form" action="" style="padding:20px;margin-left: -27px;height:519px;overflow-y:auto;" lay-filter="example_dw"> -->
+					<div id="add_path" class="layui-form" action="" style="padding:20px;margin-left: -27px;height:519px;overflow-y:auto;" lay-filter="example_dw">
+						  {% csrf_token %}
+						  <div class="layui-form-item">
+							<label class="layui-form-label">定位名称</label>
+							<div class="layui-input-block">
+							  <input type="text" name="path_name" lay-verify="title" autocomplete="off" placeholder="定位名称" lay-reqtext="岂能为空？" class="layui-input">
+							</div>
+						  </div>
+
+						  <div class="layui-form-item">
+							<label class="layui-form-label">等待时间</label>
+							<div class="layui-input-block">
+							  <input type="text" value="1" name="sleep_time" lay-verify="title" autocomplete="off" placeholder="等待时间默认为秒" lay-reqtext="岂能为空？" class="layui-input">
+							</div>
+						  </div>
+						  
+						<label class="layui-form-label">操作方式</label>
+							<div class="layui-input-block"  lay-reqtext="岂能为空？">
+							  <select name="Positioning" lay-filter="aihao">
+<!-- 								<option value="0" selected="">xpath</option>
+								<option value="1">ID</option>
+								<option value="2">css</option>
+								<option value="3">class Name</option>
+								<option value="4">name</option>
+								<option value="5">tag name</option>
+								<option value="6">link text</option>
+								<option value="7">partial link text</option>
+								<option value="8">js 注入</option>
+								<option value="9">切换iframe</option>
+								<option value="10">鼠标拖动</option>
+								<option value="11">python脚本</option>
+								<option value="12">打开url</option> -->
+								<option value="0" selected="">querySelector</option>
+								<!-- <option value="1">querySelectorAll</option> -->
+								<!-- <option value="2">waitForSelector</option> -->
+<!-- 								<option value="3">class Name</option>
+								<option value="4">name</option>
+								<option value="5">tag name</option>
+								<option value="6">link text</option>
+								<option value="7">partial link text</option> -->
+								<option value="8">js 注入</option>
+								<!-- <option value="9">切换iframe</option> -->
+								<option value="10">鼠标拖动</option>
+								<option value="11">python脚本</option>
+								<option value="12">打开url</option>
+								<option value="13">关闭</option>
+							  </select>
+							</div>
+						  
+						  
+							<div id='from_Interactive_1'>
+								<div class="layui-form-item" style="margin-top: 15px;">
+									<label class="layui-form-label">元素操作</label>
+									<div class="layui-input-block">
+									  <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入元素" lay-reqtext="岂能为空？" class="layui-input">
+									</div>
+								</div>
+								<label class="layui-form-label">操作方式</label>
+								<div class="layui-input-block"  lay-reqtext="岂能为空？">
+								  <select name="interest" lay-filter="companyList">
+<!-- 									<option value="0" selected="">左键点击</option>
+									<option value="1">清空输入框</option>
+									<option value="2">输入内容</option>
+									<option value="3">获取div内容</option>
+									<option value="4">右键点击</option>
+									<option value="5">双击</option>
+									<option value="6">长按</option>
+									<option value="7">回退</option>
+									<option value="8">回车</option> -->
+									
+									<option value="0" selected="">左键点击</option>
+									<option value="2">输入内容</option>
+									<option value="3">获取div内容</option>
+									<!-- <option value="4">右键点击</option> -->
+									<option value="5">双击</option>
+									<option value="6">长按</option>
+<!-- 									<option value="7">回退</option>
+									<option value="8">回车</option> -->
+									<option value="9">获取坐标</option>
+									
+								  </select>
+								</div>
+								<div id="from_Interactive_2">
+
+								</div>
+							</div>
+					</div>
+				</div>
+			  </div>
+			</form>
+		</div>
+	</div>
+	
+</div>
+
+
+<div style="display:none" id="test" >
+	<form id="addGoodsForm" class="layui-form" action="" style="padding:20px;" lay-filter="example">
+		  <div class="layui-form-item" style="margin:0px;">
+			<div class="layui-input-block" style="margin-left:0px;">
+				<input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入出参名称" class="layui-input">
+			</div>
+		   </div>
+		  <div class="layui-form-item"  style="margin:0px;">
+			  <div class="layui-input-block" style="margin-left:0px;">
+				  <input type="radio" name="sex" value="JsonPath" title="JsonPath" checked="">
+				  <input type="radio" name="sex" value="re" title="正则">
+			  </div>
+		  </div>
+		  <div class="layui-form-item layui-form-text" style="margin-top:10px;">
+			  <div class="layui-input-block" style="margin:0px 4px 0px -4px;">
+				  <textarea placeholder="请输入内容" class="layui-textarea"  name="desc"></textarea>
+			  </div>
+		  </div>
+	</from>
+</div>
+
+
+
+<div class="variable Ambiguity">
+
+
+
+	<div class="layui-tab">
+	  <ul class="layui-tab-title">
+		<li class="layui-this">出入参</li>
+		<li>变量</li>
+	  </ul>
+	  <div class="layui-tab-content">
+		<div class="layui-tab-item layui-show">
+
+			<div style="height:345px">
+				<fieldset class="layui-elem-field site-demo-button" style="margin:5px 0px 0px 0px;height: 345px;">
+						<div style="display:inline;" id="tab_2">
+
+						</div>
+				</fieldset>
+
+			</div>
+			<div style="height:280px">
+				<fieldset class="layui-elem-field site-demo-button" style="margin:30px 0px 0px 0px;height: 217px;">
+					<legend>添加出参</legend>
+						<div style="display:inline;" id="tab_1">
+
+						</div>
+
+						<div style="display:inline;">
+								<button id="site_add" type="button" class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon"></i></button>
+						</div>
+				</fieldset>
+
+			</div>
+
+		</div>
+		<div class="layui-tab-item">
+		
+			<div style="height:345px">
+				<fieldset class="layui-elem-field site-demo-button" style="margin:5px 0px 0px 0px;height: 345px;">
+						<div style="display:inline;" id="tab_data">
+
+
+
+
+						</div>
+				</fieldset>
+
+			</div>
+			<div style="height:280px">
+				<fieldset class="layui-elem-field site-demo-button" style="margin:30px 0px 0px 0px;height: 217px;">
+					<legend>添加出参</legend>
+						<div style="display:inline;" id="tab_1">
+							<form class="layui-form" action="">
+							  <div class="layui-form-item">
+								<!-- <label class="layui-form-label" style="padding: 0px;text-align: left;">key:</label> -->
+								<div class="layui-input-block" style="margin-left:0px;">
+								  <input type="text" name="data_key"  lay-verify="title" autocomplete="off" placeholder="请输入变量名" class="layui-input">
+								</div>
+							  </div>
+							  <div class="layui-form-item layui-form-text" style="margin-top:-10px;">
+								<!-- <label class="layui-form-label" style="padding: 0px;text-align: left;">value:</label> -->
+								<div class="layui-input-block" style="margin-left:0px;">
+								  <textarea name="data_value" placeholder="请输入变量值" style="margin: 0px 0px 0px 0px;min-height:115px" class="layui-textarea"></textarea>
+								</div>
+								
+							  </div>
+
+							</form>
+							<button id="add_data" style="margin-top:-10px;position: absolute;right: 27px;" type="button" class="layui-btn layui-btn-normal">提交</button>
+
+
+						</div>
+
+				</fieldset>
+
+			</div>
+
+		</div>
+
+	  </div>
+	</div>
+
+</div>
+
+
+<!-- <script src="../static/ace-builds-master/ace-builds-master/src/ace.js" charset="utf-8"></script>
+<script src="../static/Chart.js/samples/utils.js" charset="utf-8"></script>
+<script src="../static/Chart.js/Chart.js" charset="utf-8"></script>
+<script src="../static/layui-v2.5.6/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="../static/layui-v2.5.6/layui-v2.5.6/layui/layui.all.js" charset="utf-8"></script>
+<script src="../static/layui-v2.5.6/layui-v2.5.6/layui/https___faysunshine.com_layui_template_formSelects-v3_formSelects-v3.js" charset="utf-8"></script>
+<script src="../static/jquery/jquery-3.3.1.min.js" charset="utf-8"></script>
+ -->
+<script src="../static/ace-builds-master/ace-builds-master/src/ace.js" charset="utf-8"></script>
+<script src="../static/jquery/jquery-3.3.1.min.js" charset="utf-8"></script>
+<script src="../static/jquery-ui-1.12.1.custom/jquery-ui-1.12.1.custom/jquery-ui.min.js" charset="utf-8"></script>
+
+
+<script src="../static/layui-v2.6.8/layui-v2.6.8/layui/layui.js" charset="utf-8"></script>
+<script src="../static/js/variable.js" charset="utf-8"></script>
+
+<script>
+	
+
+	var api_node = localStorage.getItem('api_node');//新增的时候初始化缓存
+	var rpa_node = localStorage.getItem('rpa_node');//新增的时候初始化缓存
+	var sql_node = localStorage.getItem('sql_node');//新增的时候初始化缓存
+
+	var w_name={}
+	if (api_node !='None'){
+		var api_node = JSON.parse(api_node)
+		for (var api_node_key in api_node){
+			w_name[api_node_key]=api_node[api_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
+		}
+	}
+
+	if (rpa_node !='None'){
+		var rpa_node = JSON.parse(rpa_node)
+		for (var rpa_node_key in rpa_node){
+			w_name[rpa_node_key]=rpa_node[rpa_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
+		}
+	}
+
+	if (sql_node !='None'){
+		var sql_node = JSON.parse(sql_node)
+		for (var sql_node_key in sql_node){
+			w_name[sql_node_key]=sql_node[sql_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
+		}
+	}
+
+
+
+
+	var edit_id = localStorage.getItem("edit_id")
+
+
+	var l_data = localStorage.getItem("list_data")
+	if (l_data!='None'){
+		var list_data=JSON.parse(l_data)
+	}else{
+		var list_data={}
+	}
+
+	var Ginseng = localStorage.getItem("Ginseng")
+	console.log('Ginseng',Ginseng)
+	if (Ginseng!='None'){
+		console.log(JSON.parse(Ginseng),'11111111122222333333333',edit_id)
+		if (JSON.parse(Ginseng).hasOwnProperty(edit_id)){
+			var list_quote=JSON.parse(Ginseng)[edit_id]
+		}else{
+			var list_quote=[]
+		}
+		var dict_quote=JSON.parse(Ginseng)
+	}else{
+		var list_quote=[]
+		var dict_quote={}
+	}
+
+		
+	
+	
+	
+	
+	var Node_information = localStorage.getItem("Node_information")
+	if(Node_information=='None'){
+		var p_dict={}
+	}else{
+		var id = localStorage.getItem("edit_id")
+		if (JSON.parse(Node_information).hasOwnProperty(id)){
+			var p_dict = JSON.parse(Node_information)[id]
+			var id_Sort = JSON.parse(Node_information)[id+"_Sort"]
+			for (var t_name in id_Sort){
+			
+				//var Return_parameter = localStorage.getItem("Return_parameter")
+
+				//console.log(Return_parameter,'Return_parameter')
+				
+				$("#sortable").append(
+					'<li class="ui-state-default ui-sortable-handle"><div class="tab_path" style="line-height: 17px;width:152px;display:inline-block;">'+ id_Sort[t_name] +'</div><i id="tab_del" class="layui-icon layui-icon-close" style="font-size: 3px; color: #1E9FFF;cursor:pointer;display:inline-block;"></i></li>'
+				)
+			}
+			
+			
+		}else{
+			var p_dict={}
+		}
+	}
+
+	console.log(p_dict,'整天瞎几把搞')
+
+
+
+	$(function() {
+		$( "#sortable" ).sortable({
+		  revert: true
+		});
+		$( "#draggable" ).draggable({
+		  connectToSortable: "#sortable",
+		  helper: "clone",
+		  revert: "invalid"
+		});
+		$( "ul, li" ).disableSelection();
+	});
+
+
+
+
+
+
+
+	$("#shut_down").click(function(){
+		//关闭sql节点
+		$(".popping-box-wrap", parent.document).hide(500);
+	});
+
+
+	$( "#myP" ).click(function(e){//点击时可编辑
+		var x = document.getElementById("myP");
+		x.contentEditable = "true";
+		$("#myP").focus();
+	})
+				
+	$("#myP").focus(function(){//聚焦改变颜色
+		var x = document.getElementById("myP");
+		x.style.color='#000000'
+	});
+				
+	$( "#myP" ).blur(function(){//失去改变颜色不可编辑
+		var x = document.getElementById("myP");
+		x.contentEditable = "false";
+		x.style.color='#7d7d7d'
+	});
+
+
+	<!-- var Return_parameter = localStorage.getItem("Return_parameter") -->
+
+	<!-- console.log(Return_parameter,'Return_parameter') -->
+
+	var editor;
+	layui.use(['form','layer'], function(){
+		var form = layui.form;
+		var layer = layui.layer;
+				
+		<!-- window.xpath_echo = function(id){ -->
+		var id = localStorage.getItem("edit_id")
+		var e_data = form.val('example_dw');//回显
+		var Node_val = localStorage.getItem("Node_information")
+		if(Node_val=='None'){
+			console.log('没有数据不回显')
+		}else{
+		
+		
+			Node_val=JSON.parse(Node_val)
+			if (Node_val.hasOwnProperty(id)){
+				var Ginseng = localStorage.getItem("Ginseng")			
+				
+				if(Ginseng!='None'){
+					Ginseng = JSON.parse(localStorage.getItem("Ginseng"))
+					console.log(Ginseng,'拳王')
+					
+					if (Ginseng.hasOwnProperty(edit_id)){
+					
+						for (const Ginseng_i of Ginseng[edit_id]) {//回显当前节点的出参
+							html_str=''
+							html_str+='    <div  class="tab_but">'
+							html_str+='        <div class="tab_but_div">'
+							
+							if (Ginseng_i['title'].length>4){
+								html_str+='            <font class="tab_but_a" id='+ Ginseng_i['title'] +'>'+ Ginseng_i['title'].slice(0, 4)+'...' +'</font>'
+							}else{
+								html_str+='            <font class="tab_but_a" id='+ Ginseng_i['title'] +'>'+ Ginseng_i['title'] +'</font>'
+							}
+								
+							//html_str+='            <font class="tab_but_a">'+ Ginseng_i['title'] +'</font>'
+							html_str+='        </div>'
+							html_str+='        <i id="tab_del" class="layui-icon layui-icon-close" style="font-size: 3px; color: #1E9FFF;cursor:pointer;"></i>'
+							html_str+='    </div>'
+							$("#tab_1").append(html_str);
+							console.log(list_quote,'高产',Ginseng_i)
+							//list_quote.push(Ginseng_i)
+						}
+					}
+					
+					
+				}
+			
+				console.log(Node_val[id]['interest'],'xxxxxxxxxxxxxxxxxxxlllllllllllllllllll')
+				console.log(Node_val,'xxxxxxxxxxxxxxxxxxxlllllllllllllllllllxxxxxxxxx')
+				//加个判断判断有没有这个nodeid
+				//Node_val[id+'_Workflow_name']=$('#myP').text()
+				$('#myP').text(Node_val[id+'_Workflow_name'])
+
+				if(Node_val[id]['Positioning']==8){
+					//js注入
+					var str_html=""
+					str_html+='<div id="editor" style="width:515px;min-height:300px;margin:15px -21px 0px 110px;;">'
+					str_html+='</div>'
+					$("#from_Interactive_1").html(str_html)
+					editor = ace.edit("editor");
+					editor.setTheme("ace/theme/monokai");
+					editor.session.setMode("ace/mode/javascript");
+					editor.setValue(Node_val[id]['js'])
+					form.render();
+				}else if(Node_val[id]['Positioning']==9){
+					//切换iframe
+					console.log(e_data.value); //得到被选中的值             
+					var str_html=""
+						str_html+='<div class="layui-form-item" style="margin-top: 15px;">'
+						str_html+='	<label class="layui-form-label">元素</label>'
+						str_html+='	<div class="layui-input-block">'
+						str_html+='	  <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="输入ifame标签的id,name,或者index" lay-reqtext="岂能为空？" class="layui-input">'
+						str_html+='	</div>'
+						str_html+='</div>'
+					$("#from_Interactive_1").html(str_html)
+					form.render();
+					
+				}else if(Node_val[id]['Positioning']==10){
+					//鼠标拖动
+					  var str_html=""
+					  str_html+='<div style="display: flex;margin-top:15px;">'
+					  str_html+='<div class="layui-form-item">'
+					  str_html+='	<div class="layui-inline">'
+					  str_html+='	  <label class="layui-form-label">起始</label>'
+					  str_html+='	  <div class="layui-input-inline" style="width: 80px;">'
+					  str_html+='		<input type="text" name="Start_width" placeholder="x坐标" autocomplete="off" class="layui-input">'
+					  str_html+='	  </div>'
+					  str_html+='	  <div class="layui-form-mid">-</div>'
+					  str_html+='	  <div class="layui-input-inline" style="width: 80px;">'
+					  str_html+='		<input type="text" name="Start_height" placeholder="y坐标" autocomplete="off" class="layui-input">'
+					  str_html+='	  </div>'
+					  str_html+='	</div>'
+					  str_html+='  </div>'
+					  str_html+='  <div class="layui-form-item">'
+					  str_html+='	<div class="layui-inline">'
+					  str_html+='	  <label class="layui-form-label" style="width:40px">目标</label>'
+					  str_html+='	  <div class="layui-input-inline" style="width: 80px;">'
+					  str_html+='		<input type="text" name="end_width" placeholder="x坐标" autocomplete="off" class="layui-input">'
+					  str_html+='	  </div>'
+					  str_html+='	  <div class="layui-form-mid">-</div>'
+					  str_html+='	  <div class="layui-input-inline" style="width: 80px;">'
+					  str_html+='		<input type="text" name="end_height" placeholder="y坐标" autocomplete="off" class="layui-input">'
+					  str_html+='	  </div>'
+					  str_html+='	</div>'
+					  str_html+='  </div>'				
+					  str_html+='  </div>'				
+					  $("#from_Interactive_1").html(str_html)
+					  form.render();
+					  
+					  
+				}else if(Node_val[id]['Positioning']==11){
+					//python会话
+					var str_html=""
+					str_html+='<div id="editor" style="width:515px;min-height:300px;margin:15px -21px 0px 110px;;">'
+					str_html+='</div>'
+					$("#from_Interactive_1").html(str_html)
+					editor = ace.edit("editor");
+					editor.setTheme("ace/theme/monokai");
+					editor.session.setMode("ace/mode/python");
+					editor.setValue(Node_val[id]['py'])
+				}else if(Node_val[id]['Positioning']==12){
+					//url
+					console.log(e_data.value); //得到被选中的值             
+					var str_html=""
+						str_html+='<div class="layui-form-item" style="margin-top: 15px;">'
+						str_html+='	<label class="layui-form-label">url</label>'
+						str_html+='	<div class="layui-input-block">'
+						str_html+='	  <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="输入url" lay-reqtext="岂能为空？" class="layui-input">'
+						str_html+='	</div>'
+						str_html+='</div>'
+					$("#from_Interactive_1").html(str_html)
+					form.render();					  
+				}else if(Node_val[id]['Positioning']==13){
+					//关闭
+					console.log(e_data.value); //得到被选中的值             
+					var str_html=""
+					$("#from_Interactive_1").html(str_html)
+					form.render();					  
+					  
+				}else{
+				
+					var str_html=""
+						str_html+='<div class="layui-form-item" style="margin-top: 15px;">'
+						str_html+='	<label class="layui-form-label">元素</label>'
+						str_html+='	<div class="layui-input-block">'
+						str_html+='	  <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入元素" lay-reqtext="岂能为空？" class="layui-input">'
+						str_html+='	</div>'
+						str_html+='</div>'
+						str_html+='<label class="layui-form-label">操作方式</label>'
+						str_html+='<div class="layui-input-block"  lay-reqtext="岂能为空？">'
+						str_html+='  <select name="interest" lay-filter="companyList">'
+						str_html+='	<option value="0" selected="">左键点击</option>'
+						<!-- str_html+='	<option value="1">清空输入框</option>' -->
+						str_html+='	<option value="2">输入内容</option>'
+						str_html+='	<option value="3">获取div内容</option>'
+						<!-- str_html+='	<option value="4">右键点击</option>' -->
+						str_html+='	<option value="5">双击</option>'
+						str_html+='	<option value="6">长按</option>'
+						<!-- str_html+='	<option value="7">回退</option>' -->
+						<!-- str_html+='	<option value="8">回车</option>' -->
+						str_html+='	<option value="9">获取坐标</option>'
+
+						
+
+						
+						str_html+='  </select>'
+						str_html+='</div>'
+						str_html+='<div id="from_Interactive_2">'
+
+						str_html+='</div>'
+						$("#from_Interactive_1").html(str_html)
+						form.render();
+				
+				}
+
+
+
+				if(Node_val[id]['interest']==2){
+			
+					var str_html=''		
+					str_html+='<div class="layui-form-item" style="display:flex;margin-top: 15px;">'
+					str_html+='	<label class="layui-form-label" style="text-align: right;">参数</label>'
+					str_html+='	<div style="margin-left: 8.5px;" class="layui-input-block">'
+					str_html+='		<input style="margin-left:-8px;" type="text" name="data" lay-verify="title" autocomplete="off" placeholder="请输入参数" class="layui-input"  lay-reqtext="岂能为空？">'
+					str_html+='	</div>'
+					str_html+='	<div style="margin-left:9px">'
+					str_html+='		<button id="del_but" style="margin-top:3px;" type="button" class="layui-btn layui-btn-primary layui-btn-sm">'
+					str_html+='			<i class="layui-icon"></i>'
+					str_html+='		</button>'
+					str_html+='	</div>'
+					str_html+='</div>'
+					str_html+='	<div class="app_but">'
+					str_html+='		<button id="add_p" type="button" class="layui-btn layui-btn-primary layui-btn-fluid">添加参数</button>'
+					str_html+='	</div>'
+				
+					$("#from_Interactive_2").html(str_html)
+					form.render();
+				
+			
+					//表单赋值
+					form.val('feil', Node_val[id]);
+					
+				}else{
+					form.val('feil', Node_val[id]);
+				}
+				
+			}
+		}
+		
+		
+		<!-- } -->
+		
+		$(document).on("click",'.tab_path',function(){//切换元素tab
+			console.log($(this).text(),'切换tab',p_dict[$(this).text()],p_dict)
+			//form.val('example', p_dict[$(this).text()])
+			
+			<!-- window.xpath_echo = function(id){ -->
+			var id = $(this).text()
+			//var data = form.val('example_dw');//回显
+			//var Node_val = localStorage.getItem("Node_information")
+			if(p_dict=='None'){
+				console.log('没有数据不回显')
+			}else{
+				//Node_val=JSON.parse(Node_val)
+				
+				
+				if (p_dict.hasOwnProperty(id)){
+
+				
+					console.log(p_dict[id]['interest'],'xxxxxxxxxxxxxxxxxxxlllllllllllllllllll')
+					//加个判断判断有没有这个nodeid
+
+
+					if(p_dict[id]['Positioning']==8){
+						//js注入
+						var str_html=""
+						str_html+='<div id="editor" style="width:515px;min-height:300px;margin:15px -21px 0px 110px;;">'
+						str_html+='</div>'
+						$("#from_Interactive_1").html(str_html)
+						editor = ace.edit("editor");
+						editor.setTheme("ace/theme/monokai");
+						editor.session.setMode("ace/mode/javascript");
+						editor.setValue(p_dict[id]['js'])
+						form.render();
+					}else if(p_dict[id]['Positioning']==9){
+						//切换iframe
+						//console.log(data.value); //得到被选中的值             
+						var str_html=""
+							str_html+='<div class="layui-form-item" style="margin-top: 15px;">'
+							str_html+='	<label class="layui-form-label">元素</label>'
+							str_html+='	<div class="layui-input-block">'
+							str_html+='	  <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="输入ifame标签的id,name,或者index" lay-reqtext="岂能为空？" class="layui-input">'
+							str_html+='	</div>'
+							str_html+='</div>'
+						$("#from_Interactive_1").html(str_html)
+						form.render();
+						
+					}else if(p_dict[id]['Positioning']==10){
+						//鼠标拖动
+						  var str_html=""
+						  str_html+='<div style="display: flex;margin-top:15px;">'
+						  str_html+='<div class="layui-form-item">'
+						  str_html+='	<div class="layui-inline">'
+						  str_html+='	  <label class="layui-form-label">起始</label>'
+						  str_html+='	  <div class="layui-input-inline" style="width: 80px;">'
+						  str_html+='		<input type="text" name="Start_width" placeholder="x坐标" autocomplete="off" class="layui-input">'
+						  str_html+='	  </div>'
+						  str_html+='	  <div class="layui-form-mid">-</div>'
+						  str_html+='	  <div class="layui-input-inline" style="width: 80px;">'
+						  str_html+='		<input type="text" name="Start_height" placeholder="y坐标" autocomplete="off" class="layui-input">'
+						  str_html+='	  </div>'
+						  str_html+='	</div>'
+						  str_html+='  </div>'
+						  str_html+='  <div class="layui-form-item">'
+						  str_html+='	<div class="layui-inline">'
+						  str_html+='	  <label class="layui-form-label" style="width:40px">目标</label>'
+						  str_html+='	  <div class="layui-input-inline" style="width: 80px;">'
+						  str_html+='		<input type="text" name="end_width" placeholder="x坐标" autocomplete="off" class="layui-input">'
+						  str_html+='	  </div>'
+						  str_html+='	  <div class="layui-form-mid">-</div>'
+						  str_html+='	  <div class="layui-input-inline" style="width: 80px;">'
+						  str_html+='		<input type="text" name="end_height" placeholder="y坐标" autocomplete="off" class="layui-input">'
+						  str_html+='	  </div>'
+						  str_html+='	</div>'
+						  str_html+='  </div>'				
+						  str_html+='  </div>'				
+						  $("#from_Interactive_1").html(str_html)
+						  form.render();
+						  
+						  
+					}else if(p_dict[id]['Positioning']==11){
+						//python会话
+						var str_html=""
+						str_html+='<div id="editor" style="width:515px;min-height:300px;margin:15px -21px 0px 110px;;">'
+						str_html+='</div>'
+						$("#from_Interactive_1").html(str_html)
+						editor = ace.edit("editor");
+						editor.setTheme("ace/theme/monokai");
+						editor.session.setMode("ace/mode/python");
+						editor.setValue(p_dict[id]['py'])
+					}else if(p_dict[id]['Positioning']==12){
+						//url
+						//console.log(e_data.value); //得到被选中的值             
+						var str_html=""
+							str_html+='<div class="layui-form-item" style="margin-top: 15px;">'
+							str_html+='	<label class="layui-form-label">url</label>'
+							str_html+='	<div class="layui-input-block">'
+							str_html+='	  <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="输入url" lay-reqtext="岂能为空？" class="layui-input">'
+							str_html+='	</div>'
+							str_html+='</div>'
+						$("#from_Interactive_1").html(str_html)
+						form.render();					  
+					}else if(p_dict[id]['Positioning']==13){
+						//关闭
+						//console.log(e_data.value); //得到被选中的值             
+						var str_html=""
+						$("#from_Interactive_1").html(str_html)
+						form.render();	
+							  
+						  
+					}else{
+					
+						var str_html=""
+							str_html+='<div class="layui-form-item" style="margin-top: 15px;">'
+							str_html+='	<label class="layui-form-label">元素</label>'
+							str_html+='	<div class="layui-input-block">'
+							str_html+='	  <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入元素" lay-reqtext="岂能为空？" class="layui-input">'
+							str_html+='	</div>'
+							str_html+='</div>'
+							str_html+='<label class="layui-form-label">操作方式</label>'
+							str_html+='<div class="layui-input-block"  lay-reqtext="岂能为空？">'
+							str_html+='  <select name="interest" lay-filter="companyList">'
+							str_html+='	<option value="0" selected="">左键点击</option>'
+							<!-- str_html+='	<option value="1">清空输入框</option>' -->
+							str_html+='	<option value="2">输入内容</option>'
+							str_html+='	<option value="3">获取div内容</option>'
+							<!-- str_html+='	<option value="4">右键点击</option>' -->
+							str_html+='	<option value="5">双击</option>'
+							str_html+='	<option value="6">长按</option>'
+							<!-- str_html+='	<option value="7">回退</option>' -->
+							<!-- str_html+='	<option value="8">回车</option>' -->
+                            str_html+='	<option value="9">获取坐标</option>'
+
+							
+							str_html+='  </select>'
+							str_html+='</div>'
+							str_html+='<div id="from_Interactive_2">'
+
+							str_html+='</div>'
+							$("#from_Interactive_1").html(str_html)
+							form.render();
+					
+					}
+
+
+
+					if(p_dict[id]['interest']==2){
+				
+						var str_html=''		
+						str_html+='<div class="layui-form-item" style="display:flex;margin-top: 15px;">'
+						str_html+='	<label class="layui-form-label" style="text-align: right;">参数</label>'
+						str_html+='	<div style="margin-left: 8.5px;" class="layui-input-block">'
+						str_html+='		<input style="margin-left:-8px;" type="text" name="data" lay-verify="title" autocomplete="off" placeholder="请输入参数" class="layui-input"  lay-reqtext="岂能为空？">'
+						str_html+='	</div>'
+						str_html+='	<div style="margin-left:9px">'
+						str_html+='		<button id="del_but" style="margin-top:3px;" type="button" class="layui-btn layui-btn-primary layui-btn-sm">'
+						str_html+='			<i class="layui-icon"></i>'
+						str_html+='		</button>'
+						str_html+='	</div>'
+						str_html+='</div>'
+						str_html+='	<div class="app_but">'
+						str_html+='		<button id="add_p" type="button" class="layui-btn layui-btn-primary layui-btn-fluid">添加参数</button>'
+						str_html+='	</div>'
+					
+						$("#from_Interactive_2").html(str_html)
+						form.render();
+					
+				
+						//表单赋值
+						form.val('feil', p_dict[id]);
+						
+					}else{
+						form.val('feil', p_dict[id]);
+					}
+					
+				}
+			}
+		})
+
+
+		$("#save").click(function(){//保存每个定位数据
+
+			//var id = Math.random().toString(36).slice(-6)//生成id
+
+
+			var e_data = form.val('example_dw');
+			var id=e_data['path_name']
+			if (e_data['Positioning']==8){
+				//js注入时添加js内容
+				e_data['js']=editor.getSession().getValue()
+				console.log(editor.getSession().getValue(),e_data,'代码编辑器中的内容')
+
+			}else if(e_data['Positioning']==9){
+				//切换ifame
+				console.log(e_data)
+
+			}else if(e_data['Positioning']==10){
+				//鼠标拖动
+                var winW = window.screen.width;
+				var winH = window.screen.height;
+				e_data["winW"]=winW;
+				e_data["winH"] =winH;
+				console.log(e_data,winW,winH,'鼠标拖动')
+
+
+			}else if(e_data['Positioning']==11){
+				//python
+				e_data['py']=editor.getSession().getValue()
+				console.log(editor.getSession().getValue(),e_data,'代码编辑器中的内容')
+				
+			}
+			for (var val in e_data){
+				if(e_data[val]=='' || e_data[val]==null){		
+					return 1
+				}
+			}
+			
+			/*
+			console.log(data,'------------------------------cccccccccccvvvvvvvvvvvvvcccccccccccc------------------------------');
+			if(p_dict=='None'){//这里得改成判断dict
+				//var val = new Object()
+				p_dict[id]=data
+				//val['Workflow_name']=$('#myP').text()
+				//localStorage.setItem('Node_information',JSON.stringify(val));
+			}else{
+				p_dict[id]=data
+				//Node_val['Workflow_name']=$('#myP').text()
+				//localStorage.setItem('Node_information',JSON.stringify(Node_val));
+			}
+			*/
+			p_dict[id]=e_data//保存到p_dict
+			var list_tab=[]
+			for (var i=0;i<$(".tab_path").length;i++){
+				list_tab.push($(".tab_path").eq(i).text())
+				
+			}
+			
+			console.log(list_tab,'list_tab')
+			if (list_tab.indexOf(id)<0){//列表中有这个id就不追加
+				$("#sortable").append(
+					'<li class="ui-state-default ui-sortable-handle"><div class="tab_path" style="line-height: 17px;width:152px;display:inline-block;">'+ id +'</div><i id="tab_del" class="layui-icon layui-icon-close" style="font-size: 3px; color: #1E9FFF;cursor:pointer;display:inline-block;"></i></li>'
+				)
+			}else{
+				layer.msg('编辑成功')
+			}
+
+		})
+		
+		
+		$("#xpath_add").click(function(){//点击新增
+
+			var str_html=""
+			str_html+='	  <div class="layui-form-item">'
+			str_html+='		<label class="layui-form-label">定位名称</label>'
+			str_html+='		<div class="layui-input-block">'
+			str_html+='		  <input type="text" name="path_name" lay-verify="title" autocomplete="off" placeholder="定位名称" lay-reqtext="岂能为空？" class="layui-input">'
+			str_html+='		</div>'
+			str_html+='	  </div>'
+
+			str_html+='	  <div class="layui-form-item">'
+			str_html+='		<label class="layui-form-label">等待时间</label>'
+			str_html+='		<div class="layui-input-block">'
+			str_html+='		  <input type="text" value="1" name="sleep_time" lay-verify="title" autocomplete="off" placeholder="等待时间默认为秒" lay-reqtext="岂能为空？" class="layui-input">'
+			str_html+='		</div>'
+			str_html+='	  </div>'
+				  
+			str_html+='	<label class="layui-form-label">定位方式</label>'
+			str_html+='		<div class="layui-input-block"  lay-reqtext="岂能为空？">'
+			str_html+='		  <select name="Positioning" lay-filter="aihao">'
+			str_html+='			<option value="0" selected="">querySelector</option>'
+			<!-- str_html+='			<option value="1">querySelectorAll</option>' -->
+			<!-- str_html+='			<option value="2">waitForSelector</option>' -->
+			<!-- str_html+='			<option value="3">class Name</option>' -->
+			<!-- str_html+='			<option value="4">name</option>' -->
+			<!-- str_html+='			<option value="5">tag name</option>' -->
+			<!-- str_html+='			<option value="6">link text</option>' -->
+			<!-- str_html+='			<option value="7">partial link text</option>' -->
+			str_html+='			<option value="8">js 注入</option>'
+			<!-- str_html+='			<option value="9">切换iframe</option>' -->
+			str_html+='			<option value="10">鼠标拖动</option>'
+			str_html+='			<option value="11">python脚本</option>'
+			str_html+='			<option value="12">打开url</option>'
+			str_html+='			<option value="13">关闭</option>'
+			str_html+='		  </select>'
+			str_html+='		</div>'
+				  
+				  
+			str_html+='		<div id="from_Interactive_1">'
+			str_html+='			<div class="layui-form-item" style="margin-top: 15px;">'
+			str_html+='				<label class="layui-form-label">元素</label>'
+			str_html+='				<div class="layui-input-block">'
+			str_html+='				  <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入元素" lay-reqtext="岂能为空？" class="layui-input">'
+			str_html+='				</div>'
+			str_html+='			</div>'
+			str_html+='			<label class="layui-form-label">操作方式</label>'
+			str_html+='			<div class="layui-input-block"  lay-reqtext="岂能为空？">'
+			str_html+='			  <select name="interest" lay-filter="companyList">'
+			str_html+='				<option value="0" selected="">左键点击</option>'
+			<!-- str_html+='				<option value="1">清空输入框</option>' -->
+			str_html+='				<option value="2">输入内容</option>'
+			str_html+='				<option value="3">获取div内容</option>'
+			<!-- str_html+='				<option value="4">右键点击</option>' -->
+			str_html+='				<option value="5">双击</option>'
+			str_html+='				<option value="6">长按</option>'
+			<!-- str_html+='				<option value="7">回退</option>' -->
+			<!-- str_html+='				<option value="8">回车</option>' -->
+			str_html+='	            <option value="9">获取坐标</option>'
+
+
+			str_html+='			  </select>'
+			str_html+='			</div>'
+			str_html+='			<div id="from_Interactive_2">'
+
+			str_html+='			</div>'
+			str_html+='		</div>'
+			
+			$("#add_path").html(str_html)
+			form.render();
+		
+		})
+		
+		
+		$("#Save_node").click(function(){//保存节点数据
+			var Ginseng = localStorage.getItem("Ginseng")
+			
+			if(Ginseng=='None'){
+				//新增
+				//localStorage.setItem('Ginseng',JSON.stringify(url_data()));
+				dict_quote[edit_id]=list_quote
+				localStorage.setItem('Ginseng',JSON.stringify(dict_quote));//节点出参保存
+					
+			}else{
+				//多个节点时新增/编辑
+				Ginseng=JSON.parse(Ginseng)
+				Ginseng[edit_id]=list_quote
+				localStorage.setItem('Ginseng',JSON.stringify(Ginseng))
+			}
+			
+			localStorage.setItem('list_data',JSON.stringify(list_data));//节点出参保存
+				
+		
+			var id = localStorage.getItem("edit_id")
+			console.log(p_dict,'------------------------------cccccccccccvvvvvvvvvvvvvcccccccccccc------------------------------');
+			var Node_val = localStorage.getItem("Node_information")
+			if(Node_val=='None'){
+				var list_tab=[]
+				for (var i=0;i<$(".tab_path").length;i++){
+					list_tab.push($(".tab_path").eq(i).text())
+					
+				}
+				console.log(list_tab,'list_tab')
+				var val = new Object()
+				val[id]=p_dict
+				val[id+'_Sort']=list_tab
+				val[id+'_Workflow_name']=$('#myP').text()
+				localStorage.setItem('Node_information',JSON.stringify(val));
+			}else{
+				var list_tab=[]
+				for (var i=0;i<$(".tab_path").length;i++){
+					list_tab.push($(".tab_path").eq(i).text())
+				}
+				console.log(list_tab,'list_tab')
+				Node_val=JSON.parse(Node_val)
+				Node_val[id]=p_dict
+				Node_val[id+'_Sort']=list_tab
+				Node_val[id+'_Workflow_name']=$('#myP').text()
+				localStorage.setItem('Node_information',JSON.stringify(Node_val));
+			}
+
+			console.log(localStorage.getItem("Node_information"),'------------------------------ccccccccccccccccccccccc------------------------------');
+			
+			$(".popping-box-wrap", parent.document).hide(500);
+		})
+				
+				
+		//添加参数
+		$(document).on("click",'#add_p',function(){
+			var int_i=Math.random().toString(36).slice(-6);
+			var str_html=''		
+				str_html+='<div class="layui-form-item" style="display:flex;margin-top: 15px;">'
+				str_html+='	<label class="layui-form-label" style="text-align: right;">参数</label>'
+				str_html+='	<div style="margin-left: 8.5px;" class="layui-input-block">'
+				str_html+='		<input style="margin-left:-8px;" type="text" name="data" lay-verify="title" autocomplete="off" placeholder="请输入参数" class="layui-input"  lay-reqtext="岂能为空？">'
+				str_html+='	</div>'
+				str_html+='	<div style="margin-left:9px">'
+				str_html+='		<button id="del_but" style="margin-top:3px;" type="button" class="layui-btn layui-btn-primary layui-btn-sm">'
+				str_html+='			<i class="layui-icon"></i>'
+				str_html+='		</button>'
+				str_html+='	</div>'
+				str_html+='</div>'
+				str_html+='	<div class="app_but">'
+				str_html+='		<button id="add_p" type="button" class="layui-btn layui-btn-primary layui-btn-fluid">添加参数</button>'
+				str_html+='	</div>'
+			
+				$("#from_Interactive_2").html(str_html)
+		})
+
+
+
+
+		$(document).on("click",'#del_but',function(){
+			console.log($(this).parents(".layui-form-item"));
+			$(this).parents(".layui-form-item").remove();
+		})
+		
+
+
+		form.on('select(aihao)', function(e_data){
+		 
+			console.log(e_data.elem); //得到select原始DOM对象     
+			console.log(e_data.value); //得到被选中的值             
+			console.log(e_data.elem[e_data.elem.selectedIndex].text); //option的内容
+			console.log(e_data.elem[e_data.elem.selectedIndex].title); //option的title
+			if(e_data.value==8){
+				//js注入
+				var str_html=""
+				str_html+='<div id="editor" style="width:515px;min-height:300px;margin:15px -21px 0px 110px;;">'
+				str_html+='</div>'
+				$("#from_Interactive_1").html(str_html)
+				editor = ace.edit("editor");
+				editor.setTheme("ace/theme/monokai");
+				editor.session.setMode("ace/mode/javascript");
+			    form.render();
+			}else if(e_data.value==9){
+				//切换iframe
+				console.log(e_data.value); //得到被选中的值             
+				var str_html=""
+					str_html+='<div class="layui-form-item" style="margin-top: 15px;">'
+					str_html+='	<label class="layui-form-label">元素</label>'
+					str_html+='	<div class="layui-input-block">'
+					str_html+='	  <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="输入ifame标签的id,name,或者index" lay-reqtext="岂能为空？" class="layui-input">'
+					str_html+='	</div>'
+					str_html+='</div>'
+				$("#from_Interactive_1").html(str_html)
+				form.render();
+				
+			}else if(e_data.value==10){
+				//鼠标拖动
+				  var str_html=""
+				  str_html+='<div style="display: flex;margin-top:15px;">'
+				  str_html+='<div class="layui-form-item">'
+				  str_html+='	<div class="layui-inline">'
+				  str_html+='	  <label class="layui-form-label">起始</label>'
+				  str_html+='	  <div class="layui-input-inline" style="width: 80px;">'
+				  str_html+='		<input type="text" name="Start_width" placeholder="x坐标" autocomplete="off" class="layui-input">'
+				  str_html+='	  </div>'
+				  str_html+='	  <div class="layui-form-mid">-</div>'
+				  str_html+='	  <div class="layui-input-inline" style="width: 80px;">'
+				  str_html+='		<input type="text" name="Start_height" placeholder="y坐标" autocomplete="off" class="layui-input">'
+				  str_html+='	  </div>'
+				  str_html+='	</div>'
+				  str_html+='  </div>'
+				  str_html+='  <div class="layui-form-item">'
+				  str_html+='	<div class="layui-inline">'
+				  str_html+='	  <label class="layui-form-label" style="width:40px">目标</label>'
+				  str_html+='	  <div class="layui-input-inline" style="width: 80px;">'
+				  str_html+='		<input type="text" name="end_width" placeholder="x坐标" autocomplete="off" class="layui-input">'
+				  str_html+='	  </div>'
+				  str_html+='	  <div class="layui-form-mid">-</div>'
+				  str_html+='	  <div class="layui-input-inline" style="width: 80px;">'
+				  str_html+='		<input type="text" name="end_height" placeholder="y坐标" autocomplete="off" class="layui-input">'
+				  str_html+='	  </div>'
+				  str_html+='	</div>'
+				  str_html+='  </div>'				
+				  str_html+='  </div>'				
+				  $("#from_Interactive_1").html(str_html)
+				  form.render();
+				
+			}else if(e_data.value==11){
+				//py注入
+				var str_html=""
+				str_html+='<div id="editor" style="width:515px;min-height:300px;margin:15px -21px 0px 110px;;">'
+				str_html+='</div>'
+				$("#from_Interactive_1").html(str_html)
+				editor = ace.edit("editor");
+				editor.setTheme("ace/theme/monokai");
+				editor.session.setMode("ace/mode/python");
+			    form.render();
+				
+			}else if(e_data.value==12){
+				//url
+				console.log(e_data.value); //得到被选中的值             
+				var str_html=""
+					str_html+='<div class="layui-form-item" style="margin-top: 15px;">'
+					str_html+='	<label class="layui-form-label">url</label>'
+					str_html+='	<div class="layui-input-block">'
+					str_html+='	  <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="输入url" lay-reqtext="岂能为空？" class="layui-input">'
+					str_html+='	</div>'
+					str_html+='</div>'
+				$("#from_Interactive_1").html(str_html)
+				form.render();					  
+			  
+			}else if(e_data.value==13){
+				//关闭
+				console.log(e_data.value); //得到被选中的值             
+				var str_html=""
+				$("#from_Interactive_1").html(str_html)
+				form.render();	
+				
+				
+			}else{
+				var str_html=""
+					str_html+='<div class="layui-form-item" style="margin-top: 15px;">'
+					str_html+='	<label class="layui-form-label">元素</label>'
+					str_html+='	<div class="layui-input-block">'
+					str_html+='	  <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入元素" lay-reqtext="岂能为空？" class="layui-input">'
+					str_html+='	</div>'
+					str_html+='</div>'
+					str_html+='<label class="layui-form-label">操作方式</label>'
+					str_html+='<div class="layui-input-block"  lay-reqtext="岂能为空？">'
+					str_html+='  <select name="interest" lay-filter="companyList">'
+					str_html+='	<option value="0" selected="">左键点击</option>'
+					<!-- str_html+='	<option value="1">清空输入框</option>' -->
+					str_html+='	<option value="2">输入内容</option>'
+					str_html+='	<option value="3">获取div内容</option>'
+					<!-- str_html+='	<option value="4">右键点击</option>' -->
+					str_html+='	<option value="5">双击</option>'
+					str_html+='	<option value="6">长按</option>'
+					<!-- str_html+='	<option value="7">回退</option>' -->
+					<!-- str_html+='	<option value="8">回车</option>' -->
+					str_html+='	<option value="9">获取坐标</option>'
+
+
+					
+					
+					str_html+='  </select>'
+					str_html+='</div>'
+					str_html+='<div id="from_Interactive_2">'
+
+					str_html+='</div>'
+					$("#from_Interactive_1").html(str_html)
+					form.render();
+			}
+		 
+		});
+
+
+
+
+		form.on('select(companyList)', function(e_data){
+			//为输入时弹参数输入框
+			if(e_data.value==2){
+				var str_html=""
+				str_html+='	<div class="app_but">'
+				str_html+='		<button id="add_p" type="button" class="layui-btn layui-btn-primary layui-btn-fluid">添加参数</button>'
+				str_html+='	</div>'
+				$("#from_Interactive_2").html(str_html)
+				form.render();
+			}else{
+				var str_html=""
+				$("#from_Interactive_2").html(str_html)
+				form.render();
+			}
+
+			
+		})
+
+
+
+
+
+
+
+	})
+
+</script>
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>本地文件</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../static/layui-v2.6.8/layui-v2.6.8/layui/css/layui.css"  media="all">
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+  <style>
+  
+	*{
+		user-select: none;
+	}
+	
+    body{
+		/*padding:20px;*/
+	}
+
+	.Ambiguity{
+		box-shadow: 2px 2px 9px #888888
+	}
+
+
+	.file_tab{
+		padding:5px;
+		cursor:pointer;
+	}
+	
+	.file_tab:hover{
+		padding:5px;
+		cursor:pointer;
+		background:#acbbead9;
+	}
+
+
+
+
+	.file_tab>div{
+		font-size:15px;
+		display:inline-block;
+		height:15px;
+	}
+
+
+	
+	.Judgment_from{
+		margin-left:100px;
+		margin-top:100px;
+		width:670px;
+		height:435px;
+		padding: 10px;
+		border:1px solid #e6e6e6;
+		opacity：0;
+		background-color:#ffffff;
+	}
+	
+
+	
+	/* 设置滚动条的样式 */
+	::-webkit-scrollbar {
+		width:10px;
+	}
+	/* 滚动槽 */
+	::-webkit-scrollbar-track {
+		-webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+		border-radius:8px;
+	}
+	/* 滚动条滑块 */
+	::-webkit-scrollbar-thumb {
+		border-radius:8px;
+		background:rgba(0,0,0,0.1);
+		-webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+	}
+	::-webkit-scrollbar-thumb:window-inactive {
+		background:rgba(255,0,0,0.4);
+	}
+	
+	.Workflow_name_input{
+		outline: none;
+	}
+
+	
+  </style>
+</head>
+<body>
+
+	<div class="Judgment_from Ambiguity">
+	
+		
+		<div style="padding:5px;font-weight:bold;">
+			<button id="Upload" type="button" class="layui-btn layui-btn-sm layui-btn-normal">上传</button>
+				<i id="shut_down" class="layui-icon layui-icon-close" style="font-size: 26px; color: #0a6ae6e3;margin-left:590px;cursor:pointer;"></i>  
+
+			<div style="width:135px;display:inline-block;">
+				
+				<i id="shut_down" class="layui-icon layui-icon-close" style="font-size: 26px; color: #0a6ae6e3;margin-left:590px;cursor:pointer;"></i>  
+			</div>
+		</div>
+		<hr>
+	
+	
+	
+	
+		<div style="padding:5px;font-weight:bold;">
+			<div style="width:18px;display:inline-block;">
+			</div>
+			<div style="width:310px;display:inline-block;">
+				文件名
+			</div>
+			<div style="width:165px;display:inline-block;">
+				修改日期
+			</div>
+			<div style="width:135px;display:inline-block;">
+				文件大小
+			</div>
+		</div>
+		<hr>
+
+
+		<div style="overflow:scroll;height:335px;" id="demo7">
+				<div class="file_tab" data-name="dpa_login.json">
+					<div style="width:18px;">
+						<i id="save" class="layui-icon layui-icon-file" style="font-size: 18px; color: #333;"></i>  
+					</div>
+					<div style="width:310px;">
+						dpa_login.json
+					</div>
+					<div style="width:165px;">
+						2021-09-24 19:12:52
+					</div>
+					<div style="width:135px;">
+						13.36KB
+					</div>
+				</div>
+		
+		
+		
+		
+			{% for list in file_list %}
+
+				<div class="file_tab" data-name="{{list.file_name}}">
+					<div style="width:18px;">
+						<i id="save" class="layui-icon layui-icon-file" style="font-size: 18px; color: #333;"></i>  
+					</div>
+					<div style="width:310px;">
+						{{list.file_name}}
+					</div>
+					<div style="width:165px;">
+						{{list.otherStyleTime}}
+					</div>
+					<div style="width:135px;">
+						{{list.human_size}}
+					</div>
+				</div>
+			{% endfor %}
+			
+			
+			
+		</div>
+
+
+		
+	</div>
+	
+
+	
+	<div style="overflow:scroll;height:335px;display: none;" id="file_choose">
+		<div class="file_tab" data-name="dpa_login.json">
+			<div style="width:18px;">
+				<i id="save" class="layui-icon layui-icon-file" style="font-size: 18px; color: #333;"></i>  
+			</div>
+			<div style="width:310px;">
+				dpa_login.json
+			</div>
+			<div style="width:165px;">
+				2021-09-24 19:12:52
+			</div>
+			<div style="width:135px;">
+				13.36KB
+			</div>
+		</div>
+
+	
+	
+	
+		{% for list in file_list %}
+
+			<div class="file_tab" data-name="{{list.file_name}}">
+				<div style="width:18px;">
+					<i id="save" class="layui-icon layui-icon-file" style="font-size: 18px; color: #333;"></i>  
+				</div>
+				<div style="width:310px;">
+					{{list.file_name}}
+				</div>
+				<div style="width:165px;">
+					{{list.otherStyleTime}}
+				</div>
+				<div style="width:135px;">
+					{{list.human_size}}
+				</div>
+			</div>
+		{% endfor %}
+		
+		
+		
+	</div>
+
+
+		
+	
+
+
+
+
+
+
+
+</body>
+
+
+<script src="../static/layui-v2.6.8/layui-v2.6.8/layui/layui.js" charset="utf-8"></script>
+<script src="../static/jquery/jquery-3.3.1.min.js" charset="utf-8"></script>
+<script src="../static/jquery/jquery-3.3.1.js" charset="utf-8"></script>
+<script src="../static/jquery-ui-1.12.1.custom/jquery-ui-1.12.1.custom/jquery-ui.min.js" charset="utf-8"></script>
+<script src="../static/icon/font/iconfont.js"></script>
+<script src="../static/js/web_db.js"></script>
+<script>
+
+
+$("#shut_down").click(function(){
+	//关闭判断节点
+	$(".popping-box-wrap", parent.document).hide(500);
+});
+
+
+layui.use(['dropdown', 'util', 'layer', 'table'], function(){
+  var dropdown = layui.dropdown
+  ,util = layui.util
+  ,layer = layui.layer
+  ,table = layui.table
+  ,$ = layui.jquery;
+  
+  
+  
+    /*
+  	layer.prompt({title: '输入任何口令，并确认', formType: 1}, function(pass, index){
+	  layer.close(index);
+	  layer.prompt({title: '随便写点啥，并确认', formType: 2}, function(text, index){
+		layer.close(index);
+		layer.msg('演示完毕！您的口令：'+ pass +'<br>您最后写下了：'+text);
+	  });
+	});
+    */
+  
+
+	  
+	layer.open({
+	  title: '选择本地文件',
+	  type: 1,
+	  content: $('#file_choose'), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+	  area: ['700px', '460px'],
+	  btn: ['上传', '取消']
+	  ,yes: function(index, layero){
+		//按钮【按钮一】的回调
+		    layer.close(index);
+			layer.open({
+			  title: '选择本地文件',		  
+			  type: 1,
+			  content: $('#file_choose'), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+			  area: ['700px', '460px'],
+			  btn: ['上传', '取消']
+			  ,yes: function(index, layero){
+				//按钮【按钮一】的回调
+				  layer.close();
+			  }
+			  ,btn2: function(index, layero){
+				  //按钮【按钮二】的回调
+				  layer.close();
+				  //return false 开启该代码可禁止点击该按钮关闭
+			  }
+			})
+	  }
+	  ,btn2: function(index, layero){
+		  //按钮【按钮二】的回调
+		  layer.close();
+	  }
+	})
+  
+  
+  
+  
+  
+  
+  
+  
+    <!-- $('.file_tab'){} -->
+	$('.file_tab').click(function(e) {//
+	  if(e.ctrlKey) {
+		//Ctrl+Click
+			$(this).css({
+				"background-color":"#7085d0d9",
+			})
+			$(this).data("data-id","1")
+	  }else{
+	    //click
+			$(".file_tab").css({"background-color":""});
+			$(".file_tab").data("id","0")
+			$(this).css({
+				"background-color":"#7085d0d9",
+			})
+			$(this).data("id","1")
+
+	  }
+
+	});
+
+
+	var pop = $('.file_tab');
+
+	$(document).click(function(e){
+	    // 点击空白处改变重置颜色
+		//alert(1234)
+		if(!pop.is(e.target) && pop.has(e.target).length === 0){
+			pop.css({"background-color":""});
+			$(".file_tab").data("id","0")
+		}
+		
+	});
+
+
+	function Selected_id(){
+		var f_list=[]
+		var f_tab = $('.file_tab')
+		for (var f_l=0;f_l<f_tab.length;f_l++){
+			console.log(f_tab.eq(f_l).css("background-color"),'咋右两个')
+			if (f_tab.eq(f_l).css("background-color")== "rgb(112, 133, 208)"){
+			
+				console.log(f_tab.eq(f_l).css("background-color"),'xxxxxxxxxxxxxxxxxxxxxxxx',f_tab.eq(f_l).data('name'))
+				
+				f_list.push(f_tab.eq(f_l).data('name'))
+			}
+		
+		}
+		return f_list
+	}
+	
+	
+	<!-- window.oncontextmenu=function(e){ -->
+		//取消默认的浏览器自带右键 很重要！！
+		<!-- e.preventDefault(); -->
+	<!-- } -->
+
+	$('.file_tab').mousedown(function(e) {
+		console.log(e.which);
+		//右键为3
+		if (3 == e.which) {
+		  //右键菜单
+		  //$(".file_tab").css({"background":""});
+		  //$(this).css({
+			//  "background":"#7085d0d9",
+		  //})
+		  
+		  console.log($(this))//这里可获取id
+		  
+		  
+		  
+		  dropdown.render({
+			elem: '#demo7' //也可绑定到 document，从而重置整个右键
+			,trigger: 'contextmenu' //contextmenu
+			,isAllowSpread: false //禁止菜单组展开收缩
+			,style: 'width: 200px' //定义宽度，默认自适应
+			,id: 'test777' //定义唯一索引
+			,data: [{
+			  title: '下载'
+			  ,id: 'download'
+			}]
+			,click: function(obj, othis){
+			  console.log(obj.id)
+			  var Slist=Selected_id()
+			  if(obj.id === 'download'){
+				//下载
+			      if (Selected_id().length<1){
+					  layer.msg('请选择一个文件')
+				  	  return
+				  }else{
+					  //下载
+					  $.ajax({
+					     url:"/file_del/",
+					     type:"GET",                    
+					     data:{
+						     'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),		   
+						     'file_name':JSON.stringify({"Slist":Slist})
+					     },
+					     success:function (data) {
+						  	  console.log("成功",data);	
+							  window.location.reload()
+					     },
+					     error:function (data) {
+							  //clearInterval(myVar)
+							  console.log("失败",data);
+						 }	   
+					  })
+				  }
+			  }
+			}
+		  });
+		  
+		  
+
+
+		  
+		  
+		}
+	})
+
+	$("#Upload").click(function(){
+		layer.open({
+		  title: '选择本地文件',		  
+		  type: 1,
+		  content: $('#file_choose'), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+		  area: ['700px', '460px'],
+		  btn: ['上传', '取消']
+		  ,yes: function(index, layero){
+			//按钮【按钮一】的回调
+			  layer.close();
+		  }
+		  ,btn2: function(index, layero){
+			  //按钮【按钮二】的回调
+			  layer.close();
+			  //return false 开启该代码可禁止点击该按钮关闭
+		  }
+		})
+	})
+				  
+
+
+	
+})
+
+
+
+
+	
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
+
+

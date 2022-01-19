@@ -1,0 +1,657 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>log_000</title>
+  <link rel="stylesheet" href="../static/layui-v2.6.8/layui-v2.6.8/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" type="text/css" href="../static/icon/font/iconfont.css">
+  <style>
+
+	
+    body{
+      <!-- padding:20px 50px 20px 50px; -->
+	}
+	
+	/*.Ambiguity{
+		box-shadow: 2px 2px 9px #888888
+	}*/
+	
+    ul>li{
+        list-style: inside;
+        font-size: 1.17em;
+    }
+    
+	
+	p { 
+		word-wrap:break-word;
+		width:730px;
+	}
+	
+	*{/*全局字体颜色*/
+		color:#7d7d7d;
+	}
+
+    .d_1{
+        display:flex;
+        padding:20px;
+    }
+
+    .d_1_1{
+        border: 1px solid #eee;
+        width: 360px;
+        height:690px;
+        overflow-y: auto;
+    }
+
+    .d_1_1_1{
+        padding:10px 0px 10px 0px;
+        
+        
+    }
+
+    .d_1_1_1>div{
+        margin:10px 20px 10px 20px;
+        padding:8px;
+        border-radius: 8px;
+        border: 2px solid #eee;
+        width: 300px;
+        line-height: 21px;
+        cursor:pointer;
+    }
+        
+    
+    .d_1_1_1>div:hover{
+        margin:10px 20px 10px 20px;
+        padding:8px;
+        border-radius: 8px;
+        border: 2px solid rgba(10, 106, 230, 0.89);
+        width: 300px;
+        line-height: 21px;
+    }
+    
+        
+        
+    .d_1_2{
+        border: 1px solid #eee;
+        margin-left: 10px;
+        width: 1088px;
+        height:650px;
+        overflow-y: auto;
+        padding:20px;
+    }
+	
+    .tab_log{
+        display:flex;
+    }
+    
+    .tab_log_1{
+        width:266px;
+    }
+    
+    table,
+    td {
+        border: 1px solid #333;
+        text-align:center;
+    }
+
+    thead,
+    tfoot {
+        background-color: #333;
+        color: #fff;
+        text-align:center;
+    }
+
+
+    h2,h3{
+        margin-top:10px;
+    }
+
+    
+    
+		/* 设置滚动条的样式 */
+	::-webkit-scrollbar {
+		width:10px;
+	}
+	/* 滚动槽 */
+	::-webkit-scrollbar-track {
+		-webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+		border-radius:8px;
+	}
+	/* 滚动条滑块 */
+	::-webkit-scrollbar-thumb {
+		border-radius:8px;
+		background:rgba(0,0,0,0.1);
+		-webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+	}
+	::-webkit-scrollbar-thumb:window-inactive {
+		background:rgba(255,0,0,0.4);
+	}
+
+  </style>
+</head>
+<body>
+    <!-- <div class="Ambiguity d_0"> -->
+    <!-- <div class="Ambiguity"> -->
+        <div class="d_1">
+            <div class="d_1_1">
+                <div class="d_1_1_1">
+
+
+                </div>
+            </div>
+
+            <div class="d_1_2">
+                <div>
+                    <!-- <a href="">下载</a> -->
+                    <a style="color: #0043ff;" href="javascript:void(0);" id="download">下载</a>
+                    <hr>
+                </div>
+                <div id="ignorePDF">
+                
+                    <div style="margin:15px">
+                        <h1 align="center" style="margin-top:10px;">Workflow report</h1>
+                        <h2>Checklist</h2>
+                        <table style="width:1031px">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Checklist</th>
+                                </tr>
+                            </thead>
+                            <tbody id="W_str">
+                                <tr>
+                                    <td>版本</td>
+                                    <td>v1.0</td>
+                                </tr>
+                                
+                                <!-- 你是特别的 -->
+                                <tr>
+                                    <td rowspan="5" >范围</td>
+                                </tr>
+                                <tr>
+                                    <td>工作流1</td>
+                                </tr>
+                                <tr>
+                                    <td>工作流2</td>
+                                </tr>                      <tr>
+                                    <td>工作流1</td>
+                                </tr>
+                                <tr>
+                                    <td>工作流2</td>
+                                </tr>
+                                <!-- 你是特别的 -->
+
+                                
+                                
+                                <tr>
+                                    <td>日期</td>
+                                    <td>2021/10/30 00:00:00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+                        <h2>Workflow chart</h2>
+                        <div style="width:400px;height:400px;display: inline-block;margin:10px;">
+                            <canvas id="myChart" width="400" height="400"></canvas>
+                        </div>
+
+                        <div style="width:600px;height:400px;display: inline-block;margin:10px;">
+                            <canvas id="myChart2" width="600" height="400"></canvas>
+                        </div>
+                        
+                        
+                        <h2>operation result</h2>
+                        <table style="width:1031px">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">operation result</th>
+                                </tr>
+                            </thead>
+                            <tbody id="o_tab">
+                                <tr>
+                                    <td>工作流1</td>
+                                    <td>成功</td>
+                                </tr>
+
+                                <tr>
+                                    <td>工作流2</td>
+                                    <td>失败</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>成功率</td>
+                                    <td>30%</td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                        
+                        
+                        
+                        <h2>Run log</h2>
+                        <ul id="log_txt">
+
+
+                        </ul>
+                        
+                    
+                    
+                    
+                   
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+
+
+
+
+	<!-- </div> -->
+
+
+
+
+</body>
+
+
+
+
+
+
+<script src="../static/layui-v2.6.8/layui-v2.6.8/layui/layui.js" charset="utf-8"></script>
+<script src="../static/jquery/jquery-3.3.1.min.js" charset="utf-8"></script>
+<script src="../static/jquery/jquery-3.3.1.js" charset="utf-8"></script>
+<script src="../static/jquery-ui-1.12.1.custom/jquery-ui-1.12.1.custom/jquery-ui.min.js" charset="utf-8"></script>
+<script src="https://cdn.bootcss.com/jsPlumb/1.7.6/jquery.jsPlumb.min.js"></script>
+<script src="../static/icon/font/iconfont.js"></script>
+<script src="../static/js/web_db.js"></script>
+<script src="../static/Chart.js/Chart.min.js" charset="utf-8"></script>
+<!-- <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js" ></script> -->
+
+<script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+<script src="https://cdn.bootcss.com/jspdf/1.3.4/jspdf.debug.js"></script>
+
+<script>
+
+//流程/版本/日期
+
+// var workfliow_data = {'workfliow': {'odpn3k': {'Workflow_id': 'odpn3k', 'Workflow_name': '工作流名称', 'Workflwow_obj': '{"odpn3k":{"Workflow_name":"工作流名称","api_node":"None","if_node":"None","rpa_node":"None","Node_information":"{\\"qas45k\\":{\\"进入到dpa\\":{\\"csrfmiddlewaretoken\\":\\"27bcEhDlrKC9t73zxprvzWqAIhnRXxG7qMRukclnznoiwFf5yTdZVaULWteC5BCZ\\",\\"path_name\\":\\"进入到dpa\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"12\\",\\"url\\":\\"http://192.168.3.185/dpa/login\\"},\\"输入账号\\":{\\"csrfmiddlewaretoken\\":\\"5rPfX0LLpPfZBf37Q4C1wxBUYrMy5RxgWE6sCx4tQ1Tr17t4wEBSWBsT4Hj3YK9T\\",\\"path_name\\":\\"输入账号\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"[placeholder=\\\\\\"请输入账号\\\\\\"]\\",\\"interest\\":\\"2\\",\\"data\\":\\"fy\\"},\\"输入密码\\":{\\"csrfmiddlewaretoken\\":\\"5rPfX0LLpPfZBf37Q4C1wxBUYrMy5RxgWE6sCx4tQ1Tr17t4wEBSWBsT4Hj3YK9T\\",\\"path_name\\":\\"输入密码\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"[placeholder=\\\\\\"请输入密码\\\\\\"]\\",\\"interest\\":\\"2\\",\\"data\\":\\"123456\\"},\\"点击登录\\":{\\"path_name\\":\\"点击登录\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//span[text()=\\\\\\"登录\\\\\\"]\\",\\"interest\\":\\"0\\"}},\\"qas45k_Sort\\":[\\"进入到dpa\\",\\"输入账号\\",\\"输入密码\\",\\"点击登录\\"],\\"qas45k_Workflow_name\\":\\"登录到dpa\\",\\"aan4cj\\":{\\"点击新增工作流\\":{\\"csrfmiddlewaretoken\\":\\"llIHwVXWZdGfpR6mGk4TIx1KK3EwBUN3lKMHDBhcmLfQwEeltrxALhVNkuH6BKs4\\",\\"path_name\\":\\"点击新增工作流\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//span[text()=\\\\\\"新增\\\\\\"]\\",\\"interest\\":\\"0\\"},\\"输入标题\\":{\\"path_name\\":\\"输入标题\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"[placeholder=\\\\\\"请输入标题\\\\\\"]\\",\\"interest\\":\\"2\\",\\"data\\":\\"zdh_gzl_api\\"},\\"点击执行引擎下拉\\":{\\"path_name\\":\\"点击执行引擎下拉\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"text=请选择 无匹配数据 加载中 >> span\\",\\"interest\\":\\"0\\"},\\"选中执行引擎\\":{\\"path_name\\":\\"选中执行引擎\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"form li:has-text(\\\\\\"执行>Test>3.185\\\\\\")\\",\\"interest\\":\\"0\\"},\\"点击确定\\":{\\"path_name\\":\\"点击确定\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"button:has-text(\\\\\\"确认\\\\\\")\\",\\"interest\\":\\"0\\"}},\\"aan4cj_Sort\\":[\\"点击新增工作流\\",\\"输入标题\\",\\"点击执行引擎下拉\\",\\"选中执行引擎\\",\\"点击确定\\"],\\"aan4cj_Workflow_name\\":\\"工作流基本信息\\",\\"81ur3e\\":{\\"点击切换到api\\":{\\"csrfmiddlewaretoken\\":\\"p2Xw3lRkrqfQsbirR7fJLZiqigpEj4Y5haHSyudtCJkkrnTmI2jv160HFLh0D8SS\\",\\"path_name\\":\\"点击切换到api\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"#workflowEditMain >> text=API\\",\\"interest\\":\\"0\\"},\\"拖拽api节点至画布\\":{\\"path_name\\":\\"拖拽api节点至画布\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"10\\",\\"Start_width\\":\\"291\\",\\"Start_height\\":\\"418\\",\\"end_width\\":\\"700\\",\\"end_height\\":\\"418\\",\\"winW\\":1280,\\"winH\\":720},\\"点击编辑进入api节点编辑\\":{\\"path_name\\":\\"点击编辑进入api节点编辑\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"text=编辑\\",\\"interest\\":\\"0\\"},\\"点击编辑进行编辑\\":{\\"path_name\\":\\"点击编辑进行编辑\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"text=编辑\\",\\"interest\\":\\"0\\"},\\"输入节点名称\\":{\\"csrfmiddlewaretoken\\":\\"rW2rQV71ZfA8ruuuznLrHijN9foHuD1SN9Zl2ivKYdsuYScjj8VbQVYG0CqdD4BD\\",\\"path_name\\":\\"输入节点名称\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//label[text()=\\\\\\"节点名称\\\\\\"]/../div/div/div/input\\",\\"interest\\":\\"2\\",\\"data\\":\\"api节点\\"},\\"输入url\\":{\\"path_name\\":\\"输入url\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//label[text()=\\\\\\"请求协议\\\\\\"]/../div/div/div[2]/div/input\\",\\"interest\\":\\"2\\",\\"data\\":\\"192.168.3.83:8063/TEST_POST/\\"},\\"点击认证方式\\":{\\"path_name\\":\\"点击认证方式\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//label[text()=\\\\\\"认证方式\\\\\\"]/../div/div/div/div/div/span\\",\\"interest\\":\\"0\\"},\\"选择Basic\\":{\\"path_name\\":\\"选择Basic\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//li[text()=\\\\\\"Basic\\\\\\"]\\",\\"interest\\":\\"0\\"},\\"切换至参数界面\\":{\\"path_name\\":\\"切换至参数界面\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//label[text()=\\\\\\"请求参数\\\\\\"]\\",\\"interest\\":\\"0\\"},\\"点击添加参数\\":{\\"path_name\\":\\"点击添加参数\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//label[text()=\\\\\\" 请求参数: \\\\\\"]/../div/div/div/button\\",\\"interest\\":\\"0\\"},\\"输入key\\":{\\"path_name\\":\\"输入key\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//label[text()=\\\\\\" 请求参数: \\\\\\"]/../div/div/div/div/div/div/input\\",\\"interest\\":\\"2\\",\\"data\\":\\"a\\"},\\"输入value\\":{\\"path_name\\":\\"输入value\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//label[text()=\\\\\\" 请求参数: \\\\\\"]/../div/div/div/div/div[2]/div/div/input\\",\\"interest\\":\\"2\\",\\"data\\":\\"1234\\"},\\"切换至参数测试\\":{\\"path_name\\":\\"切换至参数测试\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//label[text()=\\\\\\"参数测试\\\\\\"]\\",\\"interest\\":\\"0\\"},\\"点击测试\\":{\\"path_name\\":\\"点击测试\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//span[text()=\\\\\\"测试\\\\\\"]\\",\\"interest\\":\\"0\\"},\\"选择参数\\":{\\"path_name\\":\\"选择参数\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//span[text()=\'\\\\\\"val_a\\\\\\":\']\\",\\"interest\\":\\"5\\"},\\"点击确定\\":{\\"path_name\\":\\"点击确定\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//div[text()=\\\\\\"API编排\\\\\\"]/../../div[2]/div/div[3]/button[1]/span\\",\\"interest\\":\\"0\\"}},\\"81ur3e_Sort\\":[\\"点击切换到api\\",\\"拖拽api节点至画布\\",\\"点击编辑进行编辑\\",\\"输入节点名称\\",\\"输入url\\",\\"点击认证方式\\",\\"选择Basic\\",\\"切换至参数界面\\",\\"点击添加参数\\",\\"输入key\\",\\"输入value\\",\\"切换至参数测试\\",\\"点击测试\\",\\"选择参数\\",\\"点击确定\\"],\\"81ur3e_Workflow_name\\":\\"创建api节点\\",\\"kt95he\\":{\\"点击保存\\":{\\"csrfmiddlewaretoken\\":\\"m23Eq2f3K9zm04zFbKJVXP9CM3blK47mnsgCDcu8bMUzSnHRHf39o0V350Ff97vJ\\",\\"path_name\\":\\"点击保存\\",\\"sleep_time\\":\\"3\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//section[text()=\\\\\\"保存\\\\\\"]\\",\\"interest\\":\\"0\\"},\\"点击执行\\":{\\"path_name\\":\\"点击执行\\",\\"sleep_time\\":\\"5\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//section[text()=\\\\\\"执行\\\\\\"]\\",\\"interest\\":\\"0\\"},\\"点击展开日志\\":{\\"path_name\\":\\"点击展开日志\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//div[text()=\\\\\\" 运行日志 \\\\\\"]\\",\\"interest\\":\\"0\\"},\\"点击展开详情日志\\":{\\"path_name\\":\\"点击展开详情日志\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"//span[text()=\\\\\\"api节点\\\\\\"]\\",\\"interest\\":\\"0\\"},\\"获取日志内容\\":{\\"path_name\\":\\"获取日志内容\\",\\"sleep_time\\":\\"1\\",\\"Positioning\\":\\"0\\",\\"title\\":\\"#workflowEditMain > div.bottom-part.bottom-tab > div.content > div.running-log > div > div > div.ivu-collapse-content > div > p\\",\\"interest\\":\\"3\\"}},\\"kt95he_Sort\\":[\\"点击保存\\",\\"点击执行\\",\\"点击展开日志\\",\\"点击展开详情日志\\",\\"获取日志内容\\"],\\"kt95he_Workflow_name\\":\\"保存并执行工作流\\"}","sql_node":"None","merge_node":"None","condition":"None","Ginseng":"{\\"qas45k\\":[],\\"aan4cj\\":[],\\"81ur3e\\":[],\\"kt95he\\":[{\\"title\\":\\"log_value\\",\\"sex\\":\\"re\\",\\"desc\\":\\"\'code\': (.*?), \\"}]}","connections":"{\\"0\\":{\\"current\\":\\"qas45k\\",\\"Rear\\":\\"aan4cj\\",\\"current_uuid\\":\\"qas45k_current\\",\\"Rear_uuid\\":\\"aan4cj_Rear\\",\\"current_width\\":\\"50480px\\",\\"current_height\\":\\"25073px\\",\\"Rear_width\\":\\"50480px\\",\\"Rear_height\\":\\"25189px\\"},\\"1\\":{\\"current\\":\\"aan4cj\\",\\"Rear\\":\\"81ur3e\\",\\"current_uuid\\":\\"aan4cj_current\\",\\"Rear_uuid\\":\\"81ur3e_Rear\\",\\"current_width\\":\\"50480px\\",\\"current_height\\":\\"25189px\\",\\"Rear_width\\":\\"50479px\\",\\"Rear_height\\":\\"25290px\\"},\\"2\\":{\\"current\\":\\"81ur3e\\",\\"Rear\\":\\"kt95he\\",\\"current_uuid\\":\\"81ur3e_current\\",\\"Rear_uuid\\":\\"kt95he_Rear\\",\\"current_width\\":\\"50479px\\",\\"current_height\\":\\"25290px\\",\\"Rear_width\\":\\"50481px\\",\\"Rear_height\\":\\"25395px\\"}}","echo_html":[{"img_status":"Below_drawer_d1","data":"http://127.0.0.1:8000/static/img_server/%E5%85%83%E7%B4%A0%E5%AE%9A%E4%BD%8D.png","img_name":"position","x":"50480px","y":"25073px","node_id":"qas45k"},{"img_status":"Below_drawer_d1","data":"http://127.0.0.1:8000/static/img_server/%E5%85%83%E7%B4%A0%E5%AE%9A%E4%BD%8D.png","img_name":"position","x":"50480px","y":"25189px","node_id":"aan4cj"},{"img_status":"Below_drawer_d1","data":"http://127.0.0.1:8000/static/img_server/%E5%85%83%E7%B4%A0%E5%AE%9A%E4%BD%8D.png","img_name":"position","x":"50479px","y":"25290px","node_id":"81ur3e"},{"img_status":"Below_drawer_d1","data":"http://127.0.0.1:8000/static/img_server/%E5%85%83%E7%B4%A0%E5%AE%9A%E4%BD%8D.png","img_name":"position","x":"50481px","y":"25395px","node_id":"kt95he"}],"list_data":"{}","Workflow_parameter":"None"}}', 'Date': '2021-11-01下午2:37:37'}}, 'log': {'odpn3k': {'qas45k': {'node_id': 'qas45k', 'Return_parameter': '{}', 'status': 'Success', 'Workflow_name': '登录到dpa'}, 'aan4cj': {'node_id': 'aan4cj', 'Return_parameter': '{}', 'status': 'Success', 'Workflow_name': '工作流基本信息'}, '81ur3e': {'node_id': '81ur3e', 'Return_parameter': '{\'点击切换到api\': AttributeError("\'NoneType\' object has no attribute \'click\'")}', 'status': 'error', 'Workflow_name': '创建api节点'}, 'kt95he': {'node_id': 'kt95he', 'Return_parameter': '{}', 'status': 'Success', 'Workflow_name': '保存并执行工作流'}}}, 'jenkins': '{"v1.0":{"data":[{"node_name":"工作流名称","node_id":"odpn3k","node_status":true}],"Version":"v1.0"}}', 'json_file_url': './json_data/json_file/api编排.json'}
+
+
+// var workfliow = {'odpn3k': '工作流名称'}
+
+
+// var chart = [{'工作流名称': {'error_len': 1, 'Success_len': 3}}]
+
+
+
+//获取文件名
+$.ajax({
+   url:"/log_file_name/",
+   type:"GET",
+   data:{
+       'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
+   },
+   success:function (data) {
+        console.log("成功111111",data.data);
+        //左侧列表
+        html_str=""
+        for (var i in data.data){
+            
+            html_str+='<div class="tab_log">'
+            html_str+='    <div class="tab_log_1">'+data.data[i]+'</div>'
+            html_str+='    <div>'
+            html_str+='        <a href="javascript:void(0);" id="del_log">删除</a>'
+            html_str+='    </div>'
+            html_str+='</div>'
+        }
+        $(".d_1_1_1").html(html_str)
+        console.log($(".tab_log_1"),'有几位')
+        if ($(".tab_log_1").length>0){//进入的时候展示第一个报告
+            $(".tab_log_1").eq(0).click()
+        }
+   },
+   error:function (data) {
+        //clearInterval(myVar)
+        console.log("成功111111",data);
+    }
+})
+
+
+
+
+
+
+//-------------------------------------------------------------------------
+function log_txt(workfliow_data,chart,workfliow,date,Version){
+    //饼图
+    var error=0
+    var Success=0
+    var workfliow_name=[]
+    var node_list=[]
+    var b_list=[]
+    var operation_result={}
+
+    console.log(chart,'chart---')
+
+    for (var chart_data in chart){
+        var e = Object.values(chart[chart_data])[0]['error_len']
+        var s = Object.values(chart[chart_data])[0]['Success_len']
+        error += e
+        Success += s
+        workfliow_name.push(Object.keys(chart[chart_data])[0])
+        node_list.push(e+s)
+        b_list.push('rgba(800, 99, 100, 0.2)')
+        if (e>0){
+            operation_result[Object.keys(chart[chart_data])[0]]="error"
+        }else{
+            operation_result[Object.keys(chart[chart_data])[0]]="Success"
+        }
+        
+    }
+    
+    
+    console.log(workfliow_name,node_list,b_list,operation_result,'-------------------')
+
+
+    
+
+    //日志
+    html_ss=""
+    for (var id in workfliow_data['log']){
+        var node_obj = workfliow_data['log'][id]
+        for (var node_id in node_obj){
+            html_ss+='<li><strong>'+node_obj[node_id]["Workflow_name"].trim()+'</strong></li>'
+            html_ss+='<div style="margin-left:33px;">'
+            html_ss+='    <p>'
+            html_ss+='        <strong>状态:</strong>'
+            html_ss+=         node_obj[node_id]['status']
+            html_ss+='    </p>'
+            html_ss+='    <p>'
+            html_ss+='        <strong>日志:</strong><br>'
+            html_ss+='        <div style="margin-left:33px;">'
+            html_ss+=             node_obj[node_id]['Return_parameter']
+            html_ss+='        </div>'
+            html_ss+='    </p>'
+            html_ss+='</div>'
+        }
+    }
+    $("#log_txt").html(html_ss)
+
+
+
+    var str_o=""
+    for (var o_status in operation_result){
+            str_o+='<tr>'
+            str_o+='    <td>'+o_status+'</td>'
+            str_o+='    <td>'+operation_result[o_status]+'</td>'
+            str_o+='</tr>'
+    }
+    str_o+='<tr>'
+    str_o+='    <td>成功率</td>'
+    str_o+='    <td>'+Success/(error+Success)*100+'%</td>'
+    str_o+='</tr>'
+
+    $("#o_tab").html(str_o)
+
+    //alert(workfliow_name.length,'我认识你么')
+
+
+    var W_str=""
+    W_str+='<tr>'
+    W_str+='    <td>版本</td>'
+    W_str+='    <td>'+Version+'</td>'
+    W_str+='</tr>'
+    W_str+='<tr>'
+    W_str+='    <td rowspan="'+ (workfliow_name.length+1) +'" >范围</td>'
+    W_str+='</tr>'
+    for (var w in workfliow_name){
+        W_str+='<tr>'
+        W_str+='    <td>'+workfliow_name[w]+'</td>'
+        W_str+='</tr>'
+    }
+    W_str+='<tr>'
+    W_str+='    <td>日期</td>'
+    W_str+='    <td>'+date+'</td>'
+    W_str+='</tr>'
+
+    $('#W_str').html(W_str)
+
+
+
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['通过', '不通过'],
+            datasets: [{
+                label: '示例',
+                data:  [Success,error],
+                borderColor:'lightGray',
+                backgroundColor:['pink','skyblue','LightYellow','LawnGreen','MediumPurple','orange'],
+                borderWidth: 1
+            }]
+        }
+    });
+
+     //var chart = [{'工作流名称': {'error_len': 1, 'Success_len': 3}}]
+
+
+    const ctx2 = document.getElementById('myChart2').getContext('2d');
+    const myChart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: workfliow_name,
+            datasets: [{
+                label: '# of Votes',
+                data: node_list,
+                backgroundColor: b_list,
+                borderColor: b_list,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+}
+//-----------------------------------------------------------
+
+/*
+//$('#ignorePDF').scrollLeft()  $('#ignorePDF').scrollTop()
+//将html页面导出.pdf格式文件(适用于jQuery、vue库)  -- xzz 2018/04/24
+function makeMpdf () {
+    console.log($('#ignorePDF').width(),$('#ignorePDF').height(),'huaxian')
+
+    if(confirm("您确认下载该PDF文件吗?")){
+       var pdf = new jsPDF('p','pt','a4');
+    // 设置打印比例 越大打印越小
+       pdf.internal.scaleFactor = 2;
+       var options = {
+           //width:650,
+           //height:1088,
+           pagesplit: true, //设置是否自动分页
+          "background": '#FFFFFF' //如果导出的pdf为黑色背景，需要将导出的html模块内容背景 设置成白色。
+      };
+       var printHtml = $('#ignorePDF').get(0);   // 页面某一个div里面的内容，通过id获取div内容
+       pdf.addHTML(printHtml,15, 15, options,function() {
+          pdf.save('目标.pdf');
+      });
+    }
+}
+*/
+
+
+
+function exportpdf() {
+    var element = $("#ignorePDF");    // 这个dom元素是要导出pdf的div容器
+    var w = element.width();    // 获得该容器的宽
+	var h = element.height();    // 获得该容器的高
+	element.css({
+	 	"background-color": "white",
+	 	//"position": "absolute",
+	 	//"top": "0px",
+	 	//"z-index": "-1",
+	 	//"height": h,
+	});
+	var offsetTop = element.offset().top;    // 获得该容器到文档顶部的距离
+	var offsetLeft = element.offset().left;    // 获得该容器到文档最左的距离
+	var canvas = document.createElement("canvas");
+	var abs = 0;
+	var win_i = $(window).width();    // 获得当前可视窗口的宽度（不包含滚动条）
+	var win_o = window.innerWidth;    // 获得当前窗口的宽度（包含滚动条）
+	if(win_o>win_i){
+		abs = (win_o - win_i)/2;    // 获得滚动条长度的一半
+	}
+	canvas.width = w * 4;    // 将画布宽&&高放大4倍
+	canvas.height = h * 4;
+	var context = canvas.getContext("2d");
+	context.scale(4, 4);
+	context.translate(-offsetLeft-abs,-offsetTop);
+	// 这里默认横向没有滚动条的情况，因为offset.left(),有无滚动条的时候存在差值，因此
+	// translate的时候，要把这个差值去掉
+	html2canvas(element, {
+		allowTaint: true,
+		taintTest: true,
+		canvas: canvas,
+		dpi: 172,//导出pdf清晰度
+		onrendered: function(canvas) {
+			var contentWidth = canvas.width;
+			var contentHeight = canvas.height;
+			//一页pdf显示html页面生成的canvas高度;
+			var pageHeight = contentWidth / 592.28 * 841.89;
+			//未生成pdf的html页面高度
+			var leftHeight = contentHeight;
+			//页面偏移
+			var position = 0;
+			//a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高
+			var imgWidth = 595.28;
+			var imgHeight = 592.28/contentWidth * contentHeight;
+ 
+			var pageData = canvas.toDataURL('image/jpeg', 1.0);
+ 
+			var pdf = new jsPDF('', 'pt', 'a4');
+ 
+			//有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)
+			//当内容未超过pdf一页显示的范围，无需分页
+			if (leftHeight < pageHeight) {
+				pdf.addImage(pageData, 'JPEG', 0, 0, imgWidth, imgHeight);
+			} else {    // 分页
+				while(leftHeight > 0) {
+					pdf.addImage(pageData, 'JPEG', 0, position, imgWidth, imgHeight)
+					leftHeight -= pageHeight;
+					position -= 841.89;
+					//避免添加空白页
+					if(leftHeight > 0) {
+						pdf.addPage();
+					}
+				}
+			}
+			pdf.save('pdf.pdf');
+		}
+    });
+}
+
+
+
+
+$("#download").click(function(){
+    exportpdf()
+})
+
+
+/*
+生成图片
+$('#download').click(function() {
+    html2canvas(document.querySelector("#ignorePDF")).then(canvas => {
+        document.body.appendChild(canvas)
+    });
+})
+*/
+
+
+
+$("body").on("click",".tab_log",function(){
+        //点击后改变tab颜色
+        $(".tab_log").css({
+            "background-color":"",
+            "border": "2px solid #eee"
+        })
+
+        $(this).css({
+            "background":"#64a3f4e3",
+            "border":"2px solid rgba(10, 106, 230, 0.89)"
+        })
+    }
+)
+
+
+$("body").on("click",".tab_log_1",function(){
+    //点击切换tab
+    console.log($(this).text())
+    $.ajax({
+       url:"/log_file_data/",
+       type:"GET",
+       data:{
+           'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
+           'file_name':$(this).text(),
+       },
+       success:function (data) {
+            console.log("成功111111",data.data.date,data.data.Version);
+            //左侧列表
+            var workfliow_data = data.data.report_dict.workfliow_data
+            var workfliow = data.data.report_dict.workfliow
+            var chart = data.data.report_dict.chart
+            var date = data.data.date
+            var Version = data.data.Version
+            log_txt(workfliow_data,workfliow,chart,date,Version)
+       },
+       error:function (data) {
+            //clearInterval(myVar)
+            console.log("成功111111",data);
+        }
+    })
+})
+
+
+$("body").on("click","#del_log",function(){
+    //删除日志
+    console.log($(this).parent("div").prev().text(),'$(this).parent("div").prev().text()')
+    
+    $.ajax({
+       url:"/log_file_del/",
+       type:"GET",
+       data:{
+           'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
+           'file_name':$(this).parent("div").prev().text(),
+       },
+       success:function (data) {
+            //左侧列表
+            if (data.code==200){
+                location.reload()
+            }
+       },
+       error:function (data) {
+            //clearInterval(myVar)
+            console.log("成功111111",data);
+        }
+    })
+
+    //$(this).param()
+    
+})
+
+
+</script>
+</body>
+</html>

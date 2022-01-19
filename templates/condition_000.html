@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>条件</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../static/layui-v2.6.8/layui-v2.6.8/layui/css/layui.css"  media="all">
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+  <style>
+  
+	*{
+		user-select: none;
+	}
+	
+    body{
+		padding:20px;
+	}
+
+
+	  
+   .tab_but{
+        width:80px;
+        height:30px;
+        border: 1px solid #c9c9c9;
+        border-radius:5px;
+        display:inline-block;
+        line-height: 30px;
+		margin: 7px;
+    }
+
+    .tab_but_div{
+        width:60px;
+        display:inline-block;
+    }
+
+    .tab_but_a{
+        margin-left:4px;
+    }
+	
+	.ul_head{
+	    width:240px;
+		line-height:25px;
+		margin:0px;
+		height:35px;
+	}
+	
+	.ul_head > li{
+        float: left;
+		height:35px;
+		padding:0px 5px 0px 5px;
+	}
+	
+	.Workflow_name_input{
+		outline: none;
+	}
+
+	.Judgment_Pool{
+		width: 160px;
+		height: 300px;
+		border: 1px solid #e6e6e6;
+		padding: 20px 40px 20px 40px;
+		overflow-y:auto;
+		overflow-x:hidden;
+	}
+	
+	
+	.node_name{
+		width:103px;
+	}
+	
+	
+	font{
+		line-height:40px;
+	}
+	
+	/* 设置滚动条的样式 */
+	::-webkit-scrollbar {
+		width:10px;
+	}
+	/* 滚动槽 */
+	::-webkit-scrollbar-track {
+		-webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+		border-radius:8px;
+	}
+	/* 滚动条滑块 */
+	::-webkit-scrollbar-thumb {
+		border-radius:8px;
+		background:rgba(0,0,0,0.1);
+		-webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+	}
+	::-webkit-scrollbar-thumb:window-inactive {
+		background:rgba(255,0,0,0.4);
+	}
+	
+	.layui-input-block {
+		margin-left: 0px;
+		min-height: 36px;
+	}
+	
+	.condition_edit{
+		width:242px;
+		background-color:#ffffff;
+		padding:20px;
+		height:376px;
+	}
+	
+	
+  </style>
+</head>
+<body>
+<!-- {% csrf_token %} -->
+
+<div class="condition_edit">
+
+	<ul class="ul_head">
+	   <li>
+			<i class="layui-icon layui-icon-edit" style="font-size: 24px; color: #0a6ae6e3;"></i>  
+		</li>
+	   <li>
+			<div style="float: left;" id="myP" class="Workflow_name_input" contenteditable="false" >连线名称</div>
+
+	   </li>
+	   <li style="float: right;cursor:pointer;">
+			<i id="Save_node" class="layui-icon layui-icon-ok" style="font-size: 26px; color: #0a6ae6e3;"></i>  
+	   </li>
+	   <li style="float: right;cursor:pointer;">
+			<i id="shut_down" class="layui-icon layui-icon-close" style="font-size: 26px; color: #0a6ae6e3;"></i>  
+	   </li>
+	</ul>
+
+	<div class="Judgment_Pool">
+
+		<form class="layui-form" action="example" lay-filter="switchGoodsID">
+
+			<div id="container" class="layui-form-item o_h">
+
+
+			</div>
+			
+		</form>
+
+
+
+	</div>
+</div>
+
+</body>
+
+<script src="../static/ace-builds-master/ace-builds-master/src/ace.js" charset="utf-8"></script>
+<script src="../static/jquery/jquery-3.3.1.min.js" charset="utf-8"></script>
+<script src="../static/layui-v2.6.8/layui-v2.6.8/layui/layui.js" charset="utf-8"></script>
+<script src="../static/url_js/url_000.js" charset="utf-8"></script>
+<script>
+var api_node = localStorage.getItem('api_node');//新增的时候初始化缓存
+var rpa_node = localStorage.getItem('rpa_node');//新增的时候初始化缓存
+var sql_node = localStorage.getItem('sql_node');//新增的时候初始化缓存
+
+var w_name={}
+if (api_node !='None'){
+	var api_node = JSON.parse(api_node)
+	for (var api_node_key in api_node){
+		w_name[api_node_key]=api_node[api_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
+	}
+}
+
+if (rpa_node !='None'){
+	var rpa_node = JSON.parse(rpa_node)
+	for (var rpa_node_key in rpa_node){
+		w_name[rpa_node_key]=rpa_node[rpa_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
+	}
+}
+
+if (sql_node !='None'){
+	var sql_node = JSON.parse(sql_node)
+	for (var sql_node_key in sql_node){
+		w_name[sql_node_key]=sql_node[sql_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
+	}
+}
+
+
+
+
+$("#shut_down").click(function(){
+	//关闭判断节点
+	$(".popping-box-wrap", parent.document).hide(500);
+});
+
+
+$( "#myP" ).click(function(e){//点击时可编辑
+	var x = document.getElementById("myP");
+	x.contentEditable = "true";
+	$("#myP").focus();
+})
+			
+$("#myP").focus(function(){//聚焦改变颜色
+	var x = document.getElementById("myP");
+	x.style.color='#000000'
+});
+			
+$( "#myP" ).blur(function(){//失去改变颜色不可编辑
+	var x = document.getElementById("myP");
+	x.contentEditable = "false";
+	x.style.color='#7d7d7d'
+});
+
+
+
+
+
+
+layui.use(['form', 'layedit', 'laydate'], function(){
+    var form = layui.form
+    ,layer = layui.layer
+    ,layedit = layui.layedit
+    ,laydate = layui.laydate;
+	var edit_id = localStorage.getItem("edit_id")
+	var condition = localStorage.getItem("condition")
+	var if_node = localStorage.getItem("if_node")
+
+    //数据填充进添加选择界面
+	var condition_data = JSON.parse(if_node)[edit_id.slice(0,6)]['Judgment_node']
+
+	list_id=[]
+	if(condition!='None'){
+		condition=JSON.parse(condition)
+		console.log(condition,'回显数据处理',edit_id)
+		if(condition.hasOwnProperty(edit_id)){
+			//回显
+			$('#myP').text(condition[edit_id].Workflow_name)
+			for (var e_status in condition[edit_id]){
+				if(condition[edit_id][e_status] == "on"){//这里有问题					
+					list_id.push(e_status)
+				}
+			}
+		}
+	}
+
+	str_html=""
+	for(var i in condition_data){
+		str_html+='		 <div style="display:flex;">'
+		str_html+='		    <div class="node_name">'
+		
+		
+		if (i.length>10){
+			
+			str_html+='				<font id='+i+'>'+ i.slice(0, 10)+'...' +'</font>'
+
+		}else{
+			str_html+='				<font id='+i+'>'+ i +'</font>'
+		}
+		
+		
+		
+		str_html+='			</div>'
+		str_html+='			<div class="layui-input-block">'
+
+		if(condition!='None'){
+			//merge_node=JSON.parse(merge_node)
+			if(condition.hasOwnProperty(edit_id)){
+				if(list_id.indexOf(i) > -1){
+					str_html+='             <input type="checkbox" checked="" name="'+i+'" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">'
+				}else{
+					str_html+='				<input type="checkbox"  name="'+i+'" lay-skin="switch" lay-text="ON|OFF">'
+				}
+			}else{
+				str_html+='				<input type="checkbox"  name="'+i+'" lay-skin="switch" lay-text="ON|OFF">'
+			}
+		}else{
+			str_html+='				<input type="checkbox"  name="'+i+'" lay-skin="switch" lay-text="ON|OFF">'
+
+		}
+
+		//str_html+='				<input type="checkbox" class="switch_checked"  name="'+i+'" lay-skin="switch" lay-text="ON|OFF">'
+		str_html+='			</div>'
+		str_html+='	    </div>'
+	}
+
+    $("#container").html(str_html)
+	form.render()
+
+    //表单取值
+    $('#Save_node').click(function(){
+		//保存分支节点所有数据
+		console.log($('.node_name'),'xxxxxxxxxxxxxxxxxxxxx人人平等')
+		for (var w_name_id in w_name){
+			console.log(w_name_id,'w_name_id',$('#myP').text())
+			if (w_name[w_name_id]==$('#myP').text().replace(/^\s*|\s*$/g,"")){
+				layer.msg('判断重名')
+				return
+			}
+		}
+		
+		
+		var data = form.val('switchGoodsID');
+		
+		for (var n_key=0;n_key<$('.node_name').length;n_key++){
+			console.log($('.node_name').length,'xxxxxxxxxxxxxxxxxxxxx人人平等')
+			console.log($('.node_name').eq(n_key).children('font').eq(0).html(),'学个吉他学个鼓')
+			var keys=$('.node_name').eq(n_key).children('font').eq(0).html()
+			if (! data.hasOwnProperty(keys)){
+				data[keys]="OFF"
+			}
+		}
+		
+		
+		//alert(JSON.stringify(data));
+		data["Workflow_name"]=$('#myP').text()
+        condition_json={}
+		condition_json[edit_id]=data
+		//alert(JSON.stringify(merge_json));
+		var condition = localStorage.getItem("condition")
+		console.log(condition,'拿到condition没有')
+		if(condition=='None'){
+			//新增
+			console.log(condition_json,'新增的数据巨巨巨巨')
+			localStorage.setItem('condition',JSON.stringify(condition_json));
+		}else{
+			//多个节点时新增/编辑
+			condition=JSON.parse(condition)
+			condition[edit_id]=condition_json[edit_id]
+			localStorage.setItem('condition',JSON.stringify(condition))
+		}
+		//currentWebview.hide(500);
+		$(".popping-box-wrap", parent.document).hide(500);
+
+
+
+
+    })
+
+});
+
+
+
+
+layui.use(['form', 'layedit', 'laydate','dropdown'], function(){
+    var form = layui.form
+    ,layer = layui.layer
+	//悬停展示
+	var  tip_index;
+	$("font").hover(function(){
+		//alert('触发了')
+		if ($(this).attr("id").length<10){
+			return
+		}else{
+			tips_index = layer.tips($(this).attr("id"),this,{time:0});
+		}
+	},function(){
+		layer.close(tips_index);
+	});
+});
+
+</script>
+</body>
+</html>
+
+
+
+

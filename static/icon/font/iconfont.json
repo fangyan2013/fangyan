@@ -1,0 +1,72 @@
+{
+  "id": "2647099",
+  "name": "ui_server",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "775859",
+      "name": "软件测试",
+      "font_class": "ruanjianceshi",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "12516581",
+      "name": "分支",
+      "font_class": "fenzhi",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
+      "icon_id": "17653233",
+      "name": "sql",
+      "font_class": "sql",
+      "unicode": "e71e",
+      "unicode_decimal": 59166
+    },
+    {
+      "icon_id": "18164810",
+      "name": "流转,协作,循环,环形,协同,旋转",
+      "font_class": "spin-full",
+      "unicode": "e869",
+      "unicode_decimal": 59497
+    },
+    {
+      "icon_id": "18164811",
+      "name": "流转,协作,循环,环形,协同,旋转",
+      "font_class": "spin",
+      "unicode": "e86a",
+      "unicode_decimal": 59498
+    },
+    {
+      "icon_id": "21668632",
+      "name": "逻辑",
+      "font_class": "luoji",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "22619119",
+      "name": "分支",
+      "font_class": "fenzhi-copy",
+      "unicode": "e86b",
+      "unicode_decimal": 59499
+    },
+    {
+      "icon_id": "19262433",
+      "name": "API",
+      "font_class": "API",
+      "unicode": "e670",
+      "unicode_decimal": 58992
+    },
+    {
+      "icon_id": "12852983",
+      "name": "UI自动化",
+      "font_class": "UIzidonghua_UIzidonghua",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    }
+  ]
+}
