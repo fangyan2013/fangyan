@@ -7,133 +7,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="../static/layui-v2.6.8/layui-v2.6.8/layui/css/layui.css"  media="all">
-  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
-  <style>
-  
-	*{
-		user-select: none;
-	}
-	
-    body{
-		/*padding:20px;*/
-	}
+  <link rel="stylesheet" href="../static/css/if_000.css"  media="all"> 
 
-
-	.layui-form-selectup dl {
-		bottom: auto;
-	}
-
-	  
-   .tab_but{
-        width:80px;
-        height:30px;
-        border: 1px solid #c9c9c9;
-        border-radius:5px;
-        display:inline-block;
-        line-height: 30px;
-		margin: 7px;
-    }
-
-    .tab_but_div{
-        width:60px;
-        display:inline-block;
-    }
-
-    .tab_but_a{
-        margin-left:4px;
-    }
-	
-	.ul_head{
-	    width:935px;
-		line-height:25px;
-		margin:0px;
-		height:35px;
-	}
-	
-	.ul_head > li{
-        float: left;
-		height:35px;
-		padding:0px 5px 0px 5px;
-	}
-	
-	.Judgment_Pool{
-		width:895px;
-		min-height:100px;
-		border:1px solid #e6e6e6;
-		padding: 20px;
-		overflow-y:auto;
-		overflow-x:hidden;
-	}
-	
-	.Judgment_from{
-		width:895px;
-		padding: 20px;
-		border:1px solid #e6e6e6;
-		margin-top: 20px;
-	}
-	
-	
-	.layui-form-label {
-		float: left;
-		display: block;
-		padding: 9px 15px 9px 15px;
-		width: 55px;
-		font-weight: 400;
-		line-height: 20px;
-		text-align: right;
-	}
-	
-	.layui-input-block {
-		margin-left: 85px;
-		min-height: 36px;
-		width:759px;
-	}
-	
-	.from-overflow{
-		overflow-y:auto;
-		overflow-x:hidden;
-		height: 280px;
-		width: 910px;
-	}
-	
-	.if_edit{
-		width:938px;
-		background-color:#ffffff;
-		padding:20px;
-		height:680px;
-	}
-	
-	
-	/* 设置滚动条的样式 */
-	::-webkit-scrollbar {
-		width:10px;
-	}
-	/* 滚动槽 */
-	::-webkit-scrollbar-track {
-		-webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
-		border-radius:8px;
-	}
-	/* 滚动条滑块 */
-	::-webkit-scrollbar-thumb {
-		border-radius:8px;
-		background:rgba(0,0,0,0.1);
-		-webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
-	}
-	::-webkit-scrollbar-thumb:window-inactive {
-		background:rgba(255,0,0,0.4);
-	}
-	
-	.Workflow_name_input{
-		outline: none;
-	}
-
-	
-  </style>
 </head>
 <body>
 
 <div class="if_edit"> 
-
 	<ul class="ul_head">
 	   <li>
 			<i class="layui-icon layui-icon-edit" style="font-size: 24px; color: #0a6ae6e3;"></i>  
@@ -142,7 +21,6 @@
 			<div style="float: left;" id="myP" class="Workflow_name_input" contenteditable="false" >
 				判断节点名称
 			</div>
-	   
 	   </li>
 	   <li style="float: right;cursor:pointer;">
 			<i id="Save_node" class="layui-icon layui-icon-ok" style="font-size: 26px; color: #0a6ae6e3;"></i>  
@@ -152,25 +30,15 @@
 	   </li>
 	</ul>
 
-
 	<div class="Judgment_Pool">
 		<!-- 这里是放判断的容器 -->
 	</div>
 
-
-
 	<div class="Judgment_from">
-
 		<ul class="ul_head" style="width:896px">
 		   <li>
 				<button id="site_add" type="button" class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon"></i></button>
 			</li>
-	<!-- 	   <li>
-				<div style="float: left;" id="myP" class="Workflow_name_input" contenteditable="false" >
-					这里是api名称
-				</div>
-		   
-		   </li> -->
 		   <li style="float: right;cursor:pointer;">
 				<button id="from_Reset" type="button" class="layui-btn layui-btn-primary layui-btn-sm">
 					<font>重置</font>
@@ -182,34 +50,21 @@
 				</button>
 			</li>
 		</ul>
-
 		<hr>
-
-
 		<form class="layui-form" action="" id="from_pd">
-		
 			<div class="layui-form-item">
 				<label class="layui-form-label">名称</label>
-				<div class="layui-input-block">
+				<div class="layui-input-block" style="margin-left: 85px;min-height: 36px;width:759px;">
 				   <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
 				</div>
 			</div>
-		
-		
 			<div class="from-overflow">
 				<div>
 				  <div class="layui-form-item">
-					<label class="layui-form-label">出参</label>
-
-
-					<div class="layui-input-inline" style="width: 190px;">
-					    <input name="node" autocomplete="off" placeholder="节点名称" class="layui-input node" id="node">
+					<label class="layui-form-label">判断项</label>					
+					<div class="layui-input-inline" style="width: 274px;">
+						<input type="text" name="Ginseng" lay-verify="title" autocomplete="off" placeholder="请输入判断条件" class="layui-input">
 					</div>
-					
-					<div class="layui-input-inline" style="width: 190px;">
-					    <input name="Ginseng" autocomplete="off" placeholder="出参名称" class="layui-input Ginseng" id="Ginseng">
-					</div>
-					
 					<div class="layui-input-inline" style="width:75px;">
 					  <select name="Compare">
 						<option value="0">大于</option>
@@ -219,555 +74,31 @@
 					  </select>
 					</div>
 					<div class="layui-input-inline" style="width: 274px;">
-					  <input type="text" name="Judgment_value" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+					  <input type="text" name="Judgment_value" lay-verify="title" autocomplete="off" placeholder="请输入判断条件" class="layui-input">
 					</div>
 				  </div>
 				</div>
-				  
-				 
 			  </div>
-		  
-		  
 			<div class="layui-form-item" style="width:846px;">
 				<div>
 					<button id="add_pd" type="button" class="layui-btn layui-btn-primary layui-btn-fluid">添加参数</button>
 				</div>
 			</div>
-		  
 		</form>
 	</div>
 </div>
+
+{% include "Variable.html" %}
 
 
 </body>
 
 <script src="../static/ace-builds-master/ace-builds-master/src/ace.js" charset="utf-8"></script>
 <script src="../static/jquery/jquery-3.3.1.min.js" charset="utf-8"></script>
-<!-- <script src="../static/layui-v2.6.8/layui-v2.6.8/layui/layui.js" charset="utf-8"></script> -->
 <script src="../static/layui-v2.6.8/layui-v2.6.8/layui/layui.js" charset="utf-8"></script>
+<script src="../static/js/if_000.js" charset="utf-8"></script>
+<script src="../static/js/Effectiveness.js" charset="utf-8"></script>
 
-<script src="../static/url_js/url_000.js" charset="utf-8"></script>
-<script src="../static/workflow_js/Ginseng.js" charset="utf-8"></script>
-<script>
-
-$("#shut_down").click(function(){
-	//关闭判断节点
-	$(".popping-box-wrap", parent.document).hide(500);
-});
-
-
-$( "#myP" ).click(function(e){//点击时可编辑
-	var x = document.getElementById("myP");
-	x.contentEditable = "true";
-	$("#myP").focus();
-})
-			
-$("#myP").focus(function(){//聚焦改变颜色
-	var x = document.getElementById("myP");
-	x.style.color='#000000'
-});
-			
-$( "#myP" ).blur(function(){//失去改变颜色不可编辑
-	var x = document.getElementById("myP");
-	x.contentEditable = "false";
-	x.style.color='#7d7d7d'
-});
-
-
-$('input[name="Judgment_value"]').blur(function(){
-	//失去焦点时触发
-	console.log($(this).parent().prev().children('select').val(),'来吧宝贝')
-	var val = $(this).parent().prev().children('select').val()
-	if (val == 0 || val ==1){
-		if (isNaN($(this).val())){
-			layer.msg('判断大于小于时只能输入数字')
-			$(this).val('')
-		}
-	}
-	
-}) 
-
-    
-var api_node = localStorage.getItem('api_node');//新增的时候初始化缓存
-var rpa_node = localStorage.getItem('rpa_node');//新增的时候初始化缓存
-var sql_node = localStorage.getItem('sql_node');//新增的时候初始化缓存
-var Node_val = localStorage.getItem("Node_information")
-console.log(Node_val,'Node_valNode_valNode_val')
-//em3ocn_Workflow_name
-
-
-
-var w_name={}
-if (api_node !='None'){
-	var api_node = JSON.parse(api_node)
-	for (var api_node_key in api_node){
-		w_name[api_node_key]=api_node[api_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
-	}
-}
-
-if (rpa_node !='None'){
-	var rpa_node = JSON.parse(rpa_node)
-	for (var rpa_node_key in rpa_node){
-		w_name[rpa_node_key]=rpa_node[rpa_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
-	}
-}
-
-if (sql_node !='None'){
-	var sql_node = JSON.parse(sql_node)
-	for (var sql_node_key in sql_node){
-		w_name[sql_node_key]=sql_node[sql_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
-	}
-}
-
-
-if (Node_val !='None'){
-	var Node_val = JSON.parse(Node_val)
-	for (var Node_val_key in Node_val){
-		if (Node_val_key.length==6){
-			console.log(Node_val_key,'asdxxs',Node_val)
-			w_name[Node_val_key]=Node_val[Node_val_key+'_Workflow_name'].replace(/^\s*|\s*$/g,"");
-		}
-	}
-}
-
-	
-
-console.log(w_name,'asdxxs')
-
-
-	
-
-
-
-
-
-
-
-
-layui.use(['form', 'layedit', 'laydate','dropdown'], function(){
-    var form = layui.form
-    ,layer = layui.layer
-    ,layedit = layui.layedit
-    ,laydate = layui.laydate
-	,dropdown = layui.dropdown
-    //日期
-    laydate.render({
-      elem: '#date'
-    });
-    laydate.render({
-      elem: '#date1'
-    });
-  
-	function dr(){
-		//获取下拉选择框
-  		var Ginseng_list=[]
-		var list_data=[]
-  		var list_node = parent.list_node_obj(edit_id)//当前节点前的节点
-		var Ginseng = localStorage.getItem("Ginseng")
-  		if (localStorage.getItem("Ginseng")!='None'){
-			var Ginseng = JSON.parse(localStorage.getItem("Ginseng"))
-			for (var g_val in Ginseng){
-  				for (var l_node in list_node){
-					if (g_val==list_node[l_node]){
-						list_data.push({
-						  title: w_name[g_val]
-						  ,id: g_val
-						})
-					}
-				}
-			}
-		}
-		console.log(list_data,'list_datalist_datalist_data')
-	  
-	  //初演示 - 绑定输入框
-	  dropdown.render({
-		elem: '.node'
-		,data: list_data
-		,click: function(obj){
-		  this.elem.val(obj.title);//数据填充到input
-		  var Ginseng = JSON.parse(localStorage.getItem("Ginseng"))
-		  Ginseng_list.splice(0,Ginseng_list.length);
-		  
-		  for (var g_val in Ginseng){
-		  		if (g_val==obj.id){
-					console.log(obj.id,'最高指示',Ginseng[obj.id])
-					//Ginseng_list=[]
-					for (var len in Ginseng[obj.id]){
-						var g_title = Ginseng[obj.id][len]['title']
-						console.log(g_title,'title')
-						Ginseng_list.push({
-						  title: g_title
-						  ,id: g_title
-						})
-					}
-	
-				}
-		  }
-		}
-		,style: 'width: 190px;'
-	  });
-	  
-	  dropdown.render({
-		 elem: '.Ginseng'
-		 ,data: Ginseng_list
-		 ,click: function(obj){
-			console.log(Ginseng_list,'Ginseng_list')
-		    this.elem.val(obj.title);//数据填充到input
-		 }
-		 ,style: 'width: 190px;'
-	  });
-
-	}
-
-
-	dr()
-
-	$( "#add_pd" ).click(function(){
-		//新增一列判断
-		var str_html=""
-		str_html+='  <div>'
-		str_html+='	  <div class="layui-form-item">'
-		str_html+='		<div class="layui-input-inline" style="width:75px;">'
-		str_html+='		  <select name="logic_operation">'
-		str_html+='			<option value="or">or</option>'
-		str_html+='			<option value="and">and</option>'
-		str_html+='		  </select>'
-		str_html+='		</div>'
-
-		str_html+='			<div class="layui-input-inline" style="width: 190px;">'
-		str_html+='			    <input name="node" autocomplete="off" placeholder="节点名称" class="layui-input node" id="node">'
-		str_html+='			</div>'
-					
-		str_html+='			<div class="layui-input-inline" style="width: 190px;">'
-		str_html+='			    <input name="Ginseng" autocomplete="off" placeholder="出参名称" class="layui-input Ginseng" id="Ginseng">'
-		str_html+='			</div>'
-		
-		str_html+='		<div class="layui-input-inline" style="width:75px;">'
-		str_html+='		  <select name="Compare">'
-		str_html+='			<option value="0">大于</option>'
-		str_html+='			<option value="1">小于</option>'
-		str_html+='			<option value="2">等于</option>'
-		str_html+='			<option value="3">不等于</option>'
-		str_html+='		  </select>'
-		str_html+='		</div>'
-		str_html+='		<div class="layui-input-inline" style="width: 274px;">'
-		str_html+='		  <input type="text" name="Judgment_value" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">'
-		str_html+='		</div>'
-		str_html+='		<div class="layui-input-inline" style="width: 25px;">'
-		str_html+='			<button id="del_but" style="margin-top:3px;" type="button" class="layui-btn layui-btn-primary layui-btn-sm">'
-		str_html+='				<i class="layui-icon"></i>'			
-		str_html+='			</button>'
-		str_html+='		</div>'
-		str_html+='	  </div>'
-		str_html+='  </div>'
-
-		$('.from-overflow').append(str_html)
-		form.render()	
-		dr()
-	})
- 
-	$(document).on("click",'#del_but',function(){
-		//删除一列
-		console.log($(this).parents(".layui-form-item"));
-		var index = $(this).parents('.layui-form-item').parent('div').index()
-		console.log(index)
-
-		$(this).parents(".layui-form-item").parent('div').eq(0).remove();
-		
-		
-		
-	})
-  
-  
-  
-    $('#site_add').click(function(){
-		//重置表单
-        $('#from_pd')[0].reset()
-		form.render()	
-	})
-  
-  
-    $('#from_Reset').click(function(){
-		//重置表单
-        $('#from_pd')[0].reset()
-		form.render()	
-	})
-
-	function default_from() {
-		//重置
-		var default_str=""
-		default_str+='	<div>'
-		default_str+='	  <div class="layui-form-item">'
-		default_str+='		<label class="layui-form-label">出参</label>'
-		
-		default_str+='			<div class="layui-input-inline" style="width: 190px;">'
-		default_str+='			    <input name="node" autocomplete="off" placeholder="节点名称" class="layui-input node" id="node">'
-		default_str+='			</div>'
-					
-		default_str+='			<div class="layui-input-inline" style="width: 190px;">'
-		default_str+='			    <input name="Ginseng" autocomplete="off" placeholder="出参名称" class="layui-input Ginseng" id="Ginseng">'
-		default_str+='			</div>'
-		
-		
-		default_str+='		<div class="layui-input-inline" style="width:75px;">'
-		default_str+='		  <select name="Compare">'
-		default_str+='			<option value="0">大于</option>'
-		default_str+='			<option value="1">小于</option>'
-		default_str+='			<option value="2">等于</option>'
-		default_str+='			<option value="3">不等于</option>'
-		default_str+='		  </select>'
-		default_str+='		</div>'
-		default_str+='		<div class="layui-input-inline" style="width: 274px;">'
-		default_str+='		  <input type="text" name="Judgment_value" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">'
-		default_str+='		</div>'
-		default_str+='	  </div>'
-		default_str+='	</div>'
-		$('.from-overflow').html(default_str)
-		form.render()
-		dr()
-	}
-
-
-
-		//		var if_node = localStorage.getItem("if_node")
-		//		if_node=JSON.parse(if_node)
-
-	var if_node = localStorage.getItem("if_node")
-	if(if_node == 'None'){
-		var Judgment_Group={}
-	}else{
-		if_node=JSON.parse(if_node)
-		var edit_id = localStorage.getItem("edit_id")
-
-		if(if_node.hasOwnProperty(edit_id)){
-			console.log(if_node[edit_id],'xxxxxxxxxxxxxxx00000000000xxxxxxxxxxxxxxxx')
-			var Judgment_Group=if_node[edit_id]['Judgment_node']
-			console.log(Judgment_Group,'回显的时候搞一下');
-
-			
-			for (var key in Judgment_Group) {
-				console.log(key,'老蔡');
-
-				html_str=''
-				html_str+='    <div  class="tab_but">'
-				html_str+='        <div class="tab_but_div">'
-				
-				
-				//html_str+='            <font class="tab_but_a">'+ key +'</font>'
-				
-				if (key.length>4){
-					html_str+='         <font id='+key+' class="tab_but_a">'+ key.slice(0, 4)+'...' +'</font>'
-
-				}else{
-					html_str+='         <font id='+key+' class="tab_but_a">'+ key +'</font>'
-				}
-				
-				
-				
-				html_str+='        </div>'
-				html_str+='        <i id="tab_del" class="layui-icon layui-icon-close" style="font-size: 3px; color: #1E9FFF;cursor:pointer;"></i>'
-				html_str+='    </div>'
-				
-				
-				$(".Judgment_Pool").append(html_str);
-			}
-		}else{
-			var Judgment_Group={}
-		}
-		form.render()	
-	}
-
-
-
-    $('#save').click(function(){
-		//获取表单中判断条件内容写入缓存
-        var title = $('input[name="title"]').val()//判断名称
-
-        var val_condition=$('div[class="from-overflow"]').children('div')
-		var judgment_list=[]
-        for(var i=0;i<val_condition.length;i++){
-			var judgment_dict={}
-			console.log(val_condition.eq(i).find('input[name="node"]').val(),'方针',w_name)
-			
-			node_id=null
-			for (var w_name_id in w_name){
-				console.log(w_name_id,'w_name_id',val_condition.eq(i).find('input[name="node"]').val().replace(/^\s*|\s*$/g,""))
-				if (w_name[w_name_id]==val_condition.eq(i).find('input[name="node"]').val().replace(/^\s*|\s*$/g,"")){
-					console.log(w_name_id,'前面的')
-					var node_id = w_name_id
-				}
-			
-			}
-
-			console.log(node_id,'后面的')
-			
-			if(i==0){
-				judgment_dict['node'] = val_condition.eq(i).find('input[name="node"]').val()
-				judgment_dict['node_id'] = node_id
-			    judgment_dict['Ginseng'] = val_condition.eq(i).find('input[name="Ginseng"]').val()
-			    judgment_dict['Compare'] = val_condition.eq(i).find('select[name="Compare"]').val()
-			    judgment_dict['Judgment_value'] = val_condition.eq(i).find('input[name="Judgment_value"]').val()
-				judgment_list.push(judgment_dict)
-			}else{
-			    judgment_dict['logic_operation'] = val_condition.eq(i).find('select[name="logic_operation"]').val()
-			    judgment_dict['node'] = val_condition.eq(i).find('input[name="node"]').val()
-				judgment_dict['node_id'] = node_id
-			    judgment_dict['Ginseng'] = val_condition.eq(i).find('input[name="Ginseng"]').val()
-			    judgment_dict['Compare'] = val_condition.eq(i).find('select[name="Compare"]').val()
-			    judgment_dict['Judgment_value'] = val_condition.eq(i).find('input[name="Judgment_value"]').val()
-				judgment_list.push(judgment_dict)
-			}
-			
-		
-		}
-		
-		console.log(Judgment_Group,title,'调试啊调试',judgment_list)
-        Judgment_Group[title]=judgment_list
-		//.find('select[class=""]')
-		console.log(Judgment_Group,'xxxxxxxxxxxxxxccccccccccccccccc');
-		
-		for (var l=0;l<$('.tab_but_a').length;l++){
-			console.log(title,'-----',$('.tab_but_a').eq(l).attr("id"));
-			if ($('.tab_but_a').eq(l).attr("id")==title){
-				console.log(Judgment_Group,title,'调试啊调试',judgment_list)
-				Judgment_Group[title]=judgment_list
-				//.find('select[class=""]')
-				console.log(Judgment_Group,'xxxxxxxxxxxxxxccccccccccccccccc');
-			    layer.msg("编辑成功");
-				return
-			}
-		
-		}
-		html_str=''
-		html_str+='    <div  class="tab_but">'
-		html_str+='        <div class="tab_but_div">'
-		//html_str+='            <font class="tab_but_a">'+ title +'</font>'
-		
-		if (title.length>4){
-			html_str+='         <font id='+title+' class="tab_but_a">'+ title.slice(0, 3)+'...' +'</font>'
-		}else{
-			html_str+='         <font id='+title+' class="tab_but_a">'+ title +'</font>'
-		}
-		
-		
-		html_str+='        </div>'
-		html_str+='        <i id="tab_del" class="layui-icon layui-icon-close" style="font-size: 3px; color: #1E9FFF;cursor:pointer;"></i>'
-		html_str+='    </div>'
-		$(".Judgment_Pool").append(html_str);
-		
-		default_from()//重置
-        $('#from_pd')[0].reset()
-
-		form.render()	
-	})
-	
-	
-
-	$(document).on("click",'.tab_but_div',function(e){
-        //编辑
-		default_from()//重置
-		var title = $(this).children('font').attr('id')
-		Judgment_Group[title]
-		console.log(Judgment_Group[title],'编辑xxxxx');
-
-        $('.tab_but').css({"border":"1px solid #c9c9c9"});
-		$(this).parent('div').css({"border":"1px solid #1E9FFF"});
-
-
-		$('input[name="title"]').val(title)//判断名称
-        for(var i=0;i<Judgment_Group[title].length;i++){
-			console.log(Judgment_Group[title][i]['node'],'天旋地转转啊转');
-
-			
-			
-			if(i==0){
-				var val_condition=$('div[class="from-overflow"]').children('div')
-				val_condition.eq(i).find('input[name="node"]').val(Judgment_Group[title][i]['node'])
-			    val_condition.eq(i).find('input[name="Ginseng"]').val(Judgment_Group[title][i]['Ginseng'])
-			    val_condition.eq(i).find('select[name="Compare"]').val(Judgment_Group[title][i]['Compare'])
-			    val_condition.eq(i).find('input[name="Judgment_value"]').val(Judgment_Group[title][i]['Judgment_value'])
-			}else{
-				$( "#add_pd" ).click()
-				var val_condition=$('div[class="from-overflow"]').children('div')
-			    val_condition.eq(i).find('select[name="logic_operation"]').val(Judgment_Group[title][i]['logic_operation'])
-				val_condition.eq(i).find('input[name="node"]').val(Judgment_Group[title][i]['node'])
-			    val_condition.eq(i).find('input[name="Ginseng"]').val(Judgment_Group[title][i]['Ginseng'])
-			    val_condition.eq(i).find('select[name="Compare"]').val(Judgment_Group[title][i]['Compare'])
-			    val_condition.eq(i).find('input[name="Judgment_value"]').val(Judgment_Group[title][i]['Judgment_value'])
-			}
-			console.log(val_condition.eq(i).find('input[name="node"]').val(),'方针',w_name)
-
-		}
-		form.render()
-
-
-
-		
-		
-
-	
-	})
-
-    
-	
-	$(document).on("click",'#tab_del',function(){
-        //删除一个判断
-		var title = $(this).prev().children('font').attr('id')
-		delete Judgment_Group[title];
-        $(this).parent().remove()
-		console.log(Judgment_Group,'删除后的数据');
-		default_from()//重置
-        $('#from_pd')[0].reset()
-   });
-
-
-
-    $('#Save_node').click(function(){
-		//保存判断节点所有数据
-		for (var w_name_id in w_name){
-			console.log(w_name_id,'w_name_id',$('#myP').text())
-			if (w_name[w_name_id]==$('#myP').text().replace(/^\s*|\s*$/g,"")){
-				layer.msg('判断重名')
-				return
-			}
-		
-		}
-
-		
-		var edit_id = localStorage.getItem("edit_id")
-		node_data={}
-		node_data["Judgment_node"]=Judgment_Group
-		node_data['node_name']=$('#myP').text()
-		judgment_data={}
-		judgment_data[edit_id]=node_data
-		console.log(judgment_data,'提交的数据');
-		
-
-		var edit_id = localStorage.getItem("edit_id")
-		var if_node = localStorage.getItem("if_node")
-
-		console.log(if_node,'提交的数据--------');
-
-		if(if_node=='None'){
-			//新增
-	   	    localStorage.setItem('if_node',JSON.stringify(judgment_data));
-		}else{
-			//多个节点时新增/编辑
-			if_node=JSON.parse(if_node)
-			if_node[edit_id]=judgment_data[edit_id]
-			localStorage.setItem('if_node',JSON.stringify(if_node))
-		}
-		
-		
-		
-		$(".popping-box-wrap", parent.document).hide(500);
-	})
-
-
-
-  
-});
-</script>
 </body>
 </html>
 

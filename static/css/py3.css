@@ -1,0 +1,352 @@
+  
+  *{
+	user-select: none;
+}
+
+body{
+ /*padding:20px;*/
+}
+
+.Ambiguity{
+  box-shadow: 2px 2px 9px #888888
+}
+
+td,th{
+  height:33px;
+  font-size: 12px;
+}
+
+table, td, th{
+   border:1px solid #e6e6e6;
+}
+
+textarea{
+  position:absolute;
+  width:290px;
+  height:23px;
+  margin: -12px 5px 5px 4px;
+  border:none;
+  overflow-y:hidden;
+  resize:none;
+}
+
+
+.list-div tr:hover td{
+	 background-color: #f6f8fb;
+}
+
+.test{
+	   position:absolute;
+	 margin: 9px 5px 5px 880px;
+}
+
+
+#del2 {
+ cursor:pointer;
+ position: fixed;
+ margin-top:42px;
+ margin-left:893px;
+ width: 100px;
+ height: 100px;
+ z-index:1;
+ display:none;
+}
+
+
+#del,#del_h {
+ cursor:pointer;
+ position: fixed;
+ z-index:1;
+ display:none;
+ line-height:0px;
+ margin-left:280px;
+}
+
+
+textarea{
+ line-height:23px;
+}
+
+
+.layui-input-block {
+ /* margin-left:0px; */
+ min-height: 36px;
+}
+
+.layui-form-item {
+ margin-bottom: -15px;
+ clear: both;
+ *zoom: 1;
+}
+
+.layui-form-item .layui-inline {
+ margin-bottom: 5px;
+ margin-right: 0px;
+}
+
+.layui-tab-content {
+ padding: 0px;
+}
+
+element.style {
+ min-height: 200px;
+}
+
+.layui-tab-title li{
+ font-size: 12px;
+}
+
+.layui-elem-field legend {
+ margin-left: 20px;
+ padding: 0px 10px;
+ font-size: 12px;
+ font-weight: 300;
+}
+
+
+.layui-elem-field {
+ margin-bottom: 10px;
+ padding: 5px;
+ border-width: 1px;
+ border-style: solid;
+}
+
+.tab_but{
+ width:80px;
+ height:30px;
+ border: 1px solid #c9c9c9;
+ border-radius:5px;
+ display:inline-block;
+ line-height: 30px;
+ margin:2px;
+}
+
+.tab_but_div{
+ width:60px;
+ display:inline-block;
+}
+
+.tab_but_a{
+ margin-left:4px;
+}
+
+hr {
+ height: 0.5px;
+ margin: 17px 0;
+ border: 0;
+ clear: both;
+}
+
+#i_icon_true{
+ font-size: 25px;
+ color: #1E9FFF;
+ cursor:pointer;
+ margin-top:10px;
+}
+
+#i_icon_false{
+ font-size: 25px;
+ color: #c2c2c2;
+ cursor:pointer;
+}
+
+#i_icon_false:hover{
+color:#1E9FFF;
+cursor:pointer;
+}
+
+.layui-breadcrumb {
+ font-size: 20px;
+}
+
+.layui-breadcrumb>* {
+ font-size: 15px;
+}
+
+.layui-breadcrumb a:hover {
+ color: #999!important;
+}
+
+
+.Log{
+ width: 914px;
+ height:44px;
+ /*min-height:44px;
+ max-height:295px;*/
+ padding:10px;
+ border-style:solid;
+ border-width:1px;
+ border-color:#e6e6e6;
+ position: fixed;
+ bottom: 10px;
+ z-index: 99;
+ background: url("../static/img_server/日志背景图.png");
+}
+
+.Top_border {
+ width: 100%;
+ height: 10px;
+ margin-top: -26px;
+ cursor:ns-resize;
+}
+
+
+.tex{
+ width: 290px;
+ min-height:23px;
+ line-height:24px;
+ font-size:14px;
+ border:1px solid #fff;
+ margin: 5px 5px 5px 5px;
+ outline: none;
+ position:absolute;
+ top:-1px;
+ left:-1px;
+ background: url("../static/img_server/日志背景图.png");
+}
+
+
+td{
+ position:relative;
+}
+
+.mc{
+width:100%;
+height:100%;
+position: fixed;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+background-color: rgba(0,0,0,.8);
+z-index: 999;
+opacity: 0;
+}
+
+.ul_head{
+ width:100%;
+ line-height:25px;
+ margin:0px;
+}
+
+.ul_head > li{
+ float: left;
+ height:50px;
+ padding:0px 5px 0px 5px;
+}
+
+.Workflow_name_input{
+ float: left;
+ width:300px;
+ height:24px;
+ line-height:24px;
+ font-size:20px;
+ outline: none;
+ font-weight: bold;
+}
+ 
+ 
+.F_T{
+ box-shadow: 2px 2px 9px #888888;
+ background-color: #ffffff;
+ opacity: 1;
+ position: absolute;
+ z-index: 4;
+ width: 68px;
+ height: 75px;
+ margin-left: 237px;
+ margin-top: 12px;
+ display:none;
+}
+
+.F_T>div{
+ padding:10px 5px 10px 5px;
+ text-align:center;
+ cursor:pointer;
+}
+
+.F_T>div:hover{
+ padding:10px 5px 10px 5px;
+ text-align:center;
+ background-color: #e4e4e4;
+ cursor:pointer;
+}
+
+.tab_value{
+ width: 48px;
+ margin-left: 245px;	
+}
+
+.list-div{
+ overflow-y:auto;
+ overflow-x:hidden;
+ height:360px;
+ width:936px;
+}
+
+#Log_editor{
+	overflow-y:auto;
+	overflow-x:hidden;
+	height:360px;
+	width:936px;
+}
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+ width:10px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+ -webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+ border-radius:8px;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+ border-radius:8px;
+ background:rgba(0,0,0,0.1);
+ -webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+ background:rgba(255,0,0,0.4);
+}
+
+.variable{
+ position: fixed;
+ top: 0;
+ right: 0px;
+ z-index: 10001;
+ width:458px;
+ height:680px;
+ background-color: #ffffff;
+ padding:20px;
+
+}
+
+
+.url_edit{
+ width:938px;
+ background-color:#ffffff;
+ padding:20px;
+ height:660px;
+}
+
+
+#editor{
+	width:100%;
+	height:460px;
+}
+
+.editortab{
+	width:100%;
+	height: 26px;
+	background-color: #e8e8e8;
+	padding: 0px 0px 10px 0px;
+}
+
+
+.editortab>div>i{
+	cursor:pointer;
+}
+
+/* 545px
+460px  85*/

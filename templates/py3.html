@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>py3</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../static/layui-v2.6.8/layui-v2.6.8/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="../static/css/py3.css"  media="all"> 
+
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+  <style>
+
+  </style>
+</head>
+<body>
+
+<div class="url_edit">
+	<ul class="ul_head">
+	   <li>
+			<i class="layui-icon layui-icon-edit" style="font-size: 24px; color: #0a6ae6e3;"></i>  
+		</li>
+	   <li>
+			<div style="float: left;" id="myP" class="Workflow_name_input" contenteditable="false" >
+				python节点
+			</div>
+	   </li>
+	   <li style="float: right;cursor:pointer;">
+			<i id="save" class="layui-icon layui-icon-ok" style="font-size: 26px; color: #0a6ae6e3;"></i>  
+	   </li>
+	   <li style="float: right;cursor:pointer;">
+			<i id="shut_down" class="layui-icon layui-icon-close" style="font-size: 26px; color: #0a6ae6e3;"></i>  
+	   </li>
+	</ul>
+	<!-- <div style="width:936px"> -->
+
+	<!-- <div> -->
+		<div class="layui-tab-content" id="url_body" >
+			<div class="layui-tab-item layui-show">
+			<div class="layui-tab" style="margin:0px;">
+				<div class="layui-tab-content">
+					<div class="layui-tab-item layui-show">
+						<div class="list-div" style="height:545px;">
+							<div style="padding: 10px 38px 38px 0px;background-color: #e8e8e8;">
+								<div class="editortab">
+									<div style="float:right">
+										<i id="verification" class="layui-icon layui-icon-play" style="font-size: 25px; color: #797a7ae3;"></i>
+										<i class="layui-icon layui-icon-screen-full" style="font-size: 25px; color: #797a7ae3;"></i>
+									</div>
+								</div>
+								<div id="editor"></div>
+							</div>
+						</div>
+					</div>
+					<div class="layui-tab-item" style="padding: 0px 10px 0px 10px;margin: 10px 0px -10px 0px;">
+						<div class="list-div" style="width:917px;height:545px;">
+							<div id="editor" style="min-height:300px;border: 1px solid #ddd;"></div>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+		<div class="Log" style="background-color: #e8e8e8;"> 
+			<div class="Top_border">
+				<div style="height:25px"></div>
+			</div>
+			<div style="overflow:hidden;height:45px;margin-top: 15px;">
+				<!-- <div id="Log_editor" style="height:280.5px;border: 1px solid #ddd;"> -->
+				<div id="Log_editor" style="border: 1px solid #ddd;background-color: #ffffff;height:280.5px;">
+
+				
+				</div>
+			</div>
+		</div>
+		<div class="mc" style="display:none;"></div>
+	<!-- </div> -->
+
+</div>
+{% include "Variable.html" %}
+<script src="../static/ace-builds-master/ace-builds-master/src/ace.js" charset="utf-8"></script>
+<script src="../static/jquery/jquery-3.3.1.min.js" charset="utf-8"></script>
+<script src="../static/layui-v2.6.8/layui-v2.6.8/layui/layui.js" charset="utf-8"></script>
+<script src="../static/js/py3.js" charset="utf-8"></script>
+<script src="../static/js/Effectiveness.js" charset="utf-8"></script>
+
+</body>
+</html>
+
+
+

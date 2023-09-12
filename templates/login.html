@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>dsp-回归</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../static/layui-v2.6.8/layui-v2.6.8/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" type="text/css" href="../static/inputui/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="../static/inputui/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="../static/inputui/css/demo.css" />
+  <link rel="stylesheet" type="text/css" href="../static/inputui/css/component.css" />
+
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+  <style>
+
+/* background: linear-gradient(to right, #EFB8F9, #86B8F4); */
+
+
+    body{
+      padding: 20px;      
+    }
+
+    .d1{
+      width:100%;
+      /* height:485px; */
+      padding-top: 135px;
+      padding-bottom: 115px;
+      /* background-image: url("../static/img/login.jpg"); */
+      /* background: linear-gradient(to right, #EFB8F9, #86B8F4); */
+      /* background: linear-gradient(to right, #9bf2d4, #73b2fd); */
+      background: linear-gradient(to right, #7187e9, #EFB8F9);
+
+      
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+
+    .d2{
+
+        margin:auto;
+        width:400px;
+        height:500px;
+        background-color:#ffff;
+        border-radius:25px;
+    }
+
+    .d3{
+      padding-top:50px;
+      padding-bottom:30px;
+      text-align: center;
+      font-size: 23px;
+      font-weight:bold
+    }
+
+    .input{
+        width: calc(92% - 2em);
+    }
+
+    .content{
+      font-size: 120%;
+      padding: 0px;
+    }
+
+    .input__field--hoshi {
+        margin-top: 1.2em;
+    }
+
+   .inputSubmit {
+        width: 330px;
+        margin: 40px 0px 0px 35px;
+        padding: 10px 10px;
+        font-weight: 200;
+        /* background-color: #5050ff; */
+        background: linear-gradient(to right,  #86B8F4 ,#EFB8F9);
+        border-radius:5px;
+        color: #ffffff;
+        text-align: center;
+        cursor: pointer;
+        /* position: absolute; */
+        /* right: 0; */
+        -webkit-tap-highlight-color: transparent;
+        border-bottom: none;
+        font-size: 18px;
+    }
+ 
+		input:-webkit-autofill,
+		textarea:-webkit-autofill, 
+		select:-webkit-autofill {
+			-webkit-text-fill-color: #595F6E !important;
+			-webkit-box-shadow: 0 0 0px 1000px transparent  inset !important;
+				background-color:transparent;
+				background-image: none;
+				transition: background-color 50000s ease-in-out 0s; /*背景色透明  生效时长  过渡效果  启用时延迟的时间*/
+		}
+		input {
+			background-color:transparent;
+      font-size: 93%;
+		}
+
+  </style>
+</head>
+<body>
+  <div class="d1">
+    <div class="d2">
+      <div class="d3"> 
+        login
+      </div>
+      <div class="d4">
+
+
+
+
+        <!-- <div class="inputDiv">
+          <input type="text" name="id" required>
+          <span class="inputText">账号</span>
+        </div> -->
+
+        <div class="container">
+          <section class="content">
+            <span class="input input--hoshi">
+              <input class="input__field input__field--hoshi" type="text" name="username" id="username" />
+              <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                <span class="input__label-content input__label-content--hoshi">username</span>
+              </label>
+            </span>
+            <span class="input input--hoshi">
+              <input class="input__field input__field--hoshi" type="password" name="password" autocomplete="new-password" id="password" />
+              <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                <span class="input__label-content input__label-content--hoshi">password</span>
+              </label>
+            </span>
+          </section>
+        <div>
+
+
+
+        <!-- <div class="wrapper">
+          <div class="input-data">
+            <input type="text" name="id" required="" />
+            <div class="underline"></div>
+            <label>username</label>
+          </div>
+        </div>
+
+        <div class="wrapper">
+          <div class="input-data">
+            <input type="text" name="password" required="" />
+            <div class="underline"></div>
+            <label>password</label>
+          </div>
+        </div> -->
+
+        <div class="inputDiv">
+            <!-- <input type="submit" value="登录" name="inputSubmit" class="inputSubmit"> -->
+            <div type="submit" value="登录" name="inputSubmit" class="inputSubmit">登录</div>
+        </div>
+      
+    
+    </div>
+    </div>
+  </div>
+
+<script src="../static/inputui/js/classie.js"></script>
+<script src="../static/jquery/jquery-3.3.1.min.js" charset="utf-8"></script>
+<script src="../static/layui-v2.6.8/layui-v2.6.8/layui/layui.js" charset="utf-8"></script>
+<script>
+
+console.log($(".content>span").eq(0))
+
+$(".content>span").addClass("input--filled");
+
+$(".inputSubmit").click(function(){
+    user=$("#username").val()
+    password=$("#password").val()
+    if (user.length== ''){
+         console.log('账号不能为空')
+    }
+    if (password.length== ''){
+         console.log('密码不能为空')
+    }
+    $.ajax({
+      //几个参数需要注意一下
+          type: "POST",//方法类型
+          url: "/login/" ,//url
+          data: {"username":user,"password":password},
+          success: function (result) {
+              console.log(result,result['data']["Cookie"]);//打印服务端返回的数据(调试用)
+              console.log("----------------------------------------------------------------");//打印服务端返回的数据(调试用)
+
+              if (result['code'] == 200) {
+
+                // document.cookie="Cookie="+result['data']["Cookie"]+";path=/login/";
+                document.cookie="Cookie="+result['data']["Cookie"]+";path=/";
+
+                $(location).attr("href", "/home_000/");
+                layer.msg('成功');
+              }else if(result['code'] == 500){
+                layer.msg(result['msg']);
+              };
+          },
+          error : function() {
+            layer.msg('失败');
+          }
+    });
+})   
+
+
+// (function() {
+  // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+  if (!String.prototype.trim) {
+    (function() {
+      // Make sure we trim BOM and NBSP
+      var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+      String.prototype.trim = function() {
+        return this.replace(rtrim, '');
+      };
+    })();
+  }
+
+  [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+    // in case the input is already filled..
+    if( inputEl.value.trim() !== '' ) {
+      classie.add( inputEl.parentNode, 'input--filled' );
+    }
+
+    // events:
+    inputEl.addEventListener( 'focus', onInputFocus );
+    inputEl.addEventListener( 'blur', onInputBlur );
+  } );
+
+  function onInputFocus( ev ) {
+    classie.add( ev.target.parentNode, 'input--filled' );
+  }
+
+  function onInputBlur( ev ) {
+    if( ev.target.value.trim() === '' ) {
+      classie.remove( ev.target.parentNode, 'input--filled' );
+    }
+  }
+
+
+  $(function () {
+    if( window != window.top ) {
+      window.top.location='/login/'
+    }
+  })
+
+
+// })();
+
+// $(".d1").trigger('click')
+
+
+// $("#password").onChange(function(){
+//     console.log('触发了')
+// })
+
+
+// function hello(){
+//     user=$("#username").val()
+//     pwd=$("#password").val()
+// }
+
+// var t1 = window.setTimeout(hello,1000); 
+// window.clearTimeout(t1);//去掉定时器 
+
+
+// $("#username").trigger('click')
+
+//有回显的时候点击输入框
+// user=$("#username").val()
+// pwd=$("#password").val()
+
+// console.log(user,user.length)
+// if (user.length > 0){
+//     $("#username").trigger('click')
+// }
+
+// if (pwd.length > 0){
+//     $("#password").trigger('click')
+// }
+</script>
+</body>
+</html>

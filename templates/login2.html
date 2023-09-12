@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="../static/inputui/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../static/inputui/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="../static/inputui/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="../static/inputui/css/component.css" />
+
+	<style>
+		/* .input__field--hoshi {
+			color: #595F6E;
+		} */
+
+
+		input:-webkit-autofill,
+		textarea:-webkit-autofill, 
+		select:-webkit-autofill {
+			-webkit-text-fill-color: #595F6E !important;
+			-webkit-box-shadow: 0 0 0px 1000px transparent  inset !important;
+				background-color:transparent;
+				background-image: none;
+				transition: background-color 50000s ease-in-out 0s; /*背景色透明  生效时长  过渡效果  启用时延迟的时间*/
+		}
+		input {
+			background-color:transparent;
+		}
+
+	</style>
+	</head>
+	<body>
+		<div class="container">
+			<section class="content">
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" id="input-4" />
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+						<span class="input__label-content input__label-content--hoshi">username</span>
+					</label>
+				</span>
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="password" id="input-4" />
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+						<span class="input__label-content input__label-content--hoshi">password</span>
+					</label>
+				</span>
+			</section>			
+		</div><!-- /container -->
+		<script src="../static/inputui/js/classie.js"></script>
+		<script>
+			(function() {
+				// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+				if (!String.prototype.trim) {
+					(function() {
+						// Make sure we trim BOM and NBSP
+						var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+						String.prototype.trim = function() {
+							return this.replace(rtrim, '');
+						};
+					})();
+				}
+
+				[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+					// in case the input is already filled..
+					if( inputEl.value.trim() !== '' ) {
+						classie.add( inputEl.parentNode, 'input--filled' );
+					}
+
+					// events:
+					inputEl.addEventListener( 'focus', onInputFocus );
+					inputEl.addEventListener( 'blur', onInputBlur );
+				} );
+
+				function onInputFocus( ev ) {
+					classie.add( ev.target.parentNode, 'input--filled' );
+				}
+
+				function onInputBlur( ev ) {
+					if( ev.target.value.trim() === '' ) {
+						classie.remove( ev.target.parentNode, 'input--filled' );
+					}
+				}
+			})();
+		</script>
+	</body>
+</html>

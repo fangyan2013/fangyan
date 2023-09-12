@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Jenkins</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../static/layui-v2.6.8/layui-v2.6.8/layui/css/layui.css"  media="all">
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+  <style>
+  
+	*{
+		user-select: none;
+	}
+	
+    body{
+		/*padding:20px;*/
+	}
+
+
+	.layui-form-selectup dl {
+		bottom: auto;
+	}
+
+	  
+   /* .tab_but{
+        width:80px;
+        height:30px;
+        border: 1px solid #c9c9c9;
+        border-radius:5px;
+        display:inline-block;
+        line-height: 30px;
+		margin: 7px;
+    } */
+
+    .tab_but_div{
+        width:60px;
+        display:inline-block;
+    }
+
+    .tab_but_a{
+        margin-left:4px;
+    }
+	
+	.ul_head{
+	    width:935px;
+		line-height:25px;
+		margin:0px;
+		height:35px;
+	}
+	
+	.ul_head > li{
+        float: left;
+		height:35px;
+		padding:0px 5px 0px 5px;
+	}
+	
+	.Judgment_Pool{
+		width:895px;
+		min-height:100px;
+		border:1px solid #e6e6e6;
+		padding: 20px;
+		overflow-y:auto;
+		overflow-x:hidden;
+	}
+	
+	.Judgment_from{
+		width:895px;
+		padding: 20px;
+		border:1px solid #e6e6e6;
+		margin-top: 20px;
+	}
+	
+	
+	.layui-form-label {
+		float: left;
+		display: block;
+		padding: 9px 15px 9px 15px;
+		width: 55px;
+		font-weight: 400;
+		line-height: 20px;
+		text-align: right;
+	}
+	
+	.layui-input-block {
+		margin-left: 85px;
+		min-height: 36px;
+		width:400px;
+	}
+	
+	.from-overflow{
+		overflow-y:auto;
+		overflow-x:hidden;
+		height: 280px;
+		width: 910px;
+	}
+	
+	.adduser{
+		width:938px;
+		background-color:#ffffff;
+		padding:20px;
+		height:680px;
+	}
+	
+	
+	/* 设置滚动条的样式 */
+	::-webkit-scrollbar {
+		width:10px;
+	}
+	/* 滚动槽 */
+	::-webkit-scrollbar-track {
+		-webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+		border-radius:8px;
+	}
+	/* 滚动条滑块 */
+	::-webkit-scrollbar-thumb {
+		border-radius:8px;
+		background:rgba(0,0,0,0.1);
+		-webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+	}
+	::-webkit-scrollbar-thumb:window-inactive {
+		background:rgba(255,0,0,0.4);
+	}
+	
+	.Workflow_name_input{
+		outline: none;
+	}
+
+
+	.w_tab {
+		width: 747px;
+		padding: 5px;
+		border: 1px solid #e6e6e6;
+		margin-top: 10px;
+		margin-left: 85px;
+		display:flex;
+	}
+	
+	.layui-form-switch{
+		margin-top: 0px;
+	}
+	
+  </style>
+</head>
+<body>
+
+<div class="adduser"> 
+
+
+	<form class="layui-form" action="" id="from_pd">
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">账号</label>
+			<div class="layui-input-block">
+				<input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入账号" class="layui-input">
+			</div>
+		</div>
+	
+		<div class="layui-form-item">
+			<label class="layui-form-label">密码</label>
+			<div class="layui-input-block">
+				<input type="password" name="password" lay-verify="title" autocomplete="off" placeholder="请输入密码" class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">邮箱</label>
+			<div class="layui-input-block">
+				<input type="text" name="email" lay-verify="title" autocomplete="off" placeholder="请输入邮箱" class="layui-input">
+			</div>
+		</div>
+
+		<button style="margin-left: 430px;" id="adduser" type="button" class="layui-btn layui-btn-sm layui-btn-normal">提交</button>
+
+		
+	</form>
+
+</div>
+
+
+</body>
+
+<script src="../static/ace-builds-master/ace-builds-master/src/ace.js" charset="utf-8"></script>
+<script src="../static/jquery/jquery-3.3.1.min.js" charset="utf-8"></script>
+<!-- <script src="../static/layui-v2.6.8/layui-v2.6.8/layui/layui.js" charset="utf-8"></script> -->
+<script src="../static/layui-v2.6.8/layui-v2.6.8/layui/layui.js" charset="utf-8"></script>
+
+<script>
+
+
+layui.use(['form', 'layedit', 'laydate','dropdown'], function(){
+    var form = layui.form
+    ,layer = layui.layer
+    ,layedit = layui.layedit
+    ,laydate = layui.laydate
+	,dropdown = layui.dropdown
+    //日期
+    laydate.render({
+      elem: '#date'
+    });
+    laydate.render({
+      elem: '#date1'
+    });
+  
+
+	console.log($("input[name='username']").val(),$("input[name='password']").val(),$("input[name='email']").val())
+
+
+    $("#adduser").click(function(){
+
+		$.ajax({
+			url:"/adduser/",
+			type:"POST",                    
+			data:{
+				'username': $("input[name='username']").val(),	   
+				'password': $("input[name='password']").val(),	   
+				'email': $("input[name='email']").val(),	   
+
+			},
+			success:function (data) {
+				console.log(data)
+				form.render()	
+			},
+			error:function (data) {
+				console.log(data)
+			}	   
+		})
+
+	})
+
+
+
+
+  
+});
+</script>
+</body>
+</html>
+
+

@@ -40,7 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'captcha',
+    'channels',
 ]
+
+ASGI_APPLICATION = "ui_server.routing.application"
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,9 +79,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ui_server.wsgi.application'
 
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
 
 DATABASES = {
     'default':{
@@ -85,13 +92,15 @@ DATABASES = {
      'PORT':'3306',
      'NAME':'ui_server',
      'USER':'root',
-     'PASSWORD':'123456',
+     'PASSWORD':'19900917fx',
      'charset':"utf8",
      'OPTIONS':{
          'init_command':"SET sql_mode='STRICT_TRANS_TABLES'"
      },
     }
 }
+
+APPEND_SLASH=True
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -143,6 +152,20 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 print(STATICFILES_DIRS,'lj-----------------------------------')
 
+
+
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         # "LOCATION": "redis://127.0.0.1:6379/1",
+#         "LOCATION": "redis://127.0.0.1:6379",
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+#     }
+# }
+
+#pip install django-redis
 
 # taskinfo = os.popen('netstat -ano | findstr 4444')
 # line = taskinfo.readline()

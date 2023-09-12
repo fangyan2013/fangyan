@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """工作流执行逻辑"""
+import traceback
 from playwright.sync_api import Playwright, sync_playwright
 import jsonpath
 import json
@@ -51,7 +52,7 @@ class parameter_replace:
                                 else:
                                     replace_val=""
                             data = re.sub(r"\$\{"+val2+"\}",str(replace_val),json.dumps(data))
-                            data = json.loads(data)							
+                            data = json.loads(data)
                         if val['sex']=="re":
                             r_log=self.list_r_data[G_val]['Return_parameter']
                             replace_val=re.findall(val['desc'],r_log,re.M|re.S)
@@ -431,36 +432,40 @@ class node_logic:
                                                 Parsing['Compare']#0大于1小于2等于
                                                 t2=Parsing['Judgment_value']#判断的值
                                             elif G_dict['sex']=='re':
-                                            
-                                            
-                                            
+                                                print('进入re')
                                                 try:#能转python对象
                                                     #r_log=json.loads(r_log['Return_parameter'])
                                                     if not isinstance(r_log['Return_parameter'],list):#出参为sql的时候是list转json会报错
                                                         r_log=json.loads(r_log['Return_parameter'])
                                                     else:
                                                         r_log=r_log['Return_parameter']
-                                                        
-                                                    if Parsing["node_id"] in self.api_list:#api
-                                                        t1=re.findall( G_dict['desc'] , r_log['Return_parameter'] ,re.M|re.S)
+                                                    print(r_log,'想办法',type(r_log))
+                                                    if Parsing["node_id"] in self.api_list:#api   api的好了,别的出参可能还得兼容
+                                                        if isinstance(r_log,dict):
+                                                            r_log=json.dumps(r_log)
+                                                        t1=re.findall( G_dict['desc'] , r_log ,re.M|re.S)
+                                                        print(t1,'匹配的是什么屌东西','这是api')
                                                         if len(t1)>0:
                                                             t1=t1[0]
                                                         else:
                                                             t1=None
                                                     elif Parsing["node_id"] in self.rpa_list:#rpa
-                                                        t1=re.findall( G_dict['desc'] , json.dumps(r_log['Return_parameter']) ,re.M|re.S)
+                                                        t1=re.findall( G_dict['desc'] , json.dumps(r_log) ,re.M|re.S)
+                                                        print(t1,'匹配的是什么屌东西','这是rpa')
                                                         if len(t1)>0:
                                                             t1=t1[0]
                                                         else:
                                                             t1=None
                                                     elif Parsing["node_id"] in self.sql_list:#sql
                                                         t1=re.findall( G_dict['desc'] , json.dumps(r_log) ,re.M|re.S)
+                                                        print(t1,'匹配的是什么屌东西','这是sql')
                                                         if len(t1)>0:
                                                             t1=t1[0]
                                                         else:
                                                             t1=None
                                                     elif Parsing["node_id"] in self.Node_information:#定位
                                                         t1=re.findall( G_dict['desc'] , json.dumps(r_log) ,re.M|re.S)
+                                                        print(t1,'匹配的是什么屌东西','这是定位')
                                                         if len(t1)>0:
                                                             t1=t1[0]
                                                         else:
@@ -468,7 +473,8 @@ class node_logic:
                                                     else:
                                                         t1=None
                                                         print('不知名的后置处理方式-正则')
-                                                except:
+                                                except Exception as e:
+                                                    print(traceback.print_exc(),'Exception')
                                                     t1=None
                                                 Parsing['Compare']#0大于1小于2等于
                                                 t2=Parsing['Judgment_value']#判断的值                                            
@@ -847,7 +853,9 @@ class workflow(node_logic,node_function,parameter_replace):
         #定位时候处理的
         with sync_playwright() as playwright:
             #run(playwright)
-            browser = playwright.chromium.launch(headless=False)
+            #browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(channel="chrome",headless=False,args=["--start-maximized"])        
+
             context = browser.new_context()
             self.page = context.new_page()
             while True:

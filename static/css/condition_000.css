@@ -1,0 +1,97 @@
+
+*{
+	user-select: none;
+}
+
+body{
+	padding:20px;
+}
+
+
+  
+.tab_but{
+	width:80px;
+	height:30px;
+	border: 1px solid #c9c9c9;
+	border-radius:5px;
+	display:inline-block;
+	line-height: 30px;
+	margin: 7px;
+}
+
+.tab_but_div{
+	width:60px;
+	display:inline-block;
+}
+
+.tab_but_a{
+	margin-left:4px;
+}
+
+.ul_head{
+	width:240px;
+	line-height:25px;
+	margin:0px;
+	height:35px;
+}
+
+.ul_head > li{
+	float: left;
+	height:35px;
+	padding:0px 5px 0px 5px;
+}
+
+.Workflow_name_input{
+	outline: none;
+}
+
+.Judgment_Pool{
+	width: 160px;
+	height: 300px;
+	border: 1px solid #e6e6e6;
+	padding: 20px 40px 20px 40px;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+
+
+.node_name{
+	width:103px;
+}
+
+
+font{
+	line-height:40px;
+}
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+	width:10px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+	-webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+	border-radius:8px;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+	border-radius:8px;
+	background:rgba(0,0,0,0.1);
+	-webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background:rgba(255,0,0,0.4);
+}
+
+.layui-input-block {
+	margin-left: 0px;
+	min-height: 36px;
+}
+
+.condition_edit{
+	width:242px;
+	background-color:#ffffff;
+	padding:20px;
+	height:376px;
+}
+

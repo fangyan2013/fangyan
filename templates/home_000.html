@@ -9,24 +9,55 @@
 
 	
     body{
-      padding:20px 20px 20px 20px;
-	  height:810px;
+      padding:10px 20px 10px 20px;
+      /* padding:20px 20px 20px 20px; */
+	  /* height:810px; */
+	  /* transform: scale(0.8) translate(-100px, 0px); */
+	  transform:scale(0.90) translate(-70px, -35px)
 	}
 	
 	.ifame_api{
 		overflow-x:hidden;
 		width:1540px;
-		height:740px;
+		height:820px;
 		position:absolute;
-		opacity：0;
-		
+		/* opacity：0; */
 	}
 	
 	
 	.Ambiguity{
-		box-shadow: 2px 2px 9px #888888
+		box-shadow: 2px 2px 9px #e8e8e8
 	}
+
+	.table{
+		display: flex;
+	}
+
+	#myDiv {
+		width:1540px;
+		height: 60px;
+		/* display: none; */
+		/* position: absolute; */
+		background-color: #ffffff;
+		/* z-index:99999; */
+	}
+
+
 	
+	/* 当鼠标悬停在某个元素上时，显示myDiv */
+	.hover-element{
+		width: 1400px;
+		height: 20px;
+		cursor:pointer;
+		/* margin-top: 20px; */
+		position: absolute; 
+		z-index:1;
+	}
+
+
+
+
+
 	.content{
 		margin-top:10px;
 		width:100%;
@@ -49,7 +80,6 @@
 		font-size:15px;
 		font-weight: bold;
 	}
-	
 	
 	.layui-nav .layui-nav-item a:hover {
 		color: #0a6ae6e3;
@@ -78,62 +108,75 @@
 		color:#595758;
 		background-color:#ffffff;
 	}
-	
+
+	.layui-carousel-ind{
+		display: none;
+	}
+
+	ul{
+		width: 100%;
+		border-bottom: 1px solid #e8e8e8;
+	}
+
+	ul>li{
+		/* float: left; */
+		display: inline-block;
+		position: relative;
+		margin-top: 20;
+		line-height: inherit;
+		/* margin: 0; */
+		padding: 0;
+		border: 0;
+		outline: 0;
+		font-size: 100%;
+		vertical-align: baseline;
+		background: transparent;
+	}
+
+
+	ul>li>a{
+		position: relative;
+		/* color: inherit; */
+		padding: 0 20px;
+		display: inline-block;
+		line-height: normal;
+		color: #9c9c9c;
+	}
+
+	/* ::selection {
+		background: #000;
+		color: #fff;
+	} */
+
+	ul>li>a:focus{
+		color:#000;
+    }
+
   </style>
 </head>
 <body>
+
 
 <div id="loading">
 	<i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-icon-loading" style="font-size: 70px; color: #0a6ae6e3;margin-top:350px;" data-id='{{id.id}}'></i>  
 </div>
 
+<div class="hover-f Ambiguity" style="width:1540px">
+	<div class="hover-element">
+		<div class="table" id="myDiv">
 
-<div class="Ambiguity" style="width:1540px">
-		<!-- <div class="Ambiguity Navigation_Bar"> -->
-	<ul class="layui-nav layui-bg-blue Ambiguity">
-	
-	  <li class="layui-nav-item">
-		<a href="javascript:;">设置</a>
-		<dl class="layui-nav-child">
-		  <dd><a href="javascript:void(0);" id="l_file">本地文件</a></dd>
-		  <!-- <dd><a href="javascript:void(0);" id="file_server">文件服务器</a></dd> -->
-		  <dd><a href="javascript:void(0);" id="jenkins">调用配置</a></dd>
-          
-		</dl>
-
-	  </li>
-	
-	
-	
-	  <li class="layui-nav-item">
-          <a href="javascript:void(0);" id="workflow">工作流</a>
-      </li>
-      
-      <li class="layui-nav-item">
-          <a href="javascript:void(0);" id="log">报告管理</a>
-      </li>
-
-<!-- 	  <li class="layui-nav-item"><a href="">预案</a></li>
-	  <li class="layui-nav-item"><a href="">帮助</a></li> -->
-
-	</ul>
-		
+			<ul id="left-menu" class="clearfix none sf-js-enabled sf-arrows"><li id="menu-item-3560" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3560"><a id="workflow" title="用例编排" href="javascript:void(0);">用例编排</a></li>
+				<!-- <li id="menu-item-3470" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3470"><a id="Strategy" title="测试策略" href="javascript:void(0);">测试策略</a></li> -->
+				<!-- <li id="menu-item-3469" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-3408 current_page_item menu-item-3469"><a title="BOUDOIR" href="javascript:void(0);">BOUDOIR</a></li> -->
+				<!-- <li id="menu-item-3468" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3468"><a title="PORTRAIT" href="javascript:void(0);">PORTRAIT</a></li> -->
+				<li id="menu-item-3471" style="float:right" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3471"><a id="logout" title="退出登录" href="javascript:void(0);">退出登录</a></li>
+			</ul>
+		</div>
+	</div>
 	<div class="Ambiguity content">
 		<iframe id="ui_workflow" class="Ambiguity ifame_api" frameborder="no" border="0"   src='/ui_000/'></iframe>
 	</div>
 </div>
-
-	<div class="popping-box-wrap">
-		<iframe  class="Ambiguity ifame_api" frameborder="no" border="0"   src='/Local_file/'></iframe>
-	</div>
-	
-	<div class="popping-box-wrap">
-		<iframe  class="Ambiguity ifame_api" frameborder="no" border="0"   src='/file_server/'></iframe>
-	</div>
-	
-	<div class="popping-box-wrap">
-		<iframe  class="Ambiguity ifame_api" frameborder="no" border="0"   src='/jenkins/'></iframe>
-	</div>
 
 </body>
 
@@ -148,51 +191,61 @@
 <script src="../static/jquery-ui-1.12.1.custom/jquery-ui-1.12.1.custom/jquery-ui.min.js" charset="utf-8"></script>
 <script src="https://cdn.bootcss.com/jsPlumb/1.7.6/jquery.jsPlumb.min.js"></script>
 <script src="../static/icon/font/iconfont.js"></script>
-<script src="../static/js/web_db.js"></script>
+<script src="../static/js/Effectiveness.js" charset="utf-8"></script>
+
+<!-- <script src="../static/js/web_db.js"></script> -->
 
 <script>
 
 
 
 layui.use('layer', function(){ //独立版的layer无需执行这一句
-    var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
-  
+    var $ = layui.jquery; //独立版的layer无需执行这一句
+    var form = layui.form
+    ,layer = layui.layer
+    ,layedit = layui.layedit
+    ,laydate = layui.laydate
+	,dropdown = layui.dropdown
+	,dropdown = layui.dropdown
+	,carousel = layui.carousel
     $("#l_file").click(function(){
 		$(".popping-box-wrap").show("slow")
 		$(".popping-box-wrap").children("iframe").attr("src","/Local_file/"); 
     })
 	
-
-	
-	
     $("#file_server").click(function(){
 		$(".popping-box-wrap").show("slow")
 		$(".popping-box-wrap").children("iframe").attr("src","/file_server/"); 
-		
-		
-    })
-	
-	
-	$("#jenkins").click(function(){
-		$(".popping-box-wrap").show("slow")
-		$(".popping-box-wrap").children("iframe").attr("src","/jenkins/"); 
-    })
-    
-    
-
-    
-    
-	$("#log").click(function(){
-		$("#ui_workflow").attr("src","/log_000/"); 
     })
 	
 	$("#workflow").click(function(){
 		$("#ui_workflow").attr("src","/ui_000/"); 
     })
 
+	$("#Strategy").click(function(){
+		$("#ui_workflow").attr("src","/Strategy/"); 
+    })
 	
-  
 
+	$("#logout").click(function(){
+		$.ajax({
+			url:"/logout/",
+			type:"get",    
+			complete : function(xmlHttpRequest){
+				console.log('收到服务端响应了，不管是否出错');
+				
+				var type = xmlHttpRequest.getResponseHeader('Content-type');
+				console.log('Content-type响应头字段：', type);
+			},
+			success:function (data) {
+				console.log(data,'logininininiin')
+				// $(location).attr("href", "/login/");
+			},
+			error:function (data) {
+				console.log(data)
+			}	   
+		})
+	})
 })
 
 
@@ -206,14 +259,18 @@ window.onload =function()
 function closure(){
 	$(".popping-box-wrap").hide("slow");
 	location.reload()
-	//$("#ui_workflow")[0].contentWindow.subFunction()
-
 }
 
+// $(".hover-element").hover(function(){
+// 	$(this).css({"z-index":1})
+// 	$("#myDiv").fadeIn()
 
+// },function(){
+//     $("#myDiv").css("display","none");
+// 	$(this).css({"z-index":null})
 
+// });
 
-	
 </script>
 </body>
 </html>

@@ -57,10 +57,13 @@ textarea{
 
 
 
-.layui-input-block {
-	margin-left:0px;
-	min-height: 36px;
-}
+/* .layui-input-block { */
+	/* margin-left: 0px; */
+	/* min-height: 36px;
+	width: 100%;
+
+} */
+
 
 .layui-form-item {
 	/* margin-bottom: -15px; */
@@ -117,7 +120,7 @@ textarea{
 	top: 0;
 	right: 0px;
 	z-index: 10001;
-	width:480px;
+	width:455px;
 	height:680px;
 	background-color: #ffffff;
 	padding:20px;

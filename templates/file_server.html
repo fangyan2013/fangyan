@@ -366,46 +366,46 @@ layui.use(['dropdown', 'util', 'layer', 'table'], function(){
 		  
 		  
 		  
-		  dropdown.render({
-			elem: '#demo7' //也可绑定到 document，从而重置整个右键
-			,trigger: 'contextmenu' //contextmenu
-			,isAllowSpread: false //禁止菜单组展开收缩
-			,style: 'width: 200px' //定义宽度，默认自适应
-			,id: 'test777' //定义唯一索引
-			,data: [{
-			  title: '下载'
-			  ,id: 'download'
-			}]
-			,click: function(obj, othis){
-			  console.log(obj.id)
-			  var Slist=Selected_id()
-			  if(obj.id === 'download'){
-				//下载
-			      if (Selected_id().length<1){
-					  layer.msg('请选择一个文件')
-				  	  return
-				  }else{
-					  //下载
-					  $.ajax({
-					     url:"/file_del/",
-					     type:"GET",                    
-					     data:{
-						     'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),		   
-						     'file_name':JSON.stringify({"Slist":Slist})
-					     },
-					     success:function (data) {
-						  	  console.log("成功",data);	
-							  window.location.reload()
-					     },
-					     error:function (data) {
-							  //clearInterval(myVar)
-							  console.log("失败",data);
-						 }	   
-					  })
-				  }
-			  }
-			}
-		  });
+		//   dropdown.render({
+		// 	elem: '#demo7' //也可绑定到 document，从而重置整个右键
+		// 	,trigger: 'contextmenu' //contextmenu
+		// 	,isAllowSpread: false //禁止菜单组展开收缩
+		// 	,style: 'width: 200px' //定义宽度，默认自适应
+		// 	,id: 'test777' //定义唯一索引
+		// 	,data: [{
+		// 	  title: '下载'
+		// 	  ,id: 'download'
+		// 	}]
+		// 	,click: function(obj, othis){
+		// 	  console.log(obj.id)
+		// 	  var Slist=Selected_id()
+		// 	  if(obj.id === 'download'){
+		// 		//下载
+		// 	      if (Selected_id().length<1){
+		// 			  layer.msg('请选择一个文件')
+		// 		  	  return
+		// 		  }else{
+		// 			  //下载
+		// 			  $.ajax({
+		// 			     url:"/file_del/",
+		// 			     type:"GET",                    
+		// 			     data:{
+		// 				     'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),		   
+		// 				     'file_name':JSON.stringify({"Slist":Slist})
+		// 			     },
+		// 			     success:function (data) {
+		// 				  	  console.log("成功",data);	
+		// 					  window.location.reload()
+		// 			     },
+		// 			     error:function (data) {
+		// 					  //clearInterval(myVar)
+		// 					  console.log("失败",data);
+		// 				 }	   
+		// 			  })
+		// 		  }
+		// 	  }
+		// 	}
+		//   });
 		  
 		  
 

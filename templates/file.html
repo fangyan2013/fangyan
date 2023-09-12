@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="../static/layui-v2.6.8/layui-v2.6.8/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" type="text/css" href="../static/jQuery-contextMenu-master/jQuery-contextMenu-master/dist/jquery.contextMenu.css">
+
   <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
   <style>
   
@@ -148,12 +150,12 @@
 
 
 </body>
-
-
-<script src="../static/layui-v2.6.8/layui-v2.6.8/layui/layui.js" charset="utf-8"></script>
 <script src="../static/jquery/jquery-3.3.1.min.js" charset="utf-8"></script>
 <script src="../static/jquery/jquery-3.3.1.js" charset="utf-8"></script>
 <script src="../static/jquery-ui-1.12.1.custom/jquery-ui-1.12.1.custom/jquery-ui.min.js" charset="utf-8"></script>
+<script src="../static/jQuery-contextMenu-master/jQuery-contextMenu-master/dist/jquery.contextMenu.js"></script>
+<script src="../static/jQuery-contextMenu-master/jQuery-contextMenu-master/dist/jquery.ui.position.js"></script>
+<script src="../static/layui-v2.6.8/layui-v2.6.8/layui/layui.js" charset="utf-8"></script>
 <script src="../static/icon/font/iconfont.js"></script>
 <script src="../static/js/web_db.js"></script>
 <script>
@@ -251,51 +253,46 @@ layui.use(['dropdown', 'util', 'layer', 'table'], function(){
 	}
 	
 	
-	<!-- window.oncontextmenu=function(e){ -->
-		//取消默认的浏览器自带右键 很重要！！
-		<!-- e.preventDefault(); -->
-	<!-- } -->
+	$(function() {
+     //节点操作删除/断开
+     $.contextMenu({
+         selector: ".file_tab",
+         callback: function(key, options) {
+             var id = $(this).attr('id')
+             var name = $(this).data('name')
+             console.log("点击了：" + key,id,name);
+             console.log("几百个",options);
+			 var Slist=Selected_id()
+             if(key=='import'){
+                //导入到工作流        
+				if (Selected_id().length<1){
+					layer.msg('请选择一个文件')
+					return
+				}else if(Selected_id().length>1){
+					layer.msg('导入操作只能选择一个文件')
+					return
+				}else{
+					//编辑请求
+					$.ajax({
+						url:"/file_import/",
+						type:"GET",
+						data:{
+							'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),		   
+							'file_name':Slist[0]
+						},
+						success:function (data) {
+							layer.msg("成功");
+							parent.closure()
 
-	$('.file_tab').mousedown(function(e) {
-		console.log(e.which);
-		//右键为3
-		if (3 == e.which) {
-		  //右键菜单
-		  //$(".file_tab").css({"background":""});
-		  //$(this).css({
-			//  "background":"#7085d0d9",
-		  //})
-		  
-		  console.log($(this))//这里可获取id
-		  
-		  
-		  
-		  dropdown.render({
-			elem: '#demo7' //也可绑定到 document，从而重置整个右键
-			,trigger: 'contextmenu' //contextmenu
-			,isAllowSpread: false //禁止菜单组展开收缩
-			,style: 'width: 200px' //定义宽度，默认自适应
-			,id: 'test777' //定义唯一索引
-			,data: [{
-			  title: '导入到工作流'
-			  ,id: 'import'
-			},{
-			  title: '重命名'
-			  ,id: 'updata_name'
-			}, {
-			  title: '复制'
-			  ,id: 'copy'
-			},{
-			  title: '合并文件'
-			  ,id: 'merge'
-			},{
-			  title: '删除'
-			  ,id: 'del'
-			}]
-			,click: function(obj, othis){
-				console.log(obj.id)
-			  var Slist=Selected_id()
-			  if(obj.id === 'updata_name'){
+							//location.reload();//刷新当前页
+						},
+						error:function (data) {
+							//clearInterval(myVar)
+							console.log("失败",data);
+						} 
+					})
+				}
+             }else if(key=="updata_name"){
 				//重命名
 				if (Slist.length<1){
 					layer.msg('请选择一个文件进行编辑')
@@ -331,12 +328,9 @@ layui.use(['dropdown', 'util', 'layer', 'table'], function(){
 					});
 				}
 				
-				
-				
-				
-			  } else if(obj.id === 'copy'){
+			 }else if(key=="copy"){
 				//复制
-				  if (Selected_id().length<1){
+				if (Selected_id().length<1){
 					  layer.msg('请选择一个文件')
 				  	  return
 				  }else{
@@ -358,120 +352,139 @@ layui.use(['dropdown', 'util', 'layer', 'table'], function(){
 						 }	   
 					  })
 				  }
-				
-			  }else if(obj.id === 'del'){
-				//删除
-			      if (Selected_id().length<1){
-					  layer.msg('请选择一个文件')
-				  	  return
-				  }else{
-					  //删除
-					  $.ajax({
-					     url:"/file_del/",
-					     type:"GET",                    
-					     data:{
-						     'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),		   
-						     'file_name':JSON.stringify({"Slist":Slist})
-					     },
-					     success:function (data) {
-						  	  console.log("成功",data);	
-							  window.location.reload()
-					     },
-					     error:function (data) {
-							  //clearInterval(myVar)
-							  console.log("失败",data);
-						 }	   
-					  })
-                      
-                      $.ajax({
-                         url:"/file_add/",
-                         type:"GET",
-                         data:{
-                             'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),		   
-                         },
-                         success:function (data) {
-                              layer.msg("成功");
-                              parent.closure()
+			 }else if(key=="merge"){
+				//合并
+				if(Selected_id().length<2){
+					layer.msg('合并操作需要选择两个及以上文件')
+					return
+				}else{
+					//合并
+					layer.prompt({title: '输入合并后的文件名', formType: 3}, function(pass, index){
+						$.ajax({
+							url:"/file_merge/",
+							type:"GET",                    
+							data:{
+								'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),		   
+								'file_name':JSON.stringify({"Slist":Slist}),
+								'updata_name':pass
+							},
+							success:function (data) {
+								layer.msg("成功");
+								window.location.reload()
 
-                              //location.reload();//刷新当前页
-                         },
-                         error:function (data) {
-                              //clearInterval(myVar)
-                              console.log("失败",data);
-                         } 
-                      })
-                      
-                      
-				  }
-			  }else if(obj.id === 'import'){
-				//导入文件
-			      if (Selected_id().length<1){
-					  layer.msg('请选择一个文件')
-					  return
-				  }else if(Selected_id().length>1){
-					  layer.msg('导入操作只能选择一个文件')
-					  return
-				  }else{
-					  //编辑请求
-					  $.ajax({
-					     url:"/file_import/",
-					     type:"GET",
-					     data:{
-						     'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),		   
-						     'file_name':Slist[0]
-					     },
-					     success:function (data) {
-						  	  layer.msg("成功");
-							  parent.closure()
-
-	                          //location.reload();//刷新当前页
-					     },
-					     error:function (data) {
-							  //clearInterval(myVar)
-							  console.log("失败",data);
-						 } 
-					  })
-				  }
-			  }else if(obj.id === 'merge'){
-				//合并文件
-			      if(Selected_id().length<2){
-					  layer.msg('合并操作需要选择两个及以上文件')
-					  return
-				  }else{
-					  //合并
-						layer.prompt({title: '输入合并后的文件名', formType: 3}, function(pass, index){
-						  $.ajax({
-							 url:"/file_merge/",
-							 type:"GET",                    
-							 data:{
-								 'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),		   
-								 'file_name':JSON.stringify({"Slist":Slist}),
-							     'updata_name':pass
-							 },
-							 success:function (data) {
-						  	     layer.msg("成功");
-							     window.location.reload()
-
-								  
-							 },
-							 error:function (data) {
-								  //clearInterval(myVar)
-								  console.log("失败",data);
-							 }	   
-						  })
-						  layer.close(index);
+								
+							},
+							error:function (data) {
+								//clearInterval(myVar)
+								console.log("失败",data);
+							}	   
 						})
+						layer.close(index);
+					})
 
 
-				  }
-			  }
-			}
-		  });
+				}
+             }else if(key=="del"){
+                //删除节点
+				if (Selected_id().length<1){
+					layer.msg('请选择一个文件')
+					return
+				}else{
+					//删除
+					$.ajax({
+						url:"/file_del/",
+						type:"GET",                    
+						data:{
+							'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),		   
+							'file_name':JSON.stringify({"Slist":Slist})
+						},
+						success:function (data) {
+							console.log("成功",data);	
+							window.location.reload()
+						},
+						error:function (data) {
+							//clearInterval(myVar)
+							console.log("失败",data);
+						}	   
+					})
+					
+					$.ajax({
+						url:"/file_add/",
+						type:"GET",
+						data:{
+							'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),		   
+						},
+						success:function (data) {
+							layer.msg("成功");
+							parent.closure()
+
+							//location.reload();//刷新当前页
+						},
+						error:function (data) {
+							//clearInterval(myVar)
+							console.log("失败",data);
+						} 
+					})
+					
+					
+				}
+                
+             }
+         },
+        //  items: {
+
+        //      "import": {name: "导入到工作流", icon: "cut"},
+        //      "updata_name": {name: "重命名", icon: "edit"},
+        //      "copy": {name: "复制", icon: "copy"},
+        //      "merge": {name: "合并文件", icon: "merge"},
+        //      "del": {name: "删除", icon: "delete"},
+        //      "sep1": "---------",
+        //      "quit": {name: "退出", icon: function(){
+        //          return 'context-menu-icon context-menu-icon-quit';
+        //      }}
+
+
+        //  }
+
+		items: {
+			"import": {name: "导入到工作流"},
+			"updata_name": {name: "重命名"},
+			"copy": {name: "复制"},
+			"merge": {name: "合并文件"},
+			"del": {name: "删除"},
+			"sep1": "---------",
+			"quit": {name: "退出"}
 		}
-	})
 
-  
-  
+
+
+    });
+
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	

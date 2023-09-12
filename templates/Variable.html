@@ -1,0 +1,112 @@
+<script src="../static/ace-builds-master/ace-builds-master/src/ace.js" charset="utf-8"></script>
+<script src="../static/jquery/jquery-3.3.1.min.js" charset="utf-8"></script>
+<script src="../static/jquery-ui-1.12.1.custom/jquery-ui-1.12.1.custom/jquery-ui.min.js" charset="utf-8"></script>
+<script src="../static/layui-v2.6.8/layui-v2.6.8/layui/layui.js" charset="utf-8"></script>
+<script src="https://cdn.bootcss.com/jsPlumb/1.7.6/jquery.jsPlumb.min.js"></script>
+<script src="../static/js/variable.js" charset="utf-8"></script>
+<script src="../static/js/ginseng.js" charset="utf-8"></script>
+<link rel="stylesheet" href="../static/css/variable.css"  media="all"> 
+
+
+</style>
+
+<input style="display: none;" value="null">
+
+<div style="display:none" id="test" >
+	<form id="addGoodsForm" class="layui-form" action="" style="padding:20px;" lay-filter="example">
+		  <div class="layui-form-item" style="margin:0px;">
+			<div class="layui-input-block" style="margin-left: 0px;min-height: 36px;width: 100%;">
+				<input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入出参名称" class="layui-input">
+			</div>
+		   </div>
+		  <div class="layui-form-item"  style="margin:0px;">
+			  <div class="layui-input-block" style="margin-left: 0px;min-height: 36px;width: 100%;">
+				  <input type="radio" name="sex" value="JsonPath" title="JsonPath" checked="">
+				  <input type="radio" name="sex" value="re" title="正则">
+			  </div>
+		  </div>
+		  <div class="layui-form-item layui-form-text" style="margin-top:10px;">
+			  <div class="layui-input-block" style="margin:0px 4px 0px -4px;width: 100%;min-height: 36px;">
+				  <textarea placeholder="请输入内容" class="layui-textarea"  name="desc"></textarea>
+			  </div>
+		  </div>
+	</from>
+</div>
+
+<div class="variable Ambiguity">
+
+	<div class="layui-tab">
+	  <ul class="layui-tab-title">
+		<li class="layui-this">出入参</li>
+		<li>变量</li>
+	  </ul>
+	  <div class="layui-tab-content">
+		<div class="layui-tab-item layui-show">
+			<div style="height:345px">
+				<fieldset class="layui-elem-field site-demo-button" style="margin:5px 0px 0px 0px;height: 345px;">
+						<div style="display:inline;" id="tab_2">
+
+						</div>
+				</fieldset>
+			</div>
+			<div style="height:280px">
+				<fieldset class="layui-elem-field site-demo-button" style="margin:30px 0px 0px 0px;height: 217px;">
+					<legend>添加出参</legend>
+						<div style="display:inline;" id="tab_1">
+						</div>
+
+						<div style="display:inline;">
+							<button id="site_add" type="button" class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon"></i></button>
+						</div>
+				</fieldset>
+
+			</div>
+
+		</div>
+		<div class="layui-tab-item">
+		
+			<div style="height:345px">
+				<fieldset class="layui-elem-field site-demo-button" style="margin:5px 0px 0px 0px;height: 345px;">
+						<div style="display:inline;" id="tab_data">
+						</div>
+				</fieldset>
+
+			</div>
+			<div style="height:280px">
+				<fieldset class="layui-elem-field site-demo-button" style="margin:30px 0px 0px 0px;height: 217px;">
+					<legend>添加出参</legend>
+						<div style="display:inline;" id="tab_1">
+							<form class="layui-form" action="">
+							  <div class="layui-form-item" style="margin-bottom: 15px">
+								<!-- <label class="layui-form-label" style="padding: 0px;text-align: left;">key:</label> -->
+								<div style="width:443px;margin-left:0px;min-height: 36px;" >
+								  <input type="text" name="data_key"  lay-verify="title" autocomplete="off" placeholder="请输入变量名" class="layui-input">
+								</div>
+							  </div>
+							  <div class="layui-form-item layui-form-text" style="margin-top:-10px;margin-bottom: 15px">
+								<!-- <label class="layui-form-label" style="padding: 0px;text-align: left;">value:</label> -->
+								<!-- <div style="width:443px;margin-left:0px;min-height: 36px;" class="layui-input-block"> -->
+                				<div style="width:443px;margin-left:0px;min-height: 36px;">
+
+								  <textarea name="data_value" placeholder="请输入变量值" style="margin: 0px 0px 0px 0px;min-height:115px" class="layui-textarea"></textarea>
+								</div>
+								
+							  </div>
+
+							</form>
+							<button id="add_data" style="margin-top:-10px;position: absolute;right: 27px;" type="button" class="layui-btn layui-btn-normal">提交</button>
+
+
+						</div>
+
+				</fieldset>
+
+			</div>
+
+		</div>
+
+	  </div>
+	</div>
+
+</div>
+

@@ -1,0 +1,118 @@
+
+*{
+	user-select: none;
+}
+
+body{
+	/*padding:20px;*/
+}
+
+
+.layui-form-selectup dl {
+	bottom: auto;
+}
+
+  
+.itab_but{
+	width:80px;
+	height:30px;
+	border: 1px solid #c9c9c9;
+	border-radius:5px;
+	display:inline-block;
+	line-height: 30px;
+	margin: 7px;
+}
+
+.itab_but_div{
+	width:60px;
+	display:inline-block;
+}
+
+.itab_but_a{
+	margin-left:4px;
+}
+
+.ul_head{
+	width:935px;
+	line-height:25px;
+	margin:0px;
+	height:35px;
+}
+
+.ul_head > li{
+	float: left;
+	height:35px;
+	padding:0px 5px 0px 5px;
+}
+
+.Judgment_Pool{
+	width:895px;
+	min-height:100px;
+	border:1px solid #e6e6e6;
+	padding: 20px;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+
+.Judgment_from{
+	width:895px;
+	padding: 20px;
+	border:1px solid #e6e6e6;
+	margin-top: 20px;
+}
+
+
+.layui-form-label {
+	float: left;
+	display: block;
+	padding: 9px 15px 9px 15px;
+	width: 55px;
+	font-weight: 400;
+	line-height: 20px;
+	text-align: right;
+}
+
+.layui-input-block {
+	margin-left: 85px;
+	min-height: 36px;
+	width:759px;
+}
+
+.from-overflow{
+	overflow-y:auto;
+	overflow-x:hidden;
+	height: 280px;
+	width: 910px;
+}
+
+.if_edit{
+	width:938px;
+	background-color:#ffffff;
+	padding:20px;
+	height:680px;
+}
+
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+	width:10px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+	-webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+	border-radius:8px;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+	border-radius:8px;
+	background:rgba(0,0,0,0.1);
+	-webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background:rgba(255,0,0,0.4);
+}
+
+.Workflow_name_input{
+	outline: none;
+}
+

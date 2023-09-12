@@ -10,9 +10,9 @@
   <style>
 
     
-    body{
+    /* body{
       <!-- padding:20px 50px 20px 50px; -->
-    }
+    } */
     
     .Ambiguity{
         box-shadow: 2px 2px 9px #888888
@@ -71,6 +71,7 @@
     .d_op{
         float: right;
         margin:0px 40px 0px 0px;
+        height:40px;
     }
     
     
@@ -123,15 +124,17 @@
     .template_tab{
         position:absolute;
         z-index: 10000;
-        top:95px;
-        left:1150px;
+        /* top:95px;
+        left:1150px; */
+        top: 99px;
+        left: 962px;
     }
 
     .template_tab>div{
         display:flex;
         background-color: #ffffff;
-        width: 345px;
-        height: 597px;
+        width: 204px;
+        height: 591px;
         padding: 20px;
     }
     
@@ -139,7 +142,7 @@
     .Node_template{
         padding: 10px 10px 5px 10px;
         width:180px;
-        height: 577px;
+        height: 572px;
         border: 2px solid #eee;
         overflow-y:auto;
         overflow-x:hidden;
@@ -169,6 +172,10 @@
         border-radius:50%;
     }
     
+    .del_template{
+        cursor:pointer;
+    }
+
     .Label{
         padding: 10px 10px 5px 10px;
         width:110px;
@@ -230,27 +237,92 @@
         z-index: 9999;
         left:10px;
         bottom:10px;
-        opacity：0;
+        /*  */
         background-color:#ffffff;
     }
     
     .Right_drawer_img{
-        width:20px;
+        width:20px; 
         height:70px;
         float: left;
         position:absolute;
         z-index: 9999;
-        right:302px;
-        top:260px;
+        /* right:302px;
+        top:260px; */
         cursor:pointer;
         object-fit: cover;
+        
+        animation:mymoveleft 1.5s;
+        animation-iteration-count:1;
+        animation-fill-mode:forwards;
+        animation-play-state: paused; 
+
+        /* Safari 和 Chrome */
+        -webkit-animation:mymoveleft 1.5s;
+        -webkit-animation-iteration-count:1;
+        -webkit-animation-fill-mode:forwards;
+        /* -webkit-animation-play-state: running;  */
+        -webkit-animation-play-state: paused; 
+
+        
+    } 
+
+    .Right_drawer_img2{
+        width:20px; 
+        height:70px;
+        float: left;
+        position:absolute;
+        z-index: 9999;
+        /* right:302px;
+        top:260px; */
+        cursor:pointer;
+        object-fit: cover;
+        
+        animation:mymoveright 1.5s;
+        animation-iteration-count:1;
+        animation-fill-mode:forwards;
+        animation-play-state: paused; 
+
+        /* Safari 和 Chrome */
+        -webkit-animation:mymoveright 1.5s;
+        -webkit-animation-iteration-count:1;
+        -webkit-animation-fill-mode:forwards;
+        /* -webkit-animation-play-state: running;  */
+        -webkit-animation-play-state: paused; 
+
+        
+    } 
+
+    @keyframes mymoveleft{
+        0%   { left:-35px; top:0px;}
+        100%  { left:290px; top:0px;transform:rotateZ(360deg);}
     }
-    
+
+    @keyframes mymoveright{
+        0%   { left:290px; top:0px;}
+        100%  { left:-35px; top:0px;transform:rotateZ(360deg);}
+    }
+
+
+
+    @-webkit-keyframes mymoveleft{
+        0%   { left:-35px; top:0px;}
+        100%  { left:290px; top:0px;transform:rotateZ(360deg);}
+    }
+
+    @-webkit-keyframes mymoveright{
+        0%   { left:290px; top:0px;}
+        100%  { left:-35px; top:0px;transform:rotateZ(360deg);}
+    }
+
+
+
+
+
     .Right_drawer_d{
         width:300px;
         height:610px;
-        float: left;
-        opacity：0;
+        float:left;
         background-color:#ffffff;
         padding:10px;
     }
@@ -268,7 +340,7 @@
         height:350px;
         margin-top:-370px;
         padding:10px;
-        opacity：0;
+        
         background-color:#ffffff;
         position:relative;
     }
@@ -395,7 +467,7 @@
         float: left;
         width:10px;
         height:40px;
-        opacity：0;
+        
         background-color:#32CD32;
         border-radius:4px 0px 0px 4px;
     }
@@ -442,7 +514,7 @@
         float: left;
         width:300px;
         height:24px;
-        margin-top:10px;
+        margin-top:25px;
         margin-left:10px;
         line-height:24px;
         font-size:20px;
@@ -505,8 +577,6 @@
         height:20px;
     }
     
-    
-    
     .page > ul > li {
         float: left;
         height: 25px;
@@ -520,17 +590,12 @@
     
     }
     
-
-    
     .Workflow_canvas {
         width: 1530px;
-        height: 645px;
+        height: 760px;
         position: relative;
         overflow: hidden;
     }
-    
-    
-    
     
     .Workflow_canvas_Zoom{
         cursor:move;
@@ -556,21 +621,17 @@
         border-radius: 4px;
     }
     
-    
     .logic_css>div{
         position:relative;
 
     }
-    
-    
-    
     
     .condition{
         position:relative;
         width:200px;
         height:200px;
         /*border: 1px solid #0a6ae6e3;*/
-        opacity：0;
+        
         background-color:#ffffff;
         left:50px;
         top:3px;
@@ -604,7 +665,7 @@
         width:200px;
         height:30px;
         /*border: 1px solid #0a6ae6e3;*/
-        opacity：0;
+        
         background-color:#ffffff;
         left:50px;
         top:3px;
@@ -667,7 +728,7 @@
         left:20px;
         top:20px;
         position:absolute;
-        opacity：0;
+        
         
     }
     
@@ -694,37 +755,6 @@
     .layui-input-block {
         margin-left: 18px;
         min-height: 36px;
-    }
-
-    .layui-form-radio {
-        line-height: 28px;
-        margin: 6px 10px 0 0;
-        padding-right: 0px;
-        cursor: pointer;
-        font-size: 0;
-    }
-
-
-    .layui-input, .layui-select, .layui-textarea {
-        height: 25px;
-        line-height: 1.3;
-        line-height: 38px\9;
-        border-width: 1px;
-        border-style: solid;
-        background-color: #fff;
-        border-radius: 2px;
-    }
-
-    .layui-form-select dl dd, .layui-form-select dl dt {
-        padding: 0 10px;
-        line-height: 30px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    
-    .layui-form-select dl{
-        top: 29px;
     }
 
     .Workflow_log > div > hr {
@@ -804,36 +834,280 @@
         top: 6px;
     }
 
+    .divfather{
+        display: flex;
+
+        /* margin: 0px 0px 5px 0px;
+        height: 20px;
+        padding: 5px;
+        border-radius: 8px;
+        border: 2px solid #eee;
+        line-height: 20px;
+        cursor: pointer;
+        background: #d9e7f9; */
+
+    }
+    
+    .divfather:focus{
+        border-bottom:2px dashed #F00
+
+    }
+
+
+    .divfather>span{
+        font-size: 20px;
+        line-height:40px;
+        margin-left: 5px;
+        cursor:pointer;
+    }
+
+
+/* margin: 0px 0px 5px 0px;
+width: 163px;
+height: 20px;
+padding: 5px;
+border-radius: 8px;
+border: 2px solid #eee;
+line-height: 20px;
+cursor: pointer;
+background: #d9e7f9; */
+
+
+
+
+
+    .divson>div{
+        margin-left: 30px;
+        font-size: 16px;
+        /* line-height:40px; */
+        cursor:pointer;
+        display:flex;
+        border-bottom: 1px solid #e8e8e8;
+
+        margin: 0px 0px 5px 30px;
+        height: 20px;
+        padding: 5px;
+        /* border-radius: 8px; */
+        /* border: 2px solid #eee; */
+        line-height: 20px;
+        /* cursor: pointer; */
+        /* background: #d9e7f9; */
+    }
+
+    .divson>div>div{
+        display: none;
+        /* margin-left: 5px; */
+        margin: -10px 0px 0px 5px;
+    }
+
+    /* .divson>div:hover div{
+        display: block;
+    } */
+
+    .iconlist{
+        margin-left: 30px;
+        display: none;
+    }
+
+
+    .Projecttile,.Workflotile{
+        font-size: 15px;
+        margin: 0px 20px 0px 20px;
+    }
+
+    .ProjectAdd,.WorkfloAdd{
+        outline-style: none ;
+        border: 1px solid #ccc; 
+        border-radius: 3px;
+        margin: 10px 20px 0px 20px;;
+        padding: 7px 10px;
+        width: 272px;
+        font-size: 14px;
+        /* font-weight: 700; */
+        font-family: "Microsoft soft";
+    }
+
+
+
+
+    .ProjectAdd,.WorkfloAdd:focus{
+        border-color: #66afe9;
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+    }
+
+
+    .layui-input-block>div{
+        margin-top: 10px;
+    }
+
+    
+
+
+	.runmc{
+		position: fixed;
+		text-align:center;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: rgba(0,0,0,0.5);
+		display: none;
+		z-index: 9998;
+	}
+
+    .ui-droppable{
+        /* margin: -10px; */
+        /* padding: 10px;*/
+        /* background: #58a;
+        cursor: pointer;
+        font: bold 150%/1 sans-serif;
+        padding: .3em .5em;
+        color: white; */
+        
+    }
     
 
 </style>
 </head>
 <body>
-    <div id="loading">
-        <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-icon-loading" style="font-size: 70px; color: #0a6ae6e3;margin-top:350px;" data-id='{{id.id}}'></i>  
+    <!-- <div id="loading"> -->
+    <div class="runmc">
+        <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-icon-loading" style="font-size: 70px; color: #ffffff;margin-top:350px;"></i>  
     </div>
 
     <!-- <div class="Ambiguity d_0"> -->
+
+
+
+    <div class="Right_drawer">
+        <i id="Zoom_right" class="layui-icon layui-icon-shrink-right Right_drawer_img" style="font-size: 30px; color: #0a6ae6e3;"></i>
+        <div class="Right_drawer_d Ambiguity">
+            <div style="display:flex">
+                <div style="width:265px;">
+                    
+                    <i id='template' class="layui-icon layui-icon-template" style="font-size: 30px; color: #0a6ae6e3;"></i>
+
+                </div>
+                <div style="margin-left: 5px;float:right;">
+                    <i id="Add_Process" class="layui-icon layui-icon-add-1" style="font-size: 25px; color: #0a6ae6e3;cursor:pointer;"></i> 
+                </div>
+
+            </div>
+            <hr>
+            
+            <!-- overflow-x:hidden; -->
+            <div style="overflow-y:auto;height: 550px;" id="Processdiv">
+                {% for keys in data %}
+                    <div class="projectid_tab" data-projectid="{{keys.projectid}}">
+                        <div class="divfather">
+                            <i class="layui-icon layui-icon-subtraction" style="font-size: 25px; color: #0a6ae6e3;"></i>  
+                            <span>{{keys.projectname}}</span>
+                        </div>
+                        <div class="iconlist">
+                            <i id="Process_Add" data-ProjectId="{{keys.projectid}}" class="layui-icon layui-icon-add-1" style="font-size: 25px; color: #0a6ae6e3;"></i>  
+                            <i id="Project_Del" data-ProjectId="{{keys.projectid}}" class="layui-icon layui-icon-delete" style="font-size: 25px; color: #0a6ae6e3;"></i> 
+                            <i id="Project_Updata" data-ProjectId="{{keys.projectid}}" class="layui-icon layui-icon-edit" style="font-size: 25px; color: #0a6ae6e3;"></i>
+                            <!-- <i id="Project_Merge" data-ProjectId="{{keys.projectid}}" class="layui-icon layui-icon-404" style="font-size: 25px; color: #0a6ae6e3;"></i> -->
+                            <i id="Project_Run" data-ProjectId="{{keys.projectid}}" class="layui-icon layui-icon-play" style="font-size: 23px;color: #0a6ae6e3;"></i>  
+                            <i id="Project_Reset" data-ProjectId="{{keys.projectid}}" class="layui-icon layui-icon-refresh-1" style="font-size: 23px; color: #0a6ae6e3;"></i>
+                        </div>
+                    </div>
+                    <div class="divson">
+                        {% for wdict in keys.Workflow_list %}
+                            <!-- <div id="{{wdict.Scenesid}}" style="border-bottom: none;"> -->
+                            <div id="{{wdict.Scenesid}}"  style="border-bottom: 1px solid #e8e8e8;">
+                                <span>{{wdict.name}}</span>
+                                <div  style="display: none;">
+                                    <i id="Workflow_Del" class="layui-icon layui-icon-delete" style="font-size: 20px; color: #0a6ae6e3;"></i>
+                                    <i id="Workflow_Save" class="layui-icon layui-icon-ok" style="font-size: 20px; color: #0a6ae6e3;"></i>
+                                    <i id="Workflow_Updata" class="layui-icon layui-icon-edit" style="font-size: 20px; color: #0a6ae6e3;"></i>
+                                    <i id="Workflow_Run" class="layui-icon layui-icon-play" style="font-size: 20px;color: #0a6ae6e3;"></i>
+                                    <i id="Workflow_Reset" class="layui-icon layui-icon-refresh-1" style="font-size: 20px; color: #0a6ae6e3;"></i>
+                                    <i id="data_workflow" class="layui-icon layui-icon-form" style="font-size: 20px; color: #0a6ae6e3;"></i>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div> 
+                {% endfor %}
+
+            </div>
+        </div>
+    </div >
+
+    <div class="Below_drawer Ambiguity">
+        <!-- 下方抽屉 -->
+        <div class="Toolkit Ambiguity" >
+            <!-- 工具包菜菜单 -->
+            <div  style="border: none;">
+                <img style="margin-left:10px;width:20px;height:20px;" src="../static/img_server/上下.png">
+            </div>
+            <div>
+                <img src="../static/img_server/逻辑.png">
+            </div>
+
+            <div>
+                <img src="../static/img_server/软件运维服务.png">
+            </div>
+            <div>
+                <img src="../static/img_server/软件测试.png">
+            </div>
+
+            <div  style="border: none;position:absolute;margin-top:325px;">
+                <img style="margin-left:10px;width:20px;height:20px;transform: rotate(180deg)" src="../static/img_server/上下.png">
+            </div>
+            
+        </div>
+        
+        <div class="Below_drawer_d0">
+            <!-- 工具包展开按钮 -->
+            <img src="../static/img_server/zkt.png">
+        </div>
+        
+        <div class="Below_drawer_d1">
+            <!-- 工具栏 -->
+            <!-- <div ondragstart="dragStart(event)">
+                <img src="../static/img_server/UI自动化.png" data-name="UI">
+            </div> -->
+            <div ondragstart="dragStart(event)">
+                <img src="../static/img_server/API.png" data-name="API">
+            </div>
+            <div ondragstart="dragStart(event)">
+                <img src="../static/img_server/sql.png" data-name="sql">
+            </div>
+            <div ondragstart="dragStart(event)">
+                <img src="../static/img_server/元素定位.png" data-name="position">
+            </div>
+            <div ondragstart="dragStart(event)">
+                <img src="../static/img_server/python3.png" data-name="py3">
+            </div>
+            
+
+            
+
+        </div>
+        <div class="Below_drawer_d2">
+            <img class="Below_drawer_img" src="../static/img_server/zk.png">
+        </div>
+    </div>
+
+    
+    <!-- <li class="d_op"> -->
+        <!-- <i id='template' class="layui-icon layui-icon-template" style="font-size: 30px; color: #0a6ae6e3;"></i>   -->
+        <!-- <i id='data_workflow' class="layui-icon layui-icon-form" style="font-size: 30px; color: #0a6ae6e3;"></i> -->
+    <!-- </li> -->
+
     <div class="Ambiguity">
        <div class="d_0_1">
             <ul>
-<!-- 				<li>
-                    <img src="https://seopic.699pic.com/photo/40011/0709.jpg_wh1200.jpg">
-                </li> -->
                 <li>
-                    <div style="margin-top:-12px">
-                        <div style="float: left;margin-left:5px;">
-                            <i class="layui-icon layui-icon-edit" style="font-size: 20px; color: #0a6ae6e3;"></i>  
-                            <!-- <font class="Workflow_name">这里是工作流名称</font> -->
-                        </div>
-                        <div style="float: left;" id="myP" class="Workflow_name_input" contenteditable="false">工作流名称</div>
-                        
-
+                    <div style="margin-top:-12px;display: none;">
+                        <div style="float: left;" id="myP" class="Workflow_name_input WorkflowId"></div>
                     </div>
-                    <div style="margin-left:0px">
+                    <div style="margin-left:0px;display: none;">
                         <div style="float: left;margin-left:-18px;margin-top: -8px;">
                             <i class="layui-icon layui-icon-time" style="font-size: 18px; color: #0a6ae6e3;"></i>  
-                            <!-- <font class="Workflow_name">这里是工作流名称</font> -->
                         </div>
                         <div style="float: left;margin-left:9px;" >
                             <font id="add_time"></font>
@@ -841,46 +1115,23 @@
                     </div>
                 </li>
                 <li class="d_op">
-                    <i id='template' class="layui-icon layui-icon-template" style="font-size: 30px; color: #0a6ae6e3;"></i>  
-                    <i id='data_workflow' class="layui-icon layui-icon-form" style="font-size: 30px; color: #0a6ae6e3;"></i> 
-                    <a href="javascript:add_workfliow()" data-id="{{values.Workflow_id}}">
-                        <i class="layui-icon layui-icon-addition" style="font-size: 30px; color: #0a6ae6e3;"></i>  
-                    </a>
-                    
-                    <i id='save_workflow' class="layui-icon layui-icon-ok" style="font-size: 30px; color: #0a6ae6e3;"></i>  
-                    <i id='run_workflow' class="layui-icon layui-icon-play" style="font-size: 30px; color: #0a6ae6e3;" data-id='{{id.id}}'></i>  
-                    <i id="Reset" class="layui-icon layui-icon-refresh-1" style="font-size: 30px; color: #0a6ae6e3;"></i>  
+                    <!-- <i id='template' class="layui-icon layui-icon-template" style="font-size: 30px; color: #0a6ae6e3;"></i>   -->
+                    <!-- <i id='data_workflow' class="layui-icon layui-icon-form" style="font-size: 30px; color: #0a6ae6e3;"></i> -->
                 </li>
             </ul>
        </div>
-       <hr>
+       <!-- <hr> -->
        <div class="d_0_2">
            <div class="Workflow_canvas">
                 <div id="draggable_canvas" class="Workflow_canvas_Zoom"  ondrop="drop(event)" ondragover="allowDrop(event)">
-            <!-- 		<div class="ui Ambiguity">
-                        <div class="ui_d0">
-                            
-                        </div>
-                        <div class="ui_d1">
-                            <img src="../static/img_server/UI自动化.png">
-                        </div>
-                        <div class="ui_d2">
-                            点击登录
-                        </div>
-                    </div> -->
+
                 </div>
            </div>
            <!-- 画布界面 -->
-           
-
            <div class="popping-box-wrap">
                 <iframe  class="Ambiguity ifame_api" frameborder="no" border="0"   src='/url_000/'></iframe>
             </div>
-       
-       
        </div>
-       
-       
         <div class="Workflow_log">
             <!-- 工作流日志 -->
             <div class="Ambiguity">
@@ -896,148 +1147,76 @@
         <div class="template_tab" style="display:none;">
             <!-- 模板列表 -->
             <div class="Ambiguity">
-                <!-- <i id="log_Zoom" class="layui-icon layui-icon-screen-full" style="font-size: 30px; color: #0a6ae6e3;"></i>   -->
-                <!-- <hr> -->
-                <!-- <div style="display:none;" id="log_html"> -->
                 <div class="Node_template">
-<!--                     <div class="Drag_template">
-                        <img src="../static/img_server/UI自动化.png" data-name="UI">
-                        <font>123</font>
-                    </div>
-
-                    <div class="Drag_template">
-                        <img src="../static/img_server/UI自动化.png" data-name="UI">
-                        <font>123</font>
-                    </div> -->
-                    
                 </div>
 
-                <div class="Label">
-                    <div>
-                        <div>111</div>
+                <!-- <div class="Label">
+                    <div> -->
+
+                        <!-- <div>111</div>
                         <div>222</div>
                         
-                        <div>333</div>
-                    </div>
-                    <li class="add_Label">添加标签</li>
-                </div>
-
-            </div>
-        </div>
-
-       
-       
-       
-       
-       
-       
-        <div class="Right_drawer">
-        <!-- 右侧抽屉 -->
-            <img id="Zoom_right" class="Right_drawer_img" src="../static/img_server/zk_l.png">
-            <div class="Right_drawer_d Ambiguity">
-                <div>
-<!-- 				    <div class="search_d Ambiguity">
-                        <img src="../static/img_server/搜索.png">
-                        <div class="search" contenteditable >
-                        </div>
-                    </div> -->
-
-                </div>
-                
-                <div class="Process_list" id="Process_list">
-                {% for keys,values in json_data.workfliow.items %}
-                   <div class="Ambiguity" style="border-radius:8px;">
-                        <div>
-                            
-                            <i class="layui-icon layui-icon-rate-solid" style="font-size: 20px; color: #32CD32;"></i>  
-
-                        </div>
-                        <div class="Workflow_Switch" style="width:230px;cursor:pointer;" data-id="{{values.Workflow_id}}">
-                            <font>{{values.Workflow_name | truncatewords:14}}</font>
-                        </div>
-                        <div style="margin-top:0px;">
-                            <!-- <img style="width:20px;height:20px;" src="../static/img_server/删除.png"> -->
-
-                            <a href="javascript:del_workfliow('{{values.Workflow_id}}')" data-id="{{values.Workflow_id}}">
-                                <i class="layui-icon layui-icon-delete" style="font-size: 25px; color: #0a6ae6e3;"></i>  
-                            </a>
-                            
-                            
-                            
-                        </div>
-                   </div>
-                  {% endfor %}
-                   
-                </div>
-                
-                
-
-                
-                
-            
-            </div>
-    
-        </div >
-
-        <div class="Below_drawer Ambiguity">
-            <!-- 下方抽屉 -->
-            <div class="Toolkit Ambiguity" >
-                <!-- 工具包菜菜单 -->
-                <div  style="border: none;">
-                    <img style="margin-left:10px;width:20px;height:20px;" src="../static/img_server/上下.png">
-                </div>
-                <div>
-                    <img src="../static/img_server/逻辑.png">
-                </div>
-
-                <div>
-                    <img src="../static/img_server/软件运维服务.png">
-                </div>
-                <div>
-                    <img src="../static/img_server/软件测试.png">
-                </div>
-
-                <div  style="border: none;position:absolute;margin-top:325px;">
-                    <img style="margin-left:10px;width:20px;height:20px;transform: rotate(180deg)" src="../static/img_server/上下.png">
-                </div>
-                
-            </div>
-            
-            <div class="Below_drawer_d0">
-                <!-- 工具包展开按钮 -->
-                <img src="../static/img_server/zkt.png">
-            </div>
-            
-            <div class="Below_drawer_d1">
-                <!-- 工具栏 -->
-                <div ondragstart="dragStart(event)">
-                    <img src="../static/img_server/UI自动化.png" data-name="UI">
-                </div>
-                <div ondragstart="dragStart(event)">
-                    <img src="../static/img_server/API.png" data-name="API">
-                </div>
-                <div ondragstart="dragStart(event)">
-                    <img src="../static/img_server/sql.png" data-name="sql">
-                </div>
-                <div ondragstart="dragStart(event)">
-                    <img src="../static/img_server/元素定位.png" data-name="position">
-                </div>
-                
-            </div>
-            <div class="Below_drawer_d2">
-                <img class="Below_drawer_img" src="../static/img_server/zk.png">
+                        <div>333</div> -->
+                    <!-- </div> -->
+                    <!-- <li class="add_Label">添加标签</li> -->
+                <!-- </div> -->
             </div>
         </div>
     </div>
 
 
 
+    <div id="savatitle" style="display:none">
+        <form id="savatitleForm" class="layui-form" action="" style="padding:20px;" lay-filter="example">
+            <div style="display: flex;">
+                <div>
+                    <div id="xuanzhe" class="layui-form-item" style="display:none">
+                        <div class="layui-input-block" style="width:272px;margin-top: -9px;">
+                        <select id="xiala" name="optionProjectNameAdd" lay-filter="aihao">
+                         
+                        </select>
+                        </div>
+                    </div>
+                    <div id="shuru" class="layui-form-item">
+                        <div class="layui-input-block" style="width:272px">
+                            <input style="height: 40px;" type="text" name="ProjectNameAdd" lay-verify="title" autocomplete="off" placeholder="请输入测试套件名称" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div style="margin-left: 10px;" id="tabinput" class="layui-btn layui-btn-primary layui-border-blue">选择测试套件</div> 
+                </div>
+            </div>
+
+            <div class="layui-form-item" style="margin:0px;">
+                <div class="layui-input-block" style="width:404px">
+                    <input style="height: 40px;" type="text" name="WorkflowNameAdd" lay-verify="title" autocomplete="off" placeholder="请输入用例名称" class="layui-input">
+                </div>
+            </div>
+        </from>
+    </div>
+
+
+    <div id="nodecopy" style="display:none">
+        <!-- <form id="nodecopyForm" class="layui-form" action="" style="padding:20px;" lay-filter="example"> -->
+        <form id="nodecopyForm" class="layui-form" action="" style="padding:20px;" lay-filter="example">
+            <div class="layui-form-item" style="margin:0px;">
+                <div class="layui-input-block" style="width:404px">
+                    <input style="height: 40px;margin-top: 20px;" type="text" name="Tnode" lay-verify="title" autocomplete="off" placeholder="输入模版名称" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <!-- <label class="layui-form-label">单选框</label> -->
+                <div class="layui-input-block" style="display: flex;">
+                  <input style="width:20px;height: 20px;margin: 10px;" type="radio" name="Treegr" value="1" title="所有人可见" checked>
+                  <div><span>所有人可见</span></div>
+                  <input style="width:20px;height: 20px;margin: 10px;" type="radio" name="Treegr" value="3" title="自己可见">
+                  <div><span>自己可见</span></div>
+                </div>
+            </div>
+        </from>
+    </div>
 </body>
-
-
-
-
-
 
 <script src="../static/layui-v2.6.8/layui-v2.6.8/layui/layui.js" charset="utf-8"></script>
 <script src="../static/jquery/jquery-3.3.1.min.js" charset="utf-8"></script>
@@ -1045,2167 +1224,14 @@
 <script src="../static/jquery-ui-1.12.1.custom/jquery-ui-1.12.1.custom/jquery-ui.min.js" charset="utf-8"></script>
 <script src="https://cdn.bootcss.com/jsPlumb/1.7.6/jquery.jsPlumb.min.js"></script>
 <script src="../static/icon/font/iconfont.js"></script>
-<script src="../static/js/web_db.js"></script>
+<script src="../static/js/ui_000_interact.js" charset="utf-8"></script>
+<script src="../static/js/ui_000_log.js" charset="utf-8"></script>
+<script src="../static/js/ui_000_jsPlumb.js" charset="utf-8"></script>
 <script src="../static/jQuery-contextMenu-master/jQuery-contextMenu-master/dist/jquery.contextMenu.js"></script>
 <script src="../static/jQuery-contextMenu-master/jQuery-contextMenu-master/dist/jquery.ui.position.js"></script>
+<script src="../static/js/Effectiveness.js" charset="utf-8"></script>
 
-<script>
 
-
-
-
-var echo_html=[]
-var Upper_endpoint_id=""//上端的
-var Lower_endpoint_id=""//下端点
-
-var Label_relationship={}//标签关系
-
-
-localStorage.setItem('api_node','None');//新增的时候初始化缓存
-localStorage.setItem('Node_information','None');//新增的时候初始化缓存
-localStorage.setItem('if_node','None');//新增的时候初始化缓存
-localStorage.setItem('rpa_node','None');//新增的时候初始化缓存
-localStorage.setItem('sql_node','None');//新增的时候初始化缓存
-localStorage.setItem('merge_node','None');//新增的时候初始化缓存
-localStorage.setItem('condition','None');//新增的时候初始化缓存
-localStorage.setItem('connections','None');//新增的时候初始化缓存
-localStorage.setItem('Ginseng','None');//新增的时候初始化缓存
-localStorage.setItem('list_data','None');//新增的时候初始化缓存
-localStorage.setItem('Workflow_parameter','None');//新增的时候初始化缓存
-localStorage.setItem('jenkins','None');//新增的时候初始化缓存
-var jenkins_obj={{jenkins | safe}}['jenkins']
-
-console.log(typeof jenkins_obj,jenkins_obj,"echo_val[id]['jenkins']",{{jenkins | safe}})
-
-if (jenkins_obj != 'None'){//不为有数据的时候添加
-    if (typeof jenkins_obj == "object" ){
-        localStorage.setItem('jenkins',JSON.stringify(jenkins_obj));
-    }else{
-        localStorage.setItem('jenkins',jenkins_obj);
-    }
-}
-
-console.log({{id | safe}}.id,'抄一份')
-
-//if ({{id | safe}}.id != 'None'){//回显
-if ({{id | safe}}.id != 'None' && {{status | safe}}.status != 'New_workflow'){//回显
-    var echo_val = {{echo_val | safe }}
-    var id = {{id | safe}}.id
-    var Workflwow_data=JSON.parse(echo_val[id]['Workflwow_obj'])[id]
-    $("#myP").text(echo_val[id]['Workflow_name'])//工作流名称回显
-    $("#add_time").text(echo_val[id]['Date'])//创建时间回显
-    
-    /*
-    var jenkins_obj={{jenkins | safe}}['jenkins']
-    
-    console.log(typeof jenkins_obj,jenkins_obj,"echo_val[id]['jenkins']",{{jenkins | safe}})
-
-    if (jenkins_obj != 'None'){//不为有数据的时候添加
-        localStorage.setItem('jenkins',jenkins_obj);
-    }
-    */
-    
-    
-    //var jenkins=JSON.parse(echo_val[id]['jenkins'])//jenkins接入时数据
-    //console.log({{json_data | safe }},'json_datajson_datajson_datajson_datajson_data')
-    localStorage.setItem('api_node',Workflwow_data['api_node']);//编辑的时候添加换成
-    localStorage.setItem('Node_information',Workflwow_data['Node_information']);//编辑的时候添加换成
-    localStorage.setItem('if_node',Workflwow_data['if_node']);//编辑的时候添加换成
-    localStorage.setItem('rpa_node',Workflwow_data['rpa_node']);//编辑的时候添加换成
-    localStorage.setItem('sql_node',Workflwow_data['sql_node']);//编辑的时候添加换成
-    localStorage.setItem('merge_node',Workflwow_data['merge_node']);//编辑的时候添加换成
-    localStorage.setItem('condition',Workflwow_data['condition']);//编辑的时候添加换成
-    localStorage.setItem('connections',Workflwow_data['connections']);//编辑的时候添加换成
-    localStorage.setItem('Ginseng',Workflwow_data['Ginseng']);//编辑的时候添加换成
-    localStorage.setItem('list_data',Workflwow_data['list_data']);//编辑的时候添加换成
-    localStorage.setItem('Workflow_parameter',Workflwow_data['Workflow_parameter']);//编辑的时候添加换成
-    //localStorage.setItem('jenkins',JSON.parse(echo_val[id]['jenkins']));//编辑的时候添加换成
-
-    var connections = JSON.parse(Workflwow_data['connections'])//只有一个节点的时候可能这里会是空的
-    var condition_list=[]
-    if (Workflwow_data['condition'] != 'None'){
-        var condition = JSON.parse(Workflwow_data['condition'])//没有条件的时候可能会是空的
-        for ( var c_key in condition){
-            condition_list.push(c_key.slice(-6))
-        }
-    }
-    
-    console.log(JSON.stringify(Workflwow_data['echo_html']),'如何记录位置呢,按连线数据去记录位置')
-    
-    
-    for (var echo in Workflwow_data['echo_html']){
-        var echo_values = Workflwow_data['echo_html'][echo]
-        console.log(
-            echo_values['img_status'],
-            echo_values['data'],
-            echo_values['img_name'],
-            echo_values['x'],
-            echo_values['y'],
-            echo_values['node_id']
-            ,'这种都是小的'
-        )
-        
-        
-        add_node_html(
-            echo_values['img_status'],
-            echo_values['data'],
-            echo_values['img_name'],
-            echo_values['x'],
-            echo_values['y'],
-            echo_values['node_id']
-        )
-        
-        
-        echo_html.push(//编辑时位置会有问题
-            {
-                'img_status':echo_values['img_status'],
-                'data':echo_values['data'],
-                'img_name':echo_values['img_name'],
-                'x':echo_values['x'],
-                'y':echo_values['y'],
-                'node_id':echo_values['node_id']
-            }
-        )
-        
-    }
-    
-    
-    jsPlumb.ready(function () {
-        console.log(connections,'connections',JSON.stringify(connections) == '{}')
-        
-        for (var len in connections){
-            console.log(Workflwow_data['echo_html'],'夜落')
-              //jsPlumb.setContainer('draggable_canvas')
-             // var u_current = connections[len]['current']
-             // var u_Rear = connections[len]['Rear']
-                var common = {
-                  isSource: true,
-                  isTarget: true,
-                  connector: ['Straight'],
-                  endpoint: ["Dot", { radius:5 }],//端点形状
-                  paintStyle:{ width:15, height:15, fillStyle:'#b3b3b3' },//端点样式
-                  connectorStyle : { strokeStyle:"#b3b3b3"},//连线样式
-                }//端点连线样式
-
-                console.log(common,'能否追加')
-
-
-                var Connect = {
-                      anchor: 'Bottom',
-                      connectorOverlays:[
-                          [ "Arrow", { width:8, length:20, location:1, id:"arrow" } ],
-                      ],
-                }
-
-
-
-
-
-              var u_Rear = connections[len]['current']
-              var u_current = connections[len]['Rear']
-              
-              for (var echo_html_len in Workflwow_data['echo_html']){
-                  if (Workflwow_data['echo_html'][echo_html_len]['node_id']==u_Rear){
-                     var u_Rear_name=Workflwow_data['echo_html'][echo_html_len]['img_name']
-                  }
-
-                  if (Workflwow_data['echo_html'][echo_html_len]['node_id']==u_current){
-                     var u_current_name=Workflwow_data['echo_html'][echo_html_len]['img_name']
-                  }
-              }
-                    
-                    
-                    
-              if ($(".ui").length==1 && len==0 && $(".logic_css").length==null){//流程节点只有一位时只添加下面的节点
-                 Lower_endpoint(u_Rear,Connect,common)
-                 jsPlumb.draggable(u_Rear)//可移动节点
-                 return
-              }
-              
-              
-              if (u_current_name=='merge'){
-                  //聚合节点,是上端点的时候追加属性可以连多条线
-                   common['maxConnections']=-1
-                   Connect['anchor']='Top'
-                   Connect['uuid']=u_current
-                   Upper_endpoint(u_current,Connect,common)//上 u_current
-                   delete common['maxConnections']
-              }else{
-                   Connect['anchor']='Top'
-                   Connect['uuid']=u_current
-                   Upper_endpoint(u_current,Connect,common)
-              }
-
-
-              if (u_Rear_name=='separate'){
-                  //分支节点,是下端点的时候追加属性可以拉多条线
-                   console.log(u_current_name,u_current,'分支节点应该只有两个')
-                   common['maxConnections']=-1
-                   Connect['anchor']='Bottom'
-                   Connect['connectorOverlays']=[
-                       [ "Label", { label:'<a class="criteria" style="cursor:pointer;" herf="http://www.baidu.com"><img style="width:20px;height:20px;" src="../static/img_server/点击.png"></a>', id:"label" } ],
-                       [ "Arrow", { width:8, length:20, location:1, id:"arrow" } ],
-                   ]
-
-                   console.log(Connect,'分支节点调这个')
-                   Connect['uuid']=u_Rear
-                   Lower_endpoint(u_Rear,Connect,common)//下 u_Rear
-                   delete common['maxConnections']
-              }else{
-
-                   Connect['uuid']=u_Rear
-                   Connect['anchor']='Bottom'
-                   Lower_endpoint(u_Rear,Connect,common)
-              }
-
-              
-              jsPlumb.draggable(u_current)//可移动节点
-              jsPlumb.draggable(u_Rear)//可移动节点
-
-              //jsPlumb.connect({ uuids: [u_current, u_Rear] })
-              jsPlumb.connect({ uuids: [u_Rear, u_current] })
-
-
-            
-        }
-    })//添加端点
-}
-
-
-
-
-
-var Toolbar_data={//工具栏数据结构
-    "code":200,
-    "msg":"返回成功",
-    "data":[
-        {
-            "name":"software_test",
-            "img_url":"../static/img_server/软件测试.png",
-            "data":[
-                //{"img_url":"../static/img_server/UI自动化.png","name":"UI"},
-                {"img_url":"{% static 'img_server/UI自动化.png' %}","name":"UI"},
-                {"img_url":"../static/img_server/API.png","name":"API"},
-                {"img_url":"../static/img_server/sql.png","name":"sql"},
-                {"img_url":"../static/img_server/元素定位.png","name":"position"},
-            ],
-        },
-        {
-        
-            "name":"logic",//分支 聚合 开始循环 结束循环
-            "img_url":"../static/img_server/逻辑.png",
-            "data":[
-                {"img_url":"../static/img_server/分.png","name":"separate"},
-                {"img_url":"../static/img_server/合.png","name":"merge"},
-                //{"img_url":"../static/img_server/循环开始.png","name":"Start_loop"},
-                //{"img_url":"../static/img_server/循环结束.png","name":"stop_loop"},
-                //{"img_url":"../static/img_server/退出循环.png","name":"break_loop"},
-            ],
-        
-        }
-        
-    ]
-}
-
-
-
-
-//工具包填充数据
-var str_Toolkit=""
-str_Toolkit+='	<div style="border: none;">'
-str_Toolkit+='		<img style="margin-left:10px;width:20px;height:20px;" src="../static/img_server/上下.png">'
-str_Toolkit+='	</div>'
-
-
-for(const Toolbar_set of Toolbar_data['data']){
-    str_Toolkit+='	<div>'
-    str_Toolkit+='		<img class="Toolkit_img" src="'+ Toolbar_set['img_url'] +'" data-name="'+ Toolbar_set['name'] +'">'
-    str_Toolkit+='	</div>'
-}
-
-
-str_Toolkit+='	<div style="border: none;position:absolute;margin-top:325px;">'
-str_Toolkit+='		<img style="margin-left:10px;width:20px;height:20px;transform: rotate(180deg)" src="../static/img_server/上下.png">'
-str_Toolkit+='	</div>'
-                
-$(".Toolkit").html(str_Toolkit)
-
-
-
-//工具栏遍历
-$(".Toolkit_img").click(function(){
-    var str_toolbar=""
-    for(const Toolbar_set of Toolbar_data['data']){
-        if(Toolbar_set['name']==$(this).data('name')){
-            for(const toolbar of Toolbar_set['data']){
-                str_toolbar+='	<div ondragstart="dragStart(event)">'
-                str_toolbar+='		<img src="'+ toolbar['img_url'] +'" data-name="'+ toolbar['name'] +'">'
-                str_toolbar+='	</div>'
-                $(".Below_drawer_d1").html(str_toolbar)
-            }
-        }
-    }
-})
-
-
-
-
-
-//右侧缩放
-function Zoom_z(val1,val2){
-    //向右
-    var margin =parseInt(val1.css('marginLeft'))
-    var margin2 =parseInt(val2.css('right'))
-    
-    console.log(margin,'evevevevevev',margin2);
-    if (margin<331){
-        val1.css("marginLeft",margin+4);
-        val2.css({right: margin2-4});  
-        return 1
-    }else{
-        return 0
-    }
-}
-
-
-
-function Zoom_y(val1,val2){
-    //向左
-    var margin =parseInt(val1.css('marginLeft'))
-    var margin2 =parseInt(val2.css('right'))
-    console.log(margin,'evevevevevev',margin2);
-    if (margin>0){
-        val1.css("marginLeft",margin-4);
-        val2.css({right: margin2+4});  
-        return 1
-    }else{
-        return 0
-    }
-} 
-
-$("#Zoom_right").click(function(){
-    var val1=$(this).next()
-    var val2=$(this)
-    
-    $('.Right_drawer_d').toggle();
-    
-    var margin =parseInt(val1.css('marginLeft'))
-    if (margin<331){
-        var ref_z = setInterval(function(){
-            var status = Zoom_z(val1,val2);
-            if (status==0){
-                clearInterval(ref_z);
-            }
-        },2);
-        $(".Right_drawer").css({"width":"0px","height":"0px"})
-    }else{
-
-        var ref_y = setInterval(function(){
-            var status = Zoom_y(val1,val2);
-            if (status==0){
-                clearInterval(ref_y);
-            }
-        },2);
-        $(".Right_drawer").css({"width":"300px","height":"500px"})
-    }
-    
-})
-
-
-
-
-
-$(".Below_drawer_d2").click(function(){
-    //缩放菜单栏
-    $(".Below_drawer_d1").toggle();
-    if($(this).parent().width()==95){
-        $(this).parent().width("76%")
-        $(".Below_drawer_img").css({"transform": "rotate(180deg)"})
-        
-    }else{
-        $(this).parent().width(95);
-        $(".Below_drawer_img").css({"transform": "rotate(0deg)"})
-    }
-})
-
-
-$(".Below_drawer_d0").click(function(){
-    //缩放工具包
-    $(".Toolkit").toggle();
-})
-
-
-
-$( "#draggable_canvas" ).draggable();//画布可拖动
-
-
-$( "#myP" ).click(function(e){//点击时可编辑
-    var x = document.getElementById("myP");
-    x.contentEditable = "true";
-    $("#myP").focus();
-})
-            
-$("#myP").focus(function(){//聚焦改变颜色
-    var x = document.getElementById("myP");
-    x.style.color='#000000'
-});
-            
-$( "#myP" ).blur(function(){//失去改变颜色不可编辑
-    var x = document.getElementById("myP");
-    x.contentEditable = "false";
-    x.style.color='#7d7d7d'
-});
-        
-
-
-//----------------------------------------------------------------------------------------编辑id写道缓存了
-$("body").on("dblclick", 'div[data-name="API"][class^="ui"]', function(e) {
-    //编辑api节点
-
-
-    $(".popping-box-wrap").children("iframe").attr("src","/url_000/"); 
-    $(".popping-box-wrap").show(500);
-    localStorage.setItem('edit_id',e.currentTarget.id);
-    
-});
-
-
-$("body").on("dblclick", 'div[data-name="separate"][class^="logic_css"]', function(e) {
-    //编辑分支节点
-
-    
-    $(".popping-box-wrap").children("iframe").attr("src","/if_000/"); 
-    $(".popping-box-wrap").show(500);
-    localStorage.setItem('edit_id',e.currentTarget.id);
-    
-});
-
-
-$("body").on("dblclick", 'div[data-name="merge"][class^="logic_css"]', function(e) {
-    //编辑合并节点
-    var list_sourceId=[]
-    var connections = jsPlumb.getAllConnections();
-    for(var i in connections){
-        if(connections[i].targetId==e.currentTarget.id){
-            list_sourceId.push(connections[i].sourceId)
-        }
-    }
-
-
-    
-    $(".popping-box-wrap").children("iframe").attr("src","/merge_000/");
-    $(".popping-box-wrap").show(500);
-    localStorage.setItem('edit_id',e.currentTarget.id);
-    localStorage.setItem('list_sourceId',JSON.stringify({"list_sourceId":list_sourceId}));
-
-});
-
-$("body").on("dblclick", 'div[data-name="UI"][class^="ui"]', function(e) {
-    //rpa节点
-
-    $(".popping-box-wrap").children("iframe").attr("src","/rpa_000/"); 
-    $(".popping-box-wrap").show(500);
-    localStorage.setItem('edit_id',e.currentTarget.id);
-
-});
-
-
-$("body").on("dblclick", 'div[data-name="position"][class^="ui"]', function(e) {
-    //元素定位节点
-    $(".popping-box-wrap").children("iframe").attr("src","/position_000/"); 
-    $(".popping-box-wrap").show(500);
-    localStorage.setItem('edit_id',e.currentTarget.id);
-    
-    
-    var WORK_ID=$("#run_workflow").data('id')
-    console.log(WORK_ID,'绝招')
-
-
-    $.get("/Node_status/?id="+WORK_ID, function(result){
-        console.log(result,'激动人心的雄文')
-        var val=result.data
-        if(! val){
-            return
-        }
-        //console.log(val[e.currentTarget.id],'拿了做判断')
-        localStorage.setItem('Return_parameter',JSON.stringify(val[e.currentTarget.id]));
-    })
-    
-    
-    
-    
-    
-    
-
-});
-
-
-$("body").on("dblclick", 'div[data-name="sql"][class^="ui"]', function(e) {
-    //mysql节点
-
-    $(".popping-box-wrap").children("iframe").attr("src","/mysql_000/"); 
-    $(".popping-box-wrap").show(500);
-    localStorage.setItem('edit_id',e.currentTarget.id);
-
-});
-
-
-$("body").on("dblclick", 'a[class="criteria"]', function(e) {
-    //编辑选择判断条件
-    console.log('双击',e.currentTarget.id)
-    if (!e.currentTarget.id){
-        $(this).attr('id', Math.random().toString(36).slice(-6));
-    }
-
-    $(".popping-box-wrap").children("iframe").attr("src","/condition_000/");
-    $(".popping-box-wrap").show(500);
-    localStorage.setItem('edit_id',Upper_endpoint_id+"__"+Lower_endpoint_id);
-
-});
-
-
-$("#data_workflow").click(function(){
-    //打开参数界面渲染参数输入框
-
-    $(".popping-box-wrap").children("iframe").attr("src","/data_000/");
-    $(".popping-box-wrap").show(500);
-})
-
-
-$("body").on("dblclick", 'div[data-name="Start_loop"][class^="logic_css"]', function(e) {
-    //编辑循环开始节点
-    console.log('双击',e.currentTarget.id)
-    var edit_id = e.currentTarget.id
-    var str_html=''
-    str_html+='	    <div class="Pop_ups Ambiguity" >'
-    str_html+='	        <li style="height:0.5px">'
-    str_html+='	        </li>'
-    str_html+='	        <div>'
-    str_html+='	        </div>'
-    str_html+='	        <font>循环次数:</font>'
-    str_html+='	        <input id="number" type="number">'
-    str_html+='	    </div>'
-    
-    $("#"+edit_id).append(str_html)
-    
-    $("body").on("blur", "#number", function() {
-        //数字输入框失去焦点时保存数据
-        $("#number").val()
-        console.log($("#number").val(),'双击',e.currentTarget.id)
-    });
-
-        
-        
-})
-
-
-$(document).mouseup(function(e){//空白处点击关闭弹窗
-    var _con = $(".Pop_ups");   // 设置目标区域
-    if(!_con.is(e.target) && _con.has(e.target).length === 0){ // Mark 1
-        $(".Pop_ups").remove();  // 功能代码
-    }
-});
-
-
-
-$("#log_Zoom").click(function(){
-    //缩放日志
-    console.log($(this).parent("div").eq(0).width(),'接班人')
-    if ($(this).parent("div").eq(0).width()=="800"){
-        $(this).attr("class","layui-icon layui-icon-screen-full")
-        $(this).css({"margin-left":"0px"})
-        $(this).siblings("div").hide();
-        $(this).siblings("hr").hide();
-        $(this).parent("div").eq(0).css({"width":"34px","height":"37px"})
-        $(".Workflow_log").css({"width":"34px","height":"37px"})
-    }else{
-        $(this).css({"margin-left":"765px"})
-        $(this).siblings("div").show();
-        $(this).siblings("hr").show();
-        $(this).parent("div").eq(0).css({"width":"800px","height":"632px"})
-        $(".Workflow_log").css({"width":"800px","height":"632px"})
-        $(this).attr("class","layui-icon layui-icon-screen-restore")
-    }
-});
-
-
-
-var w_s = $(".Workflow_Switch")
-for (var S_len=0;S_len<w_s.length;S_len++){
-    if (w_s.eq(S_len).data('id')=={{id | safe}}.id){
-        w_s.eq(S_len).parent('div').eq(0).css({
-            "border": "2px solid #0a6ae6e3",
-            "width": "292px",
-            "line-height": "21px"
-        })
-        
-        $.get("/Node_status/?id="+w_s.eq(S_len).data('id'), function(result){//工作流状态回显及日志回显
-            console.log(result,'激动人心的雄文')
-            var val=result.data
-            console.log(val,'拿了做判断',result.id)
-            
-            for (var r_id in result.id){
-                for (var r_node in result.id[r_id]){
-                    if (result.id[r_id][r_node]['status']=='error'){
-                        $(".Workflow_Switch[data-id='"+r_id+"']").prev().children('i').eq(0).css({'color': '#cd326b'})
-                        break
-                    }else if(result.id[r_id][r_node]['status']=='Success'){
-                        $(".Workflow_Switch[data-id='"+r_id+"']").prev().children('i').eq(0).css({'color': '#0a6ae6e3'})
-                    }
-                
-                }
-            }
-            
-            if(! val){
-                return
-            }
-            
-            var str_html=''
-            for (var key in val){
-                if(val[key]['status']=='Success'){
-                    $("#"+key).children('div').eq(0).css({'background-color': '#0a6ae6e3'})
-
-                }else if(val[key]['status']=='error'){
-                    $("#"+key).children('div').eq(0).css({'background-color': '#cd326b'})
-                    
-                    
-                    
-                }else{
-                    $("#"+key).children('div').eq(0).css({'background-color': '#32CD32'})
-                }
-                
-                str_html+='	<ul class="layui-timeline">'
-                str_html+='		  <li class="layui-timeline-item">'
-                str_html+='			<i class="layui-icon layui-timeline-axis"></i>'
-                str_html+='			<div class="layui-timeline-content layui-text">'
-                str_html+='			  <h3 class="layui-timeline-title">'+val[key]['Workflow_name']+'</h3>'
-                str_html+='			  <p>'
-                if (typeof val=="object"){
-                    str_html+=                JSON.stringify(val[key]["Return_parameter"])
-                }else{
-                    str_html+=                val[key]["Return_parameter"]
-                }
-                str_html+='			  </p>'
-                str_html+='			</div>'
-                str_html+='		  </li>'
-                str_html+=' </ul>'
-                
-                $("#log_html").html(str_html)
-            }
-        });
-    }
-
-}
-
-
-
-$(".Workflow_Switch").click(function(){
-    //切换工作流
-    console.log($(this).data("id"),'这个是工作流id')
-
-    
-    window.location = '/ui_000/?id='+$(this).data("id")
-
-    
-
-
-
-
-    /*
-    $.ajax({
-       url:"/ui_000/",
-       type:"GET",                    
-       data:{
-           'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),		   
-           'id':$(this).data("id")
-       },
-       success:function (data) {
-            console.log("成功",data);	
-       },
-       error:function (data) {
-            //clearInterval(myVar)
-            console.log("失败",data);
-        }	   
-    })
-    */
-
-});
-
-var id_status = {{status | safe}}.status
-console.log(id_status,'id_statusid_statusid_status')
-if ($(".Workflow_Switch").length>0 && $(".ui").length == 0 && id_status != "New_workflow"){//第一次进来的时候加载列表第一个工作流
-//if ($(".Workflow_Switch").length>0 && $(".ui").length == 0){//第一次进来的时候加载列表第一个工作流
-    $(".Workflow_Switch").eq(0).click()
-}
-
-
-function updata_node_data(node_data,type,id){
-    //删除后调这个更新节点数据
-    if(node_data != 'None'){
-        node_data = JSON.parse(node_data)
-        delete node_data[id]
-        localStorage.removeItem(type);
-        localStorage.setItem(type,JSON.stringify(node_data));
-        console.log(echo_html,'echo_htmlecho_htmlecho_html')
-
-        for (var l in echo_html){
-            if (echo_html[l]['node_id'] == id){
-                //delete echo_html[l]
-                echo_html.splice(l, 1);
-
-            }
-        
-        }
-        console.log(id,'id')
-        for (var d in condition_list){
-            if (condition_list[d]==id){
-                delete condition_list[d];
-            }
-        }
-        //condition_list.remove(id)
-        console.log(echo_html,'-----------------------echo_html',connections,'condition',condition,'condition_list',condition_list)
-    }
-}
-
-
-function add_workfliow(){
-    window.location = '/ui_000/?status=New_workflow'
-    //window.location = '/ui_000/'
-}
-
-
-
-function del_workfliow(e){
-    $.ajax({
-       url:"/Workflow_del/",
-       type:"GET",         
-       data:{
-           'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),		   
-           'id':e,
-       },
-       success:function (data) {
-            console.log(data,'ddddddddddddddddddddddddddddddddddddd')
-            if(data.code==301){
-                layer.msg(data.msg);
-            }else if(data.code==200){
-                layer.msg(data.msg);
-                window.location = '/ui_000/'
-            }else if(data.code==500){
-                layer.msg(data.msg);
-            }
-       },
-       error:function (data) {
-            layer.msg("失败",data);
-       }	   
-    })
-}
-
-
-layui.use(['form', 'layedit', 'laydate', 'flow' ,'dropdown'], function(){
-    var form = layui.form
-    ,layer = layui.layer
-    ,layedit = layui.layedit
-    ,laydate = layui.laydate
-    ,dropdown = layui.dropdown
-
-//.intro,.demo,.end  ui
-
-
-
-
-  $(function() {
-     //节点操作删除/断开
-     $.contextMenu({
-         selector: ".ui,.logic_css",
-         callback: function(key, options) {
-             var id = $(this).attr('id')
-             var name = $(this).data('name')
-             console.log("点击了：" + key,id,name);
-             console.log("几百个",options);
-             if(key=='cut'){
-                //断开连线
-                var connections = jsPlumb.getAllConnections();
-                for (var i in connections){
-                    connections[i].sourceId;
-                    connections[i].targetId;
-                    if (connections[i].sourceId===id){                            
-                        var conn = jsPlumb.getConnections({
-                            //only one of source and target is needed, better if both setted
-                            source: connections[i].sourceId,
-                            target: connections[i].targetId
-                        });
-                        if (conn[0]) {
-                          jsPlumb.detach(conn[0]);
-                        }                            
-                    }
-                }
-                
-                
-                
-             }else if(key=="copy"){
-                //Below_drawer_d1 
-                console.log($("#"+id).data("name"),'吹牛嘛')
-                console.log($("#"+id).children('div').eq(1).children('img').eq(0).attr("src"),'得住你')
-                console.log(options,'村长小舅子')
-                var node_id = Math.random().toString(36).slice(-6)//生成id
-                layer.prompt({title: '输入模板名', formType: 3}, function(c_name, index){
-                    layer.msg(c_name)
-                    //id
-                    //name
-
-                    var val="None"
-                    if (name==="API"){
-                        var api_node=localStorage.getItem('api_node')
-                        console.log(JSON.parse(api_node),'api_nodeapi_nodeapi_node',id)
-
-                        val = {
-                            'name':c_name,
-                            'data':JSON.parse(api_node)[id],
-                            'node_id':node_id,
-                            'img_status':$("#"+id).data("name"),
-                            'url':$("#"+id).children('div').eq(1).children('img').eq(0).attr("src"),
-                            'img_name':$("#"+id).data("name"),
-                        }
-
-                    }else if(name==="sql"){
-                        var sql_node = localStorage.getItem('sql_node')
-                        
-                        val = {
-                            'name':c_name,
-                            'data':JSON.parse(sql_node)[id],
-                            'node_id':node_id,
-                            'img_status':$("#"+id).data("name"),
-                            'url':$("#"+id).children('div').eq(1).children('img').eq(0).attr("src"),
-                            'img_name':$("#"+id).data("name"),
-                        }
-
-                    }else if(name==="UI"){
-                        var rpa_node = localStorage.getItem('rpa_node')
-                        
-                        val = {
-                            'name':c_name,
-                            'data':JSON.parse(rpa_node)[id],
-                            'node_id':node_id,
-                            'img_status':$("#"+id).data("name"),
-                            'url':$("#"+id).children('div').eq(1).children('img').eq(0).attr("src"),
-                            'img_name':$("#"+id).data("name"),
-                        }
-
-                    }else if(name==="position"){
-                        var position_node = localStorage.getItem('Node_information')
-                        console.log(position_node,'复制成模板')
-                        
-                        //9jr9ai_Sort
-                        //9jr9ai_Workflow_name
-                        
-                        val = {
-                            'name':c_name,
-                            'data':JSON.parse(position_node)[id],
-                            'node_id':node_id,
-                            'img_status':$("#"+id).data("name"),
-                            'url':$("#"+id).children('div').eq(1).children('img').eq(0).attr("src"),
-                            'img_name':$("#"+id).data("name"),
-                            'Sort':JSON.parse(position_node)[id+'_Sort'],
-                            'Workflow_name':JSON.parse(position_node)[id+'_Workflow_name'],
-                        }
-                    }
-                    
-                    
-                    console.log(val,'做事了')
-                    
-                    if (val!="None"){
-                        $.ajax({
-                           url:"/New_template/",
-                           type:"POST",
-                           data:{
-                               'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
-                               'data':JSON.stringify(val),
-                           },
-                           success:function (data) {
-                               layer.msg("成功",data);
-                               //这里要触发列表重载
-                                   $.ajax({
-                                       url:"/select_template/",
-                                       type:"GET",
-                                       data:{
-                                           'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
-                                       },
-                                       success:function (data) {
-                                            console.log("使用的时候",data);
-                                            //这里要触发列表重载
-                                            var html_str=""
-                                            for (var keys in data.data){
-                                                var url = data.data[keys]['url']
-                                                var img_status = data.data[keys]['img_status']
-                                                var name = data.data[keys]['name']
-                                            
-                                                console.log(keys)
-                                                html_str+='    <div style="display:flex;" class="Drag_template" ondragstart="dragStart(event)">'
-                                                html_str+='            <img src="'+url+'" data-name="'+img_status+'" data-id="'+keys+'">'
-                                                html_str+='            <div style="width:120px;margin-left:8px;">'+name+'</div>'
-                                                html_str+='            <font style="margin-right:10px; class="del_template">x</font>'
-                                                html_str+='    </div>'
-                                            }
-                                            $(".Node_template").html(html_str)
-                                       },
-                                       error:function (data) {
-                                           layer.msg("失败",data);
-                                       }
-                                    });
-                           },
-                           error:function (data) {
-                               layer.msg("失败",data);
-                           }
-                        });
-                    }else{
-                        layer.msg("未知的节点类型");
-                    }
-
-                    
-                    layer.close(index);
-                });
-             
-             
-             }else if(key=="delete"){
-                //删除节点
-                jsPlumb.remove(id)
-
-                if (name==="API"){
-                    var api_node=localStorage.getItem('api_node')
-                    console.log(api_node,'api_nodeapi_nodeapi_node')
-                    updata_node_data(api_node,'api_node',id)
-                }else if(name==="sql"){
-                    var sql_node = localStorage.getItem('sql_node')
-                    updata_node_data(sql_node,'sql_node',id)
-
-                }else if(name==="UI"){
-                    var rpa_node = localStorage.getItem('rpa_node')
-                    updata_node_data(rpa_node,'rpa_node',id)
-
-                }else if(name==="separate"){
-                    var if_node = localStorage.getItem('if_node')
-                    updata_node_data(if_node,'if_node',id)
-
-                }else if(name==="merge"){
-                    var merge_node = localStorage.getItem('merge_node')
-                    updata_node_data(merge_node,'merge_node',id)
-
-                }else if(name==="position"){
-                    var position_node = localStorage.getItem('Node_information')
-                    updata_node_data(position_node,'position_node',id)
-                }
-                
-             }
-         },
-         items: {
-             "copy": {name: "设为模板", icon: "copy"},
-             "cut": {name: "断开连线", icon: "cut"},
-             "delete": {name: "删除节点", icon: "delete"},
-             "sep1": "---------",
-             "quit": {name: "退出", icon: function(){
-                 return 'context-menu-icon context-menu-icon-quit';
-             }}
-         }
-     });
-  });
-
-
-
-/*
-$('#down').mousedown(function(e){
-    if(3 == e.which){
-        alert('这是右键单击事件');
-    }
-})
-*/
-
-
-
-    //$("body").on("hover", '.Node_template', function() {
-    $(".Node_template").hover(function() {
-        //console.log($('.Label').children('div').children('div').html())
-        var dict={}
-        $(".Drag_template").mousedown(function(e) {
-            //右键为3
-            
-            if (3 == e.which) {
-                console.log($(this).children('div').html(),'明天')
-                Label_relationship_name = $(this).children('div').html()
-                
-                console.log($('.Label>div>div'))
-                for (var i=0;i<$('.Label>div>div').length;i++){
-                    console.log($('.Label>div>div').eq(i).html())
-                    var val=$('.Label>div>div').eq(i).html()
-                    var status=false
-                    console.log(Label_relationship,'11111111111111',Label_relationship_name)
-                    console.log(Label_relationship.hasOwnProperty(Label_relationship_name),'2222222222222')
-                    if(Label_relationship.hasOwnProperty(Label_relationship_name)){
-                        console.log(Label_relationship[Label_relationship_name],'3333333',val)
-                        if (Label_relationship[Label_relationship_name].hasOwnProperty(val)){
-                            if (Label_relationship[Label_relationship_name][val]){
-                                status=true
-                            }
-                        }
-                    }
-                    console.log(status,'状态')
-                    
-                    dict[val]={
-                        name: val,
-                        type: 'checkbox',
-                        selected: status
-                    }
-                }
-                
-                
-/*
-{
-    "111": {
-        "name": "111",
-        "type": "checkbox",
-        "selected": true
-    },
-    "222": {
-        "name": "222",
-        "type": "checkbox",
-        "selected": false
-    },
-    "333": {
-        "name": "333",
-        "type": "checkbox",
-        "selected": false
-    }
-}
-*/
-                
-                
-                console.log(dict,'咿呀500了')
-                $.contextMenu({
-                    selector: '.Drag_template',
-                    items: dict,
-                    events: {
-                        show: function(opt) {
-                            console.log("菜单打开了。");
-                              
-                        },
-                        hide: function(opt) {
-                            //将输入控件当前值保存到data属性中
-                            //保存形式为：{name: "foo", yesno: true, radio: "3"}
-                            this.data("inputData", $.contextMenu.getInputValues(opt));
-                            console.log(this.data("inputData", $.contextMenu.getInputValues(opt)).children('div').html())
-                            var template_key = this.data("inputData", $.contextMenu.getInputValues(opt)).children('div').html()
-                            var template_value = this.data("inputData")
-                            
-                            Label_relationship[template_key] = template_value
-                            
-                            console.log(Label_relationship,'你妈嗨');
-                            
-                            //这里直接提交到后台
-                            //{}
-                            //template_key=template_value
-                            
-                        }
-                    }
-                });
-                
-                
-                
-            }
-        })
-        
-
-        
-        console.log(dict,'dict')
-        /*
-        $.contextMenu({
-            selector: '.Drag_template',
-            items: dict,
-            events: {
-                show: function(opt) {
-                    console.log("菜单打开了。");
-                      
-                },
-                hide: function(opt) {
-                    //将输入控件当前值保存到data属性中
-                    //保存形式为：{name: "foo", yesno: true, radio: "3"}
-                    this.data("inputData", $.contextMenu.getInputValues(opt));
-                    console.log(this.data("inputData", $.contextMenu.getInputValues(opt)).children('div').html())
-                    var template_key = this.data("inputData", $.contextMenu.getInputValues(opt)).children('div').html()
-                    var template_value = this.data("inputData")
-                    
-                    Label_relationship[template_key] = template_value
-                    
-                    console.log(Label_relationship,'你妈嗨');
-                    
-                    //这里直接提交到后台
-                    //{}
-                    //template_key=template_value
-                    
-                }
-            }
-        });*/
-        
-        
-    });
-
-
-
-    $("body").on("dblclick", 'div[data-name="break_loop"][class^="logic_css"]', function(e) {
-        //编辑循环结束节点
-        console.log('双击',e.currentTarget.id)
-        var edit_id = e.currentTarget.id
-        var str_html=''
-        str_html+='	    <div class="condition Ambiguity" id="Cycle_condition">'
-        str_html+='	        <li style="height:0.5px">'
-        str_html+='	        </li>'
-        str_html+='	        <div>'
-        str_html+='	        </div>'
-
-
-
-        str_html+='			<form class="layui-form" style="width: 199px;" lay-filter="switchGoodsID" action="">'
-        str_html+='			    <div class="layui-form-item" style="margin-bottom: -6px;">'
-        str_html+='				    <div class="layui-input-block">'
-        str_html+='				      <input type="radio" name="sex" value="男" title="break" checked="">'
-        str_html+='				      <input type="radio" name="sex" value="女" title="continue">'
-        str_html+='				    </div>'
-        str_html+='			    </div>'
-        str_html+='			    <hr>'
-        
-        
-        str_html+='	        	<div class="layui-input-inline" style="margin-top: 5px;width:170px;height:25px;margin-left:15px;">'
-        str_html+='		            <select name="Workflow_node">'
-
-        var api_node = localStorage.getItem("api_node")
-        console.log(api_node,'循环结束获取的数据')
-
-        api_node=JSON.parse(api_node)
-        for(var i in api_node){
-            str_html+='			            <option value="出参值1">'+i+'</option>'
-        }
-
-        str_html+='		            </select>'
-        str_html+='		        </div>'
-        
-        str_html+='	        	<div class="layui-input-inline" style="margin-top: 5px;width:170px;height:25px;margin-left:15px;">'
-        str_html+='		            <select name="node_Ginseng">'
-        str_html+='			            <option>请输入</option>'
-        str_html+='		            </select>'
-        str_html+='		        </div>'
-
-
-
-        str_html+='		        <div style="display:flex;margin-top: 5px;">'
-        str_html+='	        	    <div class="layui-input-inline" style="width:70px;height:25px;margin-left:15px;">'
-        str_html+='		                <select name="Exit_conditions">'
-        str_html+='			                <option value="出参值1">大于</option>'
-        str_html+='			                <option value="出参值2">小于</option>'
-        str_html+='			                <option value="出参值3">等于</option>'
-        str_html+='		                </select>'
-        str_html+='		            </div>'
-        str_html+='		            <div class="layui-input-block">'
-        str_html+='		                <input type="text" style="width:100px;margin-left:-18px;" name="Judgment_value" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">'
-        str_html+='		            </div>'
-        str_html+='		        </div>'
-
-        
-        str_html+='			</form>'
-        str_html+='	    </div>'
-        
-        
-
-        $("#"+edit_id).append(str_html)
-        form.render()
-
-        $(document).mouseup(function(e){//空白处点击关闭弹窗
-            var _con = $(".condition");   // 设置目标区域
-            if(!_con.is(e.target) && _con.has(e.target).length === 0){ // Mark 1
-                var data = form.val('switchGoodsID');
-                console.log(JSON.stringify(data),'双击',e.currentTarget.id)
-                $(".condition").remove();  // 功能代码
-            }
-        });
-            
-    })
-
-})
-
-
-
-$("#template").click(function(){
-    //点击展开关闭
-    $.ajax({
-       url:"/select_template/",
-       type:"GET",
-       data:{
-           'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
-       },
-       success:function (data) {
-            console.log("使用的时候",data);
-            //这里要触发列表重载
-            var html_str=""
-            for (var keys in data.data){
-                var url = data.data[keys]['url']
-                var img_status = data.data[keys]['img_status']
-                var name = data.data[keys]['name']
-            
-                console.log(keys)
-                html_str+='    <div style="display:flex;" class="Drag_template" ondragstart="dragStart(event)">'
-                html_str+='            <img src="'+url+'" data-name="'+img_status+'" data-id="'+keys+'">'
-                html_str+='            <div style="width:120px;margin-left:8px;">'+name+'</div>'
-                html_str+='            <font style="margin-right:10px;" class="del_template">x</font>'
-                html_str+='    </div>'
-            }
-            $(".Node_template").html(html_str)
-       },
-       error:function (data) {
-           layer.msg("失败",data);
-       }
-    });
-    $(".template_tab").toggle(500);
-})
-
-
-//del_template
-
-$("body").on("click", '.del_template', function() {
-//$(".del_template").click(function(){
-    //删除模板
-    console.log($(this).siblings('img').eq(0).data("id"),'这首兄弟节点')
-    var id = $(this).siblings('img').eq(0).data("id")
-    $.ajax({
-       url:"/del_template/",
-       type:"GET",
-       data:{
-           'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
-           'id': id,
-       },
-       success:function (data) {
-            $.ajax({
-               url:"/select_template/",
-               type:"GET",
-               data:{
-                   'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
-               },
-               success:function (data) {
-                    console.log("使用的时候",data);
-                    //这里要触发列表重载
-                    var html_str=""
-                    for (var keys in data.data){
-                        var url = data.data[keys]['url']
-                        var img_status = data.data[keys]['img_status']
-                        var name = data.data[keys]['name']
-                    
-                        console.log(keys)
-                        html_str+='    <div style="display:flex;" class="Drag_template" ondragstart="dragStart(event)">'
-                        html_str+='            <img src="'+url+'" data-name="'+img_status+'" data-id="'+keys+'">'
-                        html_str+='            <div style="width:120px;margin-left:8px;">'+name+'</div>'
-                        html_str+='            <font style="margin-right:10px;" class="del_template">x</font>'
-                        html_str+='    </div>'
-                    }
-                    $(".Node_template").html(html_str)
-               },
-               error:function (data) {
-                   layer.msg("失败",data);
-               }
-            });
-       },
-       error:function (data) {
-           layer.msg("失败",data);
-       }
-    });
-    
-})
-
-
-$("body").on("click", '.add_Label', function() {
-    //添加标签
-    layer.prompt({title: '输入标签名', formType: 3}, function(l_name, index){
-        layer.msg(l_name)
-        $('.add_Label').prev().append("<div>"+l_name+"</div>")
-        layer.close(index);
-    })
-
-})
-
-//add_Label
-
-
-
-function dragStart(event) {
-    console.log('模板的拖拽')
-    var img_url=event.target.src
-    var img_status=event.target.parentNode.parentNode.getAttribute("class")
-    var img_name=event.target.getAttribute("data-name")
-    var img_id=event.target.getAttribute("data-id")
-    
-    
-    console.log(img_status,'父节点---',img_url,img_name,img_id)
-    event.dataTransfer.setData("url",img_url);
-    event.dataTransfer.setData("img_status",img_status);
-    event.dataTransfer.setData("img_name",img_name);
-    event.dataTransfer.setData("img_id",img_id);
-}
-
-function allowDrop(event) {
-    event.preventDefault();
-}
-
-
-        
-function add_node_html(img_status,data,img_name,x,y,node_id){
-    //节点html创建
-    console.log(img_status,'这怎么搞呢')
-    if (img_status == "Below_drawer_d1" || img_status == 'Node_template'){//工具栏的图标才能拖
-
-        var name_list = ["separate","merge","Start_loop","stop_loop","break_loop"]
-        var val = name_list.indexOf(img_name);
-        if (val!=-1){
-            //逻辑节点的时候样式不一样
-            var str_html=""
-            str_html+='<div class="logic_css Ambiguity" id="'+ node_id +'" data-name="'+ img_name +'">'
-            str_html+='    <div>'
-            str_html+='		    <img style="width:10px;height:10px;margin-left:0px;margin-top:0px;" src="../static/img_server/左上角.png">'
-            str_html+='		    <img src="'+ data +'">'
-            str_html+='	    </div>'
-            str_html+='	</div>'
-            
-        }else{
-            //流程节点的样式
-            var str_html=""
-            str_html+='<div class="ui Ambiguity" id="'+ node_id +'" data-name="'+ img_name +'">'
-            str_html+='	<div class="ui_d0">'
-                    
-            str_html+='	</div>'
-            str_html+='	<div class="ui_d1">'
-            str_html+='		<img src="'+ data +'">'
-            str_html+='	</div>'
-            str_html+='	<div class="ui_d2">'
-            //str_html+='		点击登录'
-            str_html+='	</div>'
-            str_html+='</div>'
-        }
-        
-        console.log(str_html,'123412')
-
-        $("#draggable_canvas").append(str_html)
-        $("#"+node_id).css("left",x);
-        $("#"+node_id).css("top",y);
-        
-        
-        add_Process_node(node_id,img_name,val)
-
-    }
-}
-
-
-function abc(node,dict) {
-    //拿copy的参数方到节点里
-    var node_val = localStorage.getItem(node)
-    console.log(node_val,'哪里轻松了',JSON.stringify(dict))
-    if(node_val=='None'){
-        //新增
-        localStorage.setItem(node,JSON.stringify(dict));
-    }else{
-        //多个节点时新增/编辑
-        node_val=JSON.parse(node_val)
-        node_val=Object.assign(node_val, dict);
-        localStorage.setItem(node,JSON.stringify(node_val))
-    }
-
-}
-
-
-
-function drop(event) {
-    console.log(event.dataTransfer,'有意义么')
-    event.preventDefault();
-    try { 
-        var img_status = event.dataTransfer.getData("img_status");
-        var data = event.dataTransfer.getData("url");
-        var img_name=event.dataTransfer.getData("img_name");
-        console.log(img_status,'img_status')
-        console.log(img_name,'img_name')
-    }catch(e){
-        return
-    }
-    
-    //Below_drawer_d1
-    var node_id = Math.random().toString(36).slice(-6)//生成id
-    console.log(data,'123412')
-    
-    var x=event.offsetX;
-    var y=event.offsetY;
-    console.log(x+'_'+y);
-    
-    if (img_status == 'Node_template'){
-        //img_id
-        var img_id=event.dataTransfer.getData("img_id");
-        
-        $.ajax({
-           url:"/select_template/",
-           type:"GET",
-           data:{
-               'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
-           },
-           success:function (data) {
-                console.log(data.data,"使用的时候",data.data[img_id],img_id);
-                var dict={}
-                dict[node_id]=data.data[img_id]['data']
-                console.log(dict,'酸菜鱼',localStorage.getItem('api_node'))
-                
-                //这里要触发列表重载
-                if (img_name==="API"){
-                    abc('api_node',dict)
-                }else if(img_name==="sql"){
-                    abc('sql_node',dict)
-                }else if(img_name==="UI"){
-                    abc('rpa_node',dict)
-                }else if(img_name==="position"){
-                    abc('Node_information',dict)
-                    var Sort = data.data[img_id]['Sort']
-                    var Workflow_name = data.data[img_id]['Workflow_name']
-                    //9jr9ai_Sort
-                    //9jr9ai_Workflow_name
-                    var node_val = localStorage.getItem('Node_information')
-                    console.log(node_val,'哪里轻松了',JSON.stringify(dict))
-                    //多个节点时新增/编辑
-                    node_val=JSON.parse(node_val)
-                    console.log(node_val,'nmbde',Sort,Workflow_name)
-                    node_val[node_id+"_Sort"]=Sort
-                    node_val[node_id+"_Workflow_name"]=Workflow_name
-                    localStorage.setItem('Node_information',JSON.stringify(node_val))
-                    console.log(localStorage.getItem('Node_information'),'怎么不说')
-                }
-                
-           },
-           error:function (data) {
-               layer.msg("失败",data);
-           }
-        });
-        
-        
-    }
-    
-    
-    add_node_html(img_status,data,img_name,x,y,node_id)
-    echo_html.push(
-        {
-            'img_status':img_status,
-            'data':data,
-            'img_name':img_name,
-            'x':x,
-            'y':y,
-            'node_id':node_id
-        }
-    )
-}
-    
-
-function Upper_endpoint(id,Connect,common) {
-    jsPlumb.addEndpoint(id, Connect, common)
-}
-
-
-
-function Lower_endpoint(id,Connect,common) {
-    jsPlumb.addEndpoint(id,Connect,common)
-}
-
-
-//  connectorOverlays:[
-//		[ "Label", { label:'是', id:"label" } ]
-//  ],//终于搞好了,还是官方文档靠谱
-
-
-
-function add_Process_node(id,name,val) {
-    //var name_list = ["separate","merge","Start_loop","stop_loop","break_loop"]
-    var common = {
-      isSource: true,
-      isTarget: true,
-      connector: ['Straight'],
-      endpoint: ["Dot", { radius:5 }],//端点形状
-      paintStyle:{ width:15, height:15, fillStyle:'#b3b3b3' },//端点样式
-      connectorStyle : { strokeStyle:"#b3b3b3"},//连线样式
-    }//端点连线样式
-
-    console.log(common,'能否追加')
-
-
-    var Connect = {
-          anchor: 'Bottom',
-          connectorOverlays:[
-              [ "Arrow", { width:8, length:20, location:1, id:"arrow" } ],
-          ],
-    }
-
-
-    jsPlumb.ready(function () {
-      //jsPlumb.setContainer('draggable_canvas')
-
-      if ($(".ui").length==1 && val==-1){//流程节点只有一位时只添加下面的节点
-         Lower_endpoint(id,Connect,common)
-         jsPlumb.draggable(id)//可移动节点
-         return
-      }
-
-      if (name=='merge'){
-          //聚合节点,是上端点的时候追加属性可以连多条线
-           common['maxConnections']=-1
-           Connect['anchor']='Top'
-           Upper_endpoint(id,Connect,common)
-           delete common['maxConnections']
-      }else{
-           Connect['anchor']='Top'
-           Upper_endpoint(id,Connect,common)
-      }
-
-
-      if (name=='separate'){
-          //分支节点,是下端点的时候追加属性可以拉多条线
-           common['maxConnections']=-1
-           Connect['anchor']='Bottom'
-           Connect['connectorOverlays']=[
-               [ "Label", { label:'<a class="criteria" style="cursor:pointer;" herf="http://www.baidu.com"><img style="width:20px;height:20px;" src="../static/img_server/点击.png"></a>', id:"label" } ],
-               [ "Arrow", { width:8, length:20, location:1, id:"arrow" } ],
-           ]
-
-           console.log(Connect,'分支节点调这个')
-           
-           Lower_endpoint(id,Connect,common)
-           delete common['maxConnections']
-      }else{
-           Connect['anchor']='Bottom'
-           Lower_endpoint(id,Connect,common)
-      }
-
-      
-      jsPlumb.draggable(id)//可移动节点
-
-    })//添加端点
-    
-}
-
-
-jsPlumb.bind("click",function(conn){
-    //点击连线事件
-    console.log(conn.endpoints[0].elementId,"起始id")
-    console.log(conn.endpoints[1].elementId,"终点id")
-    Upper_endpoint_id=conn.endpoints[0].elementId
-    Lower_endpoint_id=conn.endpoints[1].elementId
-
-})
-    
-
-function list_node_obj(node){
-    var list_node=[]
-    var connections = jsPlumb.getAllConnections();
-    for(var i in connections){
-        // connections 是线数据数组
-        console.log(connections[i].sourceId,'编辑后的顺序究竟如何',connections[i].targetId)
-        if (node == connections[i].sourceId || node == connections[i].targetId){
-            if (node == connections[i].sourceId && i==0){
-                break;
-            }else{
-                list_node.push(connections[i].sourceId)
-                break;
-            }
-        }else{
-            list_node.push(connections[i].sourceId)
-            list_node.push(connections[i].targetId)
-        }
-    }
-    var set =new Set(list_node)
-    console.log(Array.from(set),'123123--------123123')
-    return Array.from(set)
-}
-    
-function add_date(){
-    // 获取当前日期
-    var date = new Date();
-
-    // 获取当前月份
-    var nowMonth = date.getMonth() + 1;
-
-    // 获取当前是几号
-    var strDate = date.getDate();
-
-    // 添加分隔符“-”
-    var seperator = "-";
-
-    // 对月份进行处理，1-9月在前面添加一个“0”
-    if (nowMonth >= 1 && nowMonth <= 9) {
-       nowMonth = "0" + nowMonth;
-    }
-
-    // 对月份进行处理，1-9号在前面添加一个“0”
-    if (strDate >= 0 && strDate <= 9) {
-       strDate = "0" + strDate;
-    }
-
-    // 最后拼接字符串，得到一个格式为(yyyy-MM-dd)的日期
-    var nowDate = date.getFullYear() + seperator + nowMonth + seperator + strDate;
-    return nowDate
-}
-
-
-
-
-
-
-
-
-function Unsaved(){
-    //判断阶段是否保存
-    var api_node = localStorage.getItem('api_node');//api
-    var rpa_node = localStorage.getItem('rpa_node');//脚本
-    var sql_node = localStorage.getItem('sql_node');//sql
-    var if_node = localStorage.getItem('if_node');//分支
-    var merge_node = localStorage.getItem('merge_node');//合并
-    var condition = localStorage.getItem('condition');//连线
-    var Node_information = localStorage.getItem('Node_information');//定位
-
-
-
-    var w_name={}
-    if (api_node !='None'){
-        var api_node = JSON.parse(api_node)
-        for (var api_node_key in api_node){
-            w_name[api_node_key]=api_node[api_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
-        }
-    }
-
-    if (rpa_node !='None'){
-        var rpa_node = JSON.parse(rpa_node)
-        for (var rpa_node_key in rpa_node){
-            w_name[rpa_node_key]=rpa_node[rpa_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
-        }
-    }
-    
-    if (Node_information !='None'){
-        var Node_information = JSON.parse(Node_information)
-        for (var Node_information_key in Node_information){
-            w_name[Node_information_key]=Node_information[Node_information_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
-        }
-    }
-
-
-
-
-    if (sql_node !='None'){
-        var sql_node = JSON.parse(sql_node)
-        for (var sql_node_key in sql_node){
-            w_name[sql_node_key]=sql_node[sql_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
-        }
-    }
-    
-    if (if_node !='None'){
-        var if_node = JSON.parse(if_node)
-        for (var if_node_key in if_node){
-            w_name[if_node_key]=if_node[if_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
-        }
-    }
-    
-    if (merge_node !='None'){
-        var merge_node = JSON.parse(merge_node)
-        for (var merge_node_key in merge_node){
-            w_name[merge_node_key]=merge_node[merge_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
-        }
-    }
-    
-    if (condition !='None'){
-        var condition = JSON.parse(condition)
-        for (var condition_node_key in condition){
-            w_name[condition_node_key]=condition[condition_node_key]['Workflow_name'].replace(/^\s*|\s*$/g,"");
-        }
-    }
-
-    return w_name
-
-}
-
-
-
-
-
-    
-$("#save_workflow").click(function(){
-    //保存数据到数据库
-    //alert('进到了保存',add_node_html)
-    console.log(add_node_html,'这组数据')
-
-    if ($(".ui").length<1){
-        //一个节点的时候不允许删除
-        layer.msg('流程节点数量不能小于1')
-        return
-    }
-
-    
-    var node_list=[]
-    
-    jsPlumb.setSuspendDrawing(true);
-    
-    //let plumbIns = jsPlumb.getInstance();
-    //plumbIns.reset();
-    
-    var connections = jsPlumb.getAllConnections();
-    console.log(connections,'真相只有一个')
-    var workflow_dict={}
-    var current_id=[]
-    var Rear_id=[]
-    for(var i in connections){
-        var dict_1 = new Object()
-        // connections 是线数据数组
-        console.log(connections[i].sourceId,'--',connections[i].targetId,'一对一对')
-        current_id.push(connections[i].sourceId)
-        Rear_id.push(connections[i].targetId)
-        node_list.push(connections[i].sourceId)
-        node_list.push(connections[i].targetId)
-        dict_1['current']=connections[i].sourceId
-        dict_1['Rear']=connections[i].targetId
-        dict_1['current_uuid']=connections[i].sourceId+'_current'
-        dict_1['Rear_uuid']=connections[i].targetId+"_Rear"
-        var current_width = $('#'+connections[i].sourceId).css('left');
-        var current_height = $('#'+connections[i].sourceId).css('top');
-        var Rear_width = $('#'+connections[i].targetId).css('left');
-        var Rear_height = $('#'+connections[i].targetId).css('top');
-        
-        dict_1['current_width']=current_width
-        dict_1['current_height']=current_height
-        dict_1['Rear_width']=Rear_width
-        dict_1['Rear_height']=Rear_height
-        workflow_dict[i]=dict_1
-        
-        //console.log(JSON.stringify(echo_html),'关键所在')
-        for (var echo_len in echo_html){//回显添加位置,可能是这里的问题-----百分之99是这里问题
-            var echo_id=echo_html[echo_len]['node_id']
-            if (echo_id==connections[i].sourceId){
-                echo_html[echo_len]['x']=current_width
-                echo_html[echo_len]['y']=current_height
-            }
-            if (echo_id==connections[i].targetId){
-                echo_html[echo_len]['x']=Rear_width
-                echo_html[echo_len]['y']=Rear_height
-            }
-        }
-            
-        
-    }
-
-    console.log(current_id,'今天一定要解决')
-    console.log(Rear_id,'今天一定要解决')
-
-    var echo_html_order=[]//看点别的,下次再写    应该是好了
-
-    console.log(connections.length,'这个季度整完11')
-
-    if (connections.length == 0){
-        console.log(echo_html,'这个季度整完')
-        for (var echo_len in echo_html){//回显添加位置,可能是这里的问题-----百分之99是这里问题
-            echo_html_order.push(echo_html[echo_len])
-        }
-    }else{
-        for(var z in connections){
-            //dict_1['Rear']=connections[z].targetId
-            for (var echo_len in echo_html){//回显添加位置,可能是这里的问题-----百分之99是这里问题
-                console.log(JSON.stringify(echo_html[echo_len]),'echo_html[echo_len]')
-                var echo_id=echo_html[echo_len]['node_id']
-                if (connections[z].targetId==echo_id || connections[z].sourceId==echo_id){
-                    echo_html_order_list=[]
-                    for (var echo_html_order_id in echo_html_order){
-                        echo_html_order_list.push(echo_html_order[echo_html_order_id]['node_id'])
-                    }
-                    console.log(echo_html_order_list,'echo_html_order_list',echo_html[echo_len]['node_id'])
-                    if (echo_html_order_list.indexOf(echo_html[echo_len]['node_id'])<0){
-                        echo_html_order.push(echo_html[echo_len])//加个判断echo_html_order有的就不加了
-                    }
-                    
-                }
-                
-                
-
-            }
-        
-        }
-    }
-    console.log(JSON.stringify(echo_html_order),'echo_html_order')
-    
-    
-    
-    
-    
-    console.log(JSON.stringify(workflow_dict),'编辑的时候节点问题')
-
-    node_list=[...new Set(node_list)]
-    console.log(node_list.length,'node_listnode_listnode_list')
-    var node_node=$(".ui,.logic_css")
-    if (node_list.length!=0){//节点是否连线
-        for (var len_node=0;len_node<node_node.length;len_node++){
-            console.log(node_node.eq(len_node).attr('id'),'ididid')
-            //if (node_node.eq(len_node).attr('id') in node_list){
-            if (node_list.indexOf(node_node.eq(len_node).attr('id')) < 0){
-                layer.msg('请检查节点连线')
-                return
-            }
-        }
-    }
-
-    Workflwow_obj={}
-    Workflwow_data={
-        "Workflow_name":$('#myP').text(),
-        "api_node":localStorage.getItem('api_node'),
-        "if_node":localStorage.getItem('if_node'),
-        "rpa_node":localStorage.getItem('rpa_node'),
-        "Node_information":localStorage.getItem('Node_information'),
-        "sql_node":localStorage.getItem('sql_node'),
-        "merge_node":localStorage.getItem('merge_node'),
-        "condition":localStorage.getItem('condition'),
-        "Ginseng":localStorage.getItem('Ginseng'),
-        "connections":JSON.stringify(workflow_dict),
-        //"echo_html":echo_html,
-        "echo_html":echo_html_order,
-        "list_data":localStorage.getItem('list_data'),
-        "Workflow_parameter":localStorage.getItem('Workflow_parameter'),
-    }
-    
-    if($("#run_workflow").data('id')=='None'){
-        var Workflow_id = Math.random().toString(36).slice(-6)//如果新增则生成id
-    }else{
-        var Workflow_id = $("#run_workflow").data('id')
-    }
-
-    Workflwow_obj[Workflow_id]=Workflwow_data
-    var Workflow_name=$('#myP').text();
-
-    console.log(Workflwow_obj,'这是提交的数据',JSON.stringify(Workflwow_obj))
-    
-    //--------------------------------------------------------------------------------------
-    
-    $.ajax({
-       url:"/Workflow_save/",
-       type:"POST",                    
-       data:{
-           'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),		   
-           'Workflow_id':Workflow_id,
-           'Workflow_name':Workflow_name,
-           'Workflwow_obj':JSON.stringify(Workflwow_obj),
-           'jenkins':localStorage.getItem('jenkins'),
-           //'Date':new Date().toLocaleTimeString()
-           'Date':add_date() + new Date().toLocaleTimeString()
-       },
-       success:function (data) {
-            if(data.code==301){
-                layer.prompt({title: '输入文件名', formType: 3}, function(pass, index){
-                    console.log(pass,index,'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-                    $.ajax({
-                       url:"/file_save/",
-                       type:"POST",                    
-                       data:{
-                           'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),		   
-                           'file_name':pass,
-                           'data':data.data,
-                           'jenkins':localStorage.getItem('jenkins')
-                       },
-                       success:function (data) {
-                       
-                           window.location = '/ui_000/?id='+Workflow_id
-                           layer.msg("成功",data);
-                           layer.close(index);
-                       },
-                       error:function (data) {
-                           layer.msg("失败",data);
-                       }	   
-                    })
-                    layer.close(index);
-                });
-            }else{
-                window.location = '/ui_000/?id='+Workflow_id
-            }
-            console.log('成功',data,'成功人事达文西')
-       },
-       error:function (data) {
-           layer.msg("失败",data);
-           //console.log('失败',data)
-       }
-    });
-    
-})
-
-
-$("#Reset").click(function(){
-    //重置
-    var WORK_ID=$("#run_workflow").data('id')	
-    $.ajax({
-       url:"/Workflow_Reset/",
-       type:"GET",         
-       data:{
-           'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),		   
-           'id':WORK_ID,
-       },
-       success:function (data) {
-       
-           window.location = '/ui_000/?id='+WORK_ID
-           layer.msg("成功",data);
-       },
-       error:function (data) {
-           layer.msg("失败",data);
-       }	   
-    })
-})
-
-
-
-function retrieve_data(){
-    //获取数据到数据库
-    if ($(".ui").length<1){
-        //一个节点的时候不允许删除
-        layer.msg('流程节点数量不能小于1')
-        return
-    }
-
-    var node_list=[]
-    jsPlumb.setSuspendDrawing(true);
-    
-
-    var connections = jsPlumb.getAllConnections();
-    var workflow_dict={}
-    var current_id=[]
-    var Rear_id=[]
-    for(var i in connections){
-        var dict_1 = new Object()
-        console.log(connections[i].sourceId,'--',connections[i].targetId,'一对一对')
-        current_id.push(connections[i].sourceId)
-        Rear_id.push(connections[i].targetId)
-        node_list.push(connections[i].sourceId)
-        node_list.push(connections[i].targetId)
-        dict_1['current']=connections[i].sourceId
-        dict_1['Rear']=connections[i].targetId
-        dict_1['current_uuid']=connections[i].sourceId+'_current'
-        dict_1['Rear_uuid']=connections[i].targetId+"_Rear"
-        var current_width = $('#'+connections[i].sourceId).css('left');
-        var current_height = $('#'+connections[i].sourceId).css('top');
-        var Rear_width = $('#'+connections[i].targetId).css('left');
-        var Rear_height = $('#'+connections[i].targetId).css('top');
-        
-        dict_1['current_width']=current_width
-        dict_1['current_height']=current_height
-        dict_1['Rear_width']=Rear_width
-        dict_1['Rear_height']=Rear_height
-        workflow_dict[i]=dict_1
-        
-        for (var echo_len in echo_html){//回显添加位置,可能是这里的问题-----百分之99是这里问题
-            var echo_id=echo_html[echo_len]['node_id']
-            if (echo_id==connections[i].sourceId){
-                echo_html[echo_len]['x']=current_width
-                echo_html[echo_len]['y']=current_height
-            }
-            if (echo_id==connections[i].targetId){
-                echo_html[echo_len]['x']=Rear_width
-                echo_html[echo_len]['y']=Rear_height
-            }
-        }
-    }
-
-    var echo_html_order=[]//看点别的,下次再写    应该是好了
-    if (connections.length == 0){
-        for (var echo_len in echo_html){//回显添加位置,可能是这里的问题-----百分之99是这里问题
-            echo_html_order.push(echo_html[echo_len])
-        }
-    }else{
-        for(var z in connections){
-            for (var echo_len in echo_html){//回显添加位置,可能是这里的问题-----百分之99是这里问题
-                var echo_id=echo_html[echo_len]['node_id']
-                if (connections[z].targetId==echo_id || connections[z].sourceId==echo_id){
-                    echo_html_order_list=[]
-                    for (var echo_html_order_id in echo_html_order){
-                        echo_html_order_list.push(echo_html_order[echo_html_order_id]['node_id'])
-                    }
-                    if (echo_html_order_list.indexOf(echo_html[echo_len]['node_id'])<0){
-                        echo_html_order.push(echo_html[echo_len])//加个判断echo_html_order有的就不加了
-                    }
-                }
-            }
-        }
-    }
-
-    node_list=[...new Set(node_list)]
-    console.log(node_list.length,'node_listnode_listnode_list')
-    var node_node=$(".ui,.logic_css")
-    if (node_list.length!=0){//节点是否连线
-        for (var len_node=0;len_node<node_node.length;len_node++){
-            console.log(node_node.eq(len_node).attr('id'),'ididid')
-            //if (node_node.eq(len_node).attr('id') in node_list){
-            if (node_list.indexOf(node_node.eq(len_node).attr('id')) < 0){
-                layer.msg('请检查节点连线')
-                return
-            }
-        }
-    }
-
-    Workflwow_obj={}
-    Workflwow_data={
-        "Workflow_name":$('#myP').text(),
-        "api_node":localStorage.getItem('api_node'),
-        "if_node":localStorage.getItem('if_node'),
-        "rpa_node":localStorage.getItem('rpa_node'),
-        "Node_information":localStorage.getItem('Node_information'),
-        "sql_node":localStorage.getItem('sql_node'),
-        "merge_node":localStorage.getItem('merge_node'),
-        "condition":localStorage.getItem('condition'),
-        "Ginseng":localStorage.getItem('Ginseng'),
-        "connections":JSON.stringify(workflow_dict),
-        //"echo_html":echo_html,
-        "echo_html":echo_html_order,
-        "list_data":localStorage.getItem('list_data'),
-        "Workflow_parameter":localStorage.getItem('Workflow_parameter'),
-    }
-    
-    if($("#run_workflow").data('id')=='None'){
-        var Workflow_id = Math.random().toString(36).slice(-6)//如果新增则生成id
-    }else{
-        var Workflow_id = $("#run_workflow").data('id')
-    }
-
-    Workflwow_obj[Workflow_id]=Workflwow_data
-    var Workflow_name=$('#myP').text();
-
-    console.log(Workflwow_obj,'这是获取的数据',JSON.stringify(Workflwow_obj))
-    return Workflwow_obj
-}
-
-
-
-
-
-
-
-
-$("#run_workflow").click(function(){
-    //运行
-    $(this).attr("class","layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-icon-loading")//改变图标
-    $(this).attr("cursor","default")
-    //$(this).attr("id","none")
-    $(this).css({"pointer-events":"none"})
-    var asd=$(this)
-
-    var WORK_ID=$("#run_workflow").data('id')
-    console.log(WORK_ID,'绝招')
-    $(".ui_d0").css({'background-color': '#32CD32'})
-
-
-    $.ajax({
-       url:"/workflow_data/",
-       type:"GET",
-       data:{
-           'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
-           'id':WORK_ID,
-           'data':JSON.stringify(retrieve_data())
-       },
-       success:function (data) {
-            if(data.code==200){
-                layer.msg('执行')
-                console.log('要交了')
-            }else if(data.code==500){
-                layer.msg('请先保存再执行')
-                console.log('要交了2')
-                return
-            }
-       },
-       error:function (data) {
-            console.log(data,'中午吃什么呢')
-       }
-    })
-
-
-    var myVar=setInterval(function(){myTimer()},500);
-    function myTimer(){
-        $.get("/Node_status/?id="+WORK_ID, function(result){
-            console.log(result,'激动人心的雄文')
-            var val=result.data
-            console.log(val,'拿了做判断')
-            if(! val){
-                return
-            }
-            
-            var str_html=''
-            for (var key in val){
-                if(val[key]['status']=='Success'){
-                    $("#"+key).children('div').eq(0).css({'background-color': '#0a6ae6e3'})
-                }else if(val[key]['status']=='error'){
-                    $("#"+key).children('div').eq(0).css({'background-color': '#cd326b'})
-                }else{
-                    $("#"+key).children('div').eq(0).css({'background-color': '#32CD32'})
-                }
-                
-                str_html+='	<ul class="layui-timeline">'
-                str_html+='		  <li class="layui-timeline-item">'
-                str_html+='			<i class="layui-icon layui-timeline-axis"></i>'
-                str_html+='			<div class="layui-timeline-content layui-text">'
-                str_html+='			  <h3 class="layui-timeline-title">'+val[key]['Workflow_name']+'</h3>'
-                str_html+='			  <p>'
-                if (typeof val=="object"){
-                    console.log(val[key]["Return_parameter"],'这里得转码')
-                    str_html+=                JSON.stringify(val[key]["Return_parameter"])
-                }else{
-                    str_html+=                val[key]["Return_parameter"]
-                }
-                str_html+='			  </p>'
-                str_html+='			</div>'
-                str_html+='		  </li>'
-                str_html+=' </ul>'
-                
-                $("#log_html").html(str_html)
-            }
-        });
-        
-    }
-    
-    $.ajax({
-       url:"/run_workflow_api/",
-       type:"GET",                    
-       data:{
-           'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
-           'id':WORK_ID
-       },
-       success:function (data) {
-            console.log("成功111111",data);	
-            function st(){
-                clearInterval(myVar)
-            }
-            setTimeout(st, 2000);
-            asd.attr("class","layui-icon layui-icon-play")//改变图标
-            asd.attr("cursor","pointer")
-            asd.css({"pointer-events":"auto"})
-            location.reload();//刷新当前界面
-            
-       },
-       error:function (data) {
-            //clearInterval(myVar)
-            console.log("成功111111",data);	
-            function st(){
-                clearInterval(myVar)
-            }
-            setTimeout(st, 2000);
-            asd.attr("class","layui-icon layui-icon-play")//改变图标
-            asd.attr("cursor","pointer")
-            asd.css({"pointer-events":"auto"})
-            
-        }	   
-    })	
-})
-
-
-
-window.onload =function()
-{
-    //setTimeout($("#loading").hide(),1000);
-    $("#loading").hide();
-}
-
-
-
-
-
-</script>
 </body>
 </html>
+

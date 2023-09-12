@@ -12,7 +12,7 @@ class transfer_get:
 		
     def r_get(self):
         #get请求
-        print('我要调一波')
+        # print('我要调一波')
         r=requests.get(url=self.url,data=self.body, headers=self.head)
         #print(r.json,'返回的text')
         r.content.decode('utf-8')
@@ -48,7 +48,7 @@ class transfer_head:
 		
     def r_head(self):
         x = requests.head(self.url)
-        print(x.headers,x.text)
+        # print(x.headers,x.text)
         r.content.decode('utf-8')
         yield x.text
 		
@@ -129,8 +129,8 @@ class Deal_with:
             url=value[i].get('url')
             head_status=value[i].get('head_status')
             body_status=value[i].get('body_status')
-            print(head_status,'head_status')
-            print(body_status,'body_status')
+            # print(head_status,'head_status')
+            # print(body_status,'body_status')
 			
             if head_status=="head_table":
                 head=value[i].get('table_head')

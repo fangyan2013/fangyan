@@ -122,6 +122,7 @@ class action:
         #{'path_name': '输入密码', 'sleep_time': '1', 'Positioning': '0', 'title': '[placeholder=\\"请输入密码\\"]', 'interest': '2', 'data': '123456'} 关键中的关键
         #{'path_name': '点击登录', 'sleep_time': '1', 'Positioning': '0', 'title': 'button:has-text(\\"登录\\")', 'interest': '0'}
         interest = res.get('interest')#获取操作方式
+        print(res.get('sleep_time'),'sleep_timesleep_time')
         sleep_time = int(res.get('sleep_time'))#获取睡眠时间,这里前端得效验
         print('走进了我的心房',interest,res)		 
         if interest=='0':
@@ -129,7 +130,9 @@ class action:
             print('左键点击')
             self.Left_click()
             time.sleep(sleep_time)
-            return None
+            # return None
+            return self.obj({self.path_name:True})#通过回调函数返回
+
         # elif interest=='1':
             # #清空输入框
             # obj.clear()
@@ -139,28 +142,34 @@ class action:
             data = res.get('data')#获取data
             self.enter(data)
             time.sleep(sleep_time)
-            return None
+            return self.obj({self.path_name:True})#通过回调函数返回
+        
         elif interest=='3':
             #获取div内容
             Text=self.text_val()
             time.sleep(sleep_time)
-            return Text
+            # return Text
+            return self.obj({self.path_name:Text})#通过回调函数返回
+
         elif interest=='4':
             #右键点击
             self.Right_click()
             time.sleep(sleep_time)
-            return None
+            # return None
+            return self.obj({self.path_name:True})#通过回调函数返回
+
+
         elif interest=='5':
             #双击
             print('左键双击')
             self.Double_click()
             time.sleep(sleep_time)
-            return None
+            return self.obj({self.path_name:True})#通过回调函数返回
         elif interest=='6':
             #长按
             self.Press(width,height,t)
             time.sleep(sleep_time)
-            return None
+            return self.obj({self.path_name:True})#通过回调函数返回
         # elif interest=='7':
            # #回退
             # obj.back()
